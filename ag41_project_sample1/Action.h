@@ -22,7 +22,9 @@ public:
 	Action(Client* s, Client* e);
 	Action(Client* cli, Commande* co);
 	TypeAction getType();
-
+	Client* getStart();
+	Client* getEnd();
+	Commande* getCommande();
 	virtual ~Action();
 };
 

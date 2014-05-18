@@ -22,3 +22,21 @@ Action::TypeAction Action::getType()
 {
 	return t;
 }
+Client* Action::getStart()
+{
+	return start;
+}
+Client* Action::getEnd()
+{
+	if (t == Action::DEPLACEMENT)
+		return end;
+	else
+		return (Client*)0;
+}
+Commande* Action::getCommande()
+{
+	if (t == Action::DEPOT)
+			return comm;
+		else
+			return (Commande*)0;
+}

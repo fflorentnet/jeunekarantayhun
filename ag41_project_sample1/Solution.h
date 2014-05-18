@@ -11,6 +11,8 @@
 #include <utility>
 #include <vector>
 #include "Client.h"
+#include "Action.h"
+
 using namespace std;
 
 class Solution {
@@ -18,6 +20,7 @@ private:
 	map<pair<Client*, Client*>, int> distanceClients;
 	map<Client*, int> distanceFournisseur;
 	vector<Client*> listeClient;
+	map<int, vector<Action*>* > sol;
 public:
 	Solution();
 	virtual ~Solution();
