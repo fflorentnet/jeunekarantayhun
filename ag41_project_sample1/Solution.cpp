@@ -86,9 +86,12 @@ bool compareClient(Client* c1, Client* c2) {
 }
 int Solution::generate() {
 	vector<Client*> listeAscClient = listeClient;
-	vector<pair<string, int> > t;
+
+	vector<int> t;
+
 	cout << "Recopie des données" << endl;
 	cout << "Nombre de clients : " << listeAscClient.size() << endl;
+
 	vector<Commande*>::iterator itComm;
 
 	vector<Client*>::iterator itC;
@@ -113,22 +116,15 @@ int Solution::generate() {
 	Client* cCurrent;
 	Commande* commTemp;
 	Commande* commLast = (Commande*) cLast->premiereCommande();
-	string stemp = cLast->getNom() + "," + (commLast->getProduit())->getNom();
 	int temp = commLast->getDate();
-
-	pair<string, int> ptemp(stemp, temp);
-
-	t.push_back(ptemp);
+	t.push_back(temp);
 
 	if (sol[temp] == NULL)
 		sol[temp] = new vector<Action*>();
 	sol[temp]->push_back(new Action((Client*)0, cLast));
 
-	for (itComm = cLast->getCommande()->begin();
-			itComm != cLast->getCommande()->end(); itComm++) {
+	for (itComm = cLast->getCommande()->begin();itComm != cLast->getCommande()->end(); itComm++) {
 		commTemp = (Commande*) (*itComm);
-		stemp = cLast->getNom() + "," + ((*itComm)->getProduit())->getNom();
-		t.push_back(ptemp);
 		sol[temp]->push_back(new Action(cLast, commTemp));
 
 	}
@@ -141,52 +137,41 @@ int Solution::generate() {
 		cCurrent = (Client*) listeAscClient.back();
 		commTemp = cCurrent->derniereCommande();
 		if (commTemp != NULL) {
-			ptemp = t.back();
-			int ttemp = ptemp.second;
+			int ttemp = t.back();
 			if (commTemp->getDate() > ttemp) {
+
 				temps = ttemp - 2 * distanceClient(cCurrent);
+
 				if (sol[temps] == NULL)
 					sol[temps] = new vector<Action*>();
+
 				sol[temps]->push_back(new Action((Client*)0, cCurrent));
+				t.push_back(temps);
+
 				for (itComm = cCurrent->getCommande()->begin(); itComm != cCurrent->getCommande()->end(); itComm++) {
 					commTemp = (Commande*) (*itComm);
-					stemp = cCurrent->getNom() + "," + commTemp->getProduit()->getNom();
-
-					ptemp = make_pair(stemp,temps);
-					t.push_back(ptemp);
-
 					sol[temps]->push_back(new Action(cCurrent, commTemp));
 				}
-			} else {
-
+			}
+			else {
 				temps = cCurrent->premiereCommande()->getDate();
+
 				if (sol[temps] == NULL)
 					sol[temps] = new vector<Action*>();
+
 				sol[temps]->push_back(new Action((Client*)0, cCurrent));
 
 				for (itComm = cCurrent->getCommande()->begin();	itComm != cCurrent->getCommande()->end(); itComm++) {
-					stemp = cCurrent->getNom() + "," + (*itComm)->getProduit()->getNom();
 					commTemp = cCurrent->premiereCommande();
-					ptemp = make_pair(stemp, commTemp->getDate());
-					t.push_back(ptemp);
-
 					sol[temps]->push_back(new Action(cCurrent, commTemp));
 				}
+
+				t.push_back(temps);
 			}
 		}
 		listeAscClient.pop_back();
 	}
 	cout << "Fin du calcul" << endl;
-	vector<pair<string, int> >::iterator it;
-
-	for (it = t.begin(); it != t.end(); it++) {
-		ptemp = (*it);
-		string te = ptemp.first;
-		int tem = ptemp.second;
-		cout << "t(" << te << ") = " << tem << endl;
-		i--;
-	}
-	cout << "----------------" << endl;
 	return 0;
 }
 
