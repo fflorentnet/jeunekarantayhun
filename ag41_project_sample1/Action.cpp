@@ -18,7 +18,7 @@ Action::Action(Client* s, Client* e): start(s), end(e), t(DEPLACEMENT){
 Action::Action(Client* cli, Commande* co) : start(cli), comm(co), t(DEPOT) {
 
 }
-Action::TypeAction Action::getType()
+TypeAction Action::getType()
 {
 	return t;
 }
@@ -28,14 +28,14 @@ Client* Action::getStart()
 }
 Client* Action::getEnd()
 {
-	if (t == Action::DEPLACEMENT)
+	if (t == DEPLACEMENT)
 		return end;
 	else
 		return (Client*)0;
 }
 Commande* Action::getCommande()
 {
-	if (t == Action::DEPOT)
+	if (t == DEPOT)
 			return comm;
 		else
 			return (Commande*)0;

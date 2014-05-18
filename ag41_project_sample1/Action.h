@@ -11,9 +11,10 @@
 #include "Client.h"
 #include "Commande.h"
 
+enum TypeAction { DEPLACEMENT, DEPOT };
+
 class Action {
 private:
-	enum TypeAction { DEPLACEMENT, DEPOT };
 	TypeAction t;
 	Client* start;
 	Client* end;

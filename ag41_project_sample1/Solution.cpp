@@ -50,24 +50,29 @@ ostream& operator<<(ostream& flux, Solution& s) {
 	{
 		vTemp = (*itMap).second;
 		date = (*itMap).first;
-		flux << "A la date " << date << ":" << endl;
+		char *temp = "A la date : ";
+		flux << temp << date << endl;
 
 		for (itAction = vTemp->begin(); itAction != vTemp->end(); itAction++)
 		{
 			aTemp = (*itAction);
-			if (aTemp->getType() == Action::DEPOT)
+			if (aTemp->getType() == DEPOT)
 			{
 				flux << "Depot de " << aTemp->getCommande()->getProduit()->getNom() << " chez " << aTemp->getStart()->getNom() << endl;
 			}
-			else if (aTemp->getType() == Action::DEPLACEMENT)
+			else if (aTemp->getType() == DEPLACEMENT)
 			{
-				flux << "Deplachement de " << aTemp->getStart()->getNom() << " à " << aTemp->getEnd()->getNom() << endl;
+				Client* start = aTemp->getStart();
+				if (start == (Client*)0)
+					flux << "Deplacement du fournisseur à " << aTemp->getEnd()->getNom() << endl;
+				else
+					flux << "Deplacement de " << aTemp->getStart()->getNom() << " à " << aTemp->getEnd()->getNom() << endl;
 			}
 		}
 
-		return flux;
 	}
 
+	return flux;
 }
 bool compareClient(Client* c1, Client* c2) {
 	Commande* co1 = (*c1).derniereCommande();
@@ -114,19 +119,25 @@ int Solution::generate() {
 	pair<string, int> ptemp(stemp, temp);
 
 	t.push_back(ptemp);
+
+	if (sol[temp] == NULL)
+		sol[temp] = new vector<Action*>();
+	sol[temp]->push_back(new Action((Client*)0, cLast));
+
 	for (itComm = cLast->getCommande()->begin();
 			itComm != cLast->getCommande()->end(); itComm++) {
 		commTemp = (Commande*) (*itComm);
 		stemp = cLast->getNom() + "," + ((*itComm)->getProduit())->getNom();
 		t.push_back(ptemp);
+		sol[temp]->push_back(new Action(cLast, commTemp));
+
 	}
 	listeAscClient.pop_back();
-	int j = 0;
 
 	cout << "Calcul" << endl;
 	int temps=0;
 	while (!listeAscClient.empty()) {
-		cout << "Iteration " << j << "\n";
+		cout << "Iteration " << endl;
 		cCurrent = (Client*) listeAscClient.back();
 		commTemp = cCurrent->derniereCommande();
 		if (commTemp != NULL) {
@@ -134,12 +145,12 @@ int Solution::generate() {
 			int ttemp = ptemp.second;
 			if (commTemp->getDate() > ttemp) {
 				temps = ttemp - 2 * distanceClient(cCurrent);
-				sol[temps]->push_back(new Action(cLast, cCurrent));
-				for (itComm = cCurrent->getCommande()->begin();
-						itComm != cCurrent->getCommande()->end(); itComm++) {
+				if (sol[temps] == NULL)
+					sol[temps] = new vector<Action*>();
+				sol[temps]->push_back(new Action((Client*)0, cCurrent));
+				for (itComm = cCurrent->getCommande()->begin(); itComm != cCurrent->getCommande()->end(); itComm++) {
 					commTemp = (Commande*) (*itComm);
-					stemp = cCurrent->getNom() + ","
-							+ commTemp->getProduit()->getNom();
+					stemp = cCurrent->getNom() + "," + commTemp->getProduit()->getNom();
 
 					ptemp = make_pair(stemp,temps);
 					t.push_back(ptemp);
@@ -149,21 +160,23 @@ int Solution::generate() {
 			} else {
 
 				temps = cCurrent->premiereCommande()->getDate();
-				sol[temps]->push_back(new Action(cLast, cCurrent));
+				if (sol[temps] == NULL)
+					sol[temps] = new vector<Action*>();
+				sol[temps]->push_back(new Action((Client*)0, cCurrent));
 
-				for (itComm = cCurrent->getCommande()->begin();
-						itComm != cCurrent->getCommande()->end(); itComm++) {
-					stemp = cCurrent->getNom() + ","
-							+ (*itComm)->getProduit()->getNom();
+				for (itComm = cCurrent->getCommande()->begin();	itComm != cCurrent->getCommande()->end(); itComm++) {
+					stemp = cCurrent->getNom() + "," + (*itComm)->getProduit()->getNom();
 					commTemp = cCurrent->premiereCommande();
 					ptemp = make_pair(stemp, commTemp->getDate());
 					t.push_back(ptemp);
+
 					sol[temps]->push_back(new Action(cCurrent, commTemp));
 				}
 			}
 		}
 		listeAscClient.pop_back();
 	}
+	cout << "Fin du calcul" << endl;
 	vector<pair<string, int> >::iterator it;
 
 	for (it = t.begin(); it != t.end(); it++) {
@@ -173,7 +186,7 @@ int Solution::generate() {
 		cout << "t(" << te << ") = " << tem << endl;
 		i--;
 	}
-	cout << "----------------";
+	cout << "----------------" << endl;
 	return 0;
 }
 
