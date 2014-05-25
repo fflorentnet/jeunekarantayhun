@@ -35,19 +35,20 @@ int main(void)
 
 	std::cout << "Affichage des clients:" << endl;
 	//std::cout << c1 << c2 << c3 << c4 << c5;
+	Data* d = new Data();
+	Solution s(d);
 
-	Solution s;
-	s.ajouterClient(c1);
-	s.ajouterClient(c2);
-	s.ajouterClient(c3);
-	s.ajouterClient(c4);
-	s.ajouterClient(c5);
+	d->ajouterClient(c1);
+	d->ajouterClient(c2);
+	d->ajouterClient(c3);
+	d->ajouterClient(c4);
+	d->ajouterClient(c5);
 
-	s.distanceClient(c1, 100);
-	s.distanceClient(c2, 100);
-	s.distanceClient(c3, 100);
-	s.distanceClient(c4, 100);
-	s.distanceClient(c5, 100);
+	d->distanceClient(c1, 100);
+	d->distanceClient(c2, 100);
+	d->distanceClient(c3, 100);
+	d->distanceClient(c4, 100);
+	d->distanceClient(c5, 100);
 
 	std::cout << "Generation de la solution:" << endl;
 	s.generate();

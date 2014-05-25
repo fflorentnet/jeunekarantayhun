@@ -12,27 +12,17 @@
 #include <vector>
 #include "Client.h"
 #include "Action.h"
-
+#include "Data.h"
 using namespace std;
 
 class Solution {
 private:
-	map<pair<Client*, Client*>, int> distanceClients;
-	map<Client*, int> distanceFournisseur;
-	vector<Client*> listeClient;
+	Data* d;
 	map<int, vector<Action*>* > sol;
 public:
-	Solution();
+	Solution(Data* dat);
 	virtual ~Solution();
-
-	void ajouterClient(Client* c);
-	int distanceClient(Client* c);
-	void distanceClient(Client* c, int dist);
-	int distanceClient(Client* c1, Client* c2);
-	void distanceClient(Client* c1, Client* c2, int dist);
 	friend ostream& operator<< (ostream& flux, Solution& s);
-
-
 	int generate();
 };
 

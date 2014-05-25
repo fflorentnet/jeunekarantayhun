@@ -8,38 +8,14 @@
 #include "Solution.h"
 #include "Commande.h"
 #include <algorithm>
-Solution::Solution() {
+Solution::Solution(Data* dat): d(dat) {
 	// TODO Auto-generated constructor stub
 
 }
 
 Solution::~Solution() {
 	// TODO Auto-generated destructor stub
-}
-void Solution::ajouterClient(Client* c) {
-	listeClient.push_back(c);
-}
-int Solution::distanceClient(Client* c) {
-	if (distanceFournisseur.find(c) != distanceFournisseur.end())
-		return distanceFournisseur.at(c);
-	else
-		return -1;
-}
-void Solution::distanceClient(Client* c, int dist) {
-	distanceFournisseur[c] = dist;
-}
-int Solution::distanceClient(Client* c1, Client* c2) {
-	pair<Client*, Client*> p(c1, c2);
-	if (distanceClients.find(p) != distanceClients.end())
-		return distanceClients.at(p);
-	else
-		return -1;
-}
-void Solution::distanceClient(Client* c1, Client* c2, int dist) {
-	pair<Client*, Client*> p(c1, c2);
-	distanceClients[p] = dist;
-}
-ostream& operator<<(ostream& flux, Solution& s) {
+}ostream& operator<<(ostream& flux, Solution& s) {
 	map<int, vector<Action*>* >::iterator itMap;
 	vector<Action*>* vTemp;
 	vector<Action*>::iterator itAction;
@@ -85,7 +61,7 @@ bool compareClient(Client* c1, Client* c2) {
 	return (d1 < d2);
 }
 int Solution::generate() {
-	vector<Client*> listeAscClient = listeClient;
+	vector<Client*> listeAscClient = d->getListeClient();
 
 	vector<int> t;
 
@@ -140,7 +116,7 @@ int Solution::generate() {
 			int ttemp = t.back();
 			if (commTemp->getDate() > ttemp) {
 
-				temps = ttemp - 2 * distanceClient(cCurrent);
+				temps = ttemp - 2 * d->distanceClient(cCurrent);
 
 				if (sol[temps] == NULL)
 					sol[temps] = new vector<Action*>();
