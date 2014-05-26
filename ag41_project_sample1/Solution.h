@@ -24,6 +24,9 @@ public:
 	virtual ~Solution();
 	friend ostream& operator<< (ostream& flux, Solution& s);
 	int generate();
+	int getValeur();
+	Data* getData();
+	int computeDifference();
 };
 
 #endif /* SOLUTION_H_ */

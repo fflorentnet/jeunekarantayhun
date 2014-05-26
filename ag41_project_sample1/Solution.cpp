@@ -15,7 +15,65 @@ Solution::Solution(Data* dat): d(dat) {
 
 Solution::~Solution() {
 	// TODO Auto-generated destructor stub
-}ostream& operator<<(ostream& flux, Solution& s) {
+}
+
+Data* Solution::getData()
+{
+	return d;
+}
+int Solution::computeDifference()
+{
+	map<int, vector<Action*>* >::iterator itMap;
+	vector<Action*>* vTemp;
+	vector<Action*>::iterator itAction;
+	Action* aTemp;
+	int date=0;
+	int min = 1500000;
+
+	for (itMap = sol.begin() ; itMap != sol.end() ; itMap++)
+	{
+		vTemp = (*itMap).second;
+		date = (*itMap).first;
+		for (itAction = vTemp->begin(); itAction != vTemp->end(); itAction++)
+		{
+			aTemp = (*itAction);
+			int ttemp = 0;
+			if (aTemp->getType() == DEPLACEMENT)
+			{
+				Client* start = aTemp->getStart();
+				Client* end = aTemp->getEnd();
+				if (start == (Client*)0)
+				{
+					ttemp = date - getData()->distanceClient(end);
+				}
+				else if (end == (Client*)0){
+					ttemp = date - getData()->distanceClient(start);
+				}
+				else{
+
+					ttemp = date - getData()->distanceClient(start, end);
+				}
+				//flux << "----> (Parti à " << ttemp << ")" << endl;
+				if (ttemp < min)
+				{
+					min = ttemp;
+				}
+			}
+		}
+	}
+	map<int, vector<Action*>* > tempSol;
+	for (itMap = sol.begin() ; itMap != sol.end() ; itMap++)
+	{
+		vTemp = (*itMap).second;
+		date = (*itMap).first;
+		//vector<Action* >* veActions = new vector();
+
+		tempSol[date-min] = vTemp;
+		}
+	sol = tempSol;
+	return min;
+}
+ostream& operator<<(ostream& flux, Solution& s) {
 	map<int, vector<Action*>* >::iterator itMap;
 	vector<Action*>* vTemp;
 	vector<Action*>::iterator itAction;
@@ -26,7 +84,7 @@ Solution::~Solution() {
 	{
 		vTemp = (*itMap).second;
 		date = (*itMap).first;
-		char *temp = "A la date : ";
+		string temp = "A la date : ";
 		flux << temp << date << endl;
 
 		for (itAction = vTemp->begin(); itAction != vTemp->end(); itAction++)
@@ -39,10 +97,23 @@ Solution::~Solution() {
 			else if (aTemp->getType() == DEPLACEMENT)
 			{
 				Client* start = aTemp->getStart();
+				Client* end = aTemp->getEnd();
+				int ttemp = 0;
 				if (start == (Client*)0)
-					flux << "Deplacement du fournisseur à " << aTemp->getEnd()->getNom() << endl;
-				else
-					flux << "Deplacement de " << aTemp->getStart()->getNom() << " à " << aTemp->getEnd()->getNom() << endl;
+				{
+					flux << "Deplacement du fournisseur à " << end->getNom() << endl;
+					ttemp = date - s.getData()->distanceClient(end);
+				}
+				else if (end == (Client*)0){
+					flux << "Deplacement de " << start->getNom() << " au fournisseur" << endl;
+					ttemp = date - s.getData()->distanceClient(start);
+				}
+				else{
+
+					flux << "Deplacement de " << start->getNom() << " à " << end->getNom() << endl;
+					ttemp = date - s.getData()->distanceClient(start, end);
+				}
+				flux << "----> (Parti à " << ttemp << ")" << endl;
 			}
 		}
 
@@ -59,6 +130,50 @@ bool compareClient(Client* c1, Client* c2) {
 	int d2 = co2->getDate();
 
 	return (d1 < d2);
+}
+int Solution::getValeur() {
+
+	// Calcul des coûts de déplacement:
+	int tempDep = 0;
+	int tempStock = 0;
+
+	vector<Action*> *veListeAction;
+	Action* itAction;
+
+	map<int, vector<Action*>* >::iterator itSol;
+	vector<Action*>::iterator itAct;
+
+	for (itSol=sol.begin(); itSol != sol.end(); itSol++)
+	{
+		int temps = (*itSol).first;
+		veListeAction = (*itSol).second;
+		for (itAct = veListeAction->begin(); itAct != veListeAction->end(); itAct++)
+		{
+			itAction = (*itAct);
+			if (itAction->getType() == DEPLACEMENT)
+			{
+				if (itAction->getEnd() == (Client*)0)
+				{
+					temps = temps + getData()->distanceClient(itAction->getStart());
+				}
+				else if (itAction->getEnd() == (Client*)0)
+				{
+					temps = temps + getData()->distanceClient(itAction->getEnd());
+				}
+				else
+				{
+					temps = temps + getData()->distanceClient(itAction->getStart(), itAction->getEnd());
+				}
+
+			}
+			else if (itAction->getType() == DEPOT)
+			{
+
+			}
+		}
+	}
+
+	return 0;
 }
 int Solution::generate() {
 	vector<Client*> listeAscClient = d->getListeClient();
@@ -80,7 +195,6 @@ int Solution::generate() {
 			itC = listeAscClient.begin(); // Faudra penser à optimiser ça. un jour.
 		}
 	}
-	int i = listeAscClient.size();
 
 	cout << "Nombre de clients ayant commandé au moins un produit :"
 			<< listeAscClient.size() << endl;
@@ -128,6 +242,14 @@ int Solution::generate() {
 					commTemp = (Commande*) (*itComm);
 					sol[temps]->push_back(new Action(cCurrent, commTemp));
 				}
+				int retour = ttemp - 1 * d->distanceClient(cCurrent);
+
+				if (sol[retour] == NULL)
+					sol[retour] = new vector<Action*>();
+
+				sol[retour]->push_back(new Action(cCurrent,(Client*)0));
+				t.push_back(retour);
+
 			}
 			else {
 				temps = cCurrent->premiereCommande()->getDate();

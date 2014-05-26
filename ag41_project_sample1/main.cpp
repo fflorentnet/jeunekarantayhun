@@ -53,6 +53,8 @@ int main(void)
 	std::cout << "Generation de la solution:" << endl;
 	s.generate();
 	std::cout << s << endl;
+	std::cout << "Difference de sol: " << s.computeDifference() << endl;
+	std::cout << s << endl;
 	std::cout << "Fini"<<"\n";
 	return 0;
 }
