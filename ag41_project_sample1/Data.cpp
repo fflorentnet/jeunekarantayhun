@@ -7,7 +7,7 @@
 
 #include "Data.h"
 
-Data::Data() {
+Data::Data(): kTransport(0) {
 	// TODO Auto-generated constructor stub
 
 }
@@ -38,7 +38,14 @@ void Data::distanceClient(Client* c1, Client* c2, int dist) {
 	pair<Client*, Client*> p(c1, c2);
 	distanceClients[p] = dist;
 }
-
+int Data::getKTransport()
+{
+	return kTransport;
+}
+void Data::setKTransport(int k)
+{
+	kTransport = k;
+}
 vector<Client*> Data::getListeClient()
 {
 	return listeClient;

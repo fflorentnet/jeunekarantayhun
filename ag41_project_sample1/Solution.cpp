@@ -134,8 +134,8 @@ bool compareClient(Client* c1, Client* c2) {
 int Solution::getValeur() {
 
 	// Calcul des coûts de déplacement:
-	int tempDep = 0;
-	int tempStock = 0;
+	float tempDep = 0;
+	float tempStock = 0;
 
 	vector<Action*> *veListeAction;
 	Action* itAction;
@@ -154,26 +154,29 @@ int Solution::getValeur() {
 			{
 				if (itAction->getEnd() == (Client*)0)
 				{
-					temps = temps + getData()->distanceClient(itAction->getStart());
+					tempDep += getData()->getKTransport() * getData()->distanceClient(itAction->getStart());
 				}
 				else if (itAction->getEnd() == (Client*)0)
 				{
-					temps = temps + getData()->distanceClient(itAction->getEnd());
+					tempDep += getData()->getKTransport() * getData()->distanceClient(itAction->getEnd());
 				}
 				else
 				{
-					temps = temps + getData()->distanceClient(itAction->getStart(), itAction->getEnd());
+					tempDep += getData()->getKTransport() * getData()->distanceClient(itAction->getStart(), itAction->getEnd());
 				}
-
 			}
 			else if (itAction->getType() == DEPOT)
 			{
-
+				Client* itCli = itAction->getStart();
+				Commande* itCom = itAction->getCommande();
+				tempStock +=  itCli->getKStockage() * (temps - itCom->getDate());
 			}
 		}
 	}
+	std::cout << "Coût de deplacement :" << tempDep << endl;
+	std::cout << "Coût de stockage :" << tempStock << endl;
 
-	return 0;
+	return (tempDep+tempStock);
 }
 int Solution::generate() {
 	vector<Client*> listeAscClient = d->getListeClient();

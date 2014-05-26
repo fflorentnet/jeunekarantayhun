@@ -102,3 +102,11 @@ vector<Commande*>* Client::getCommande()
 {
 	return listeCommande;
 }
+float Client::getKStockage()
+{
+	return kStockage;
+}
+void Client::setKStockage(float k)
+{
+	kStockage = k;
+}

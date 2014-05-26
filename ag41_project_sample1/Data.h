@@ -17,6 +17,7 @@ class Data {
 	map<Client*, int> distanceFournisseur;
 	vector<Client*> listeClient;
 	map<int, vector<Action*>* > sol;
+	int kTransport;
 public:
 	Data();
 	virtual ~Data();
@@ -26,6 +27,8 @@ public:
 	void distanceClient(Client* c, int dist);
 	int distanceClient(Client* c1, Client* c2);
 	void distanceClient(Client* c1, Client* c2, int dist);
+	int getKTransport();
+	void setKTransport(int k);
 
 
 };

@@ -18,6 +18,7 @@ class Client {
 private:
 	vector<Commande*> *listeCommande;
 	string nom;
+	float kStockage;
 public:
 	Commande* derniereCommande() const;
 	Commande* premiereCommande() const;
@@ -28,6 +29,8 @@ public:
 	string getNom() const;
 	void setNom(string s);
     friend ostream& operator<< (ostream& flux, Client& c);
+    float getKStockage();
+    void setKStockage(float k);
 };
 
 #endif /* CLIENT_H_ */

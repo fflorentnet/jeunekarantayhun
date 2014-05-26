@@ -50,6 +50,8 @@ int main(void)
 	d->distanceClient(c4, 100);
 	d->distanceClient(c5, 100);
 
+	d->setKTransport(2);
+
 	std::cout << "Generation de la solution:" << endl;
 	s.generate();
 	std::cout << s << endl;
