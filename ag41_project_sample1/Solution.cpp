@@ -179,15 +179,15 @@ int Solution::getValeur() {
 			{
 				Client* itCli = itAction->getStart();
 				Commande* itCom = itAction->getCommande();
-				int tprim = temps - getData()->distanceClient(itCli);
+				int tprim = temps;
 				float t = itCli->getKStockage() * abs(tprim - itCom->getDate());
-				std::cout << "d" << t << endl;
+				//std::cout << itCli->getKStockage() << "*" << itCli->getNom() << "/" << itCom->getProduit()->getNom() << "(" << itCom->getDate() << " - " << temps << ") d" << t << endl;
 				tempStock += t;
 			}
 		}
 	}
-	std::cout << "Coût de deplacement :" << tempDep << endl;
-	std::cout << "Coût de stockage :" << tempStock << endl;
+	std::cout << "Coût de deplacement: " << tempDep << endl;
+	std::cout << "Coût de stockage: " << tempStock << endl;
 
 	return (tempDep+tempStock);
 }

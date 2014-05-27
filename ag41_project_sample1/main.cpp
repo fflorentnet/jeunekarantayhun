@@ -7,7 +7,7 @@
 #include "Produit.h"
 float calculCout(int i)
 {
-	return 3 * i / 2;
+	return 3 * (float)i / 2;
 }
 int main(void)
 {
@@ -65,7 +65,7 @@ int main(void)
 	std::cout << s << endl;
 	std::cout << "Difference de sol: " << s.computeDifference() << endl;
 	std::cout << s << endl;
-	s.getValeur();
+	std::cout << "Coût total de la solution: " << s.getValeur() << endl;
 	std::cout << "Fini"<<"\n";
 	return 0;
 }
