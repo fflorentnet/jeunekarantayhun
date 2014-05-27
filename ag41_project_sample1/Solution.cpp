@@ -67,9 +67,13 @@ int Solution::computeDifference()
 		vTemp = (*itMap).second;
 		date = (*itMap).first;
 		//vector<Action* >* veActions = new vector();
-
-		tempSol[date-min] = vTemp;
+		for (itAction = vTemp->begin(); itAction != vTemp->end(); itAction++)
+		{
+			if ((*itAction)->getType() == DEPOT)
+				(*itAction)->getCommande()->setDate((*itAction)->getCommande()->getDate() - min);
 		}
+		tempSol[date-min] = vTemp;
+	}
 	sol = tempSol;
 	return min;
 }
@@ -93,6 +97,7 @@ ostream& operator<<(ostream& flux, Solution& s) {
 			if (aTemp->getType() == DEPOT)
 			{
 				flux << "Depot de " << aTemp->getCommande()->getProduit()->getNom() << " chez " << aTemp->getStart()->getNom() << endl;
+				flux << "---> Produit demandé à " << aTemp->getCommande()->getDate() << endl;
 			}
 			else if (aTemp->getType() == DEPLACEMENT)
 			{
@@ -101,19 +106,19 @@ ostream& operator<<(ostream& flux, Solution& s) {
 				int ttemp = 0;
 				if (start == (Client*)0)
 				{
-					flux << "Deplacement du fournisseur à " << end->getNom() << endl;
+					flux << "Deplacement terminé du fournisseur à " << end->getNom() << endl;
 					ttemp = date - s.getData()->distanceClient(end);
 				}
 				else if (end == (Client*)0){
-					flux << "Deplacement de " << start->getNom() << " au fournisseur" << endl;
+					flux << "Deplacement terminé de " << start->getNom() << " au fournisseur" << endl;
 					ttemp = date - s.getData()->distanceClient(start);
 				}
 				else{
 
-					flux << "Deplacement de " << start->getNom() << " à " << end->getNom() << endl;
+					flux << "Deplacement terminé de " << start->getNom() << " à " << end->getNom() << endl;
 					ttemp = date - s.getData()->distanceClient(start, end);
 				}
-				flux << "----> (Parti à " << ttemp << ")" << endl;
+				flux << "----> (Déplacement commencé à " << ttemp << ")" << endl;
 			}
 		}
 
@@ -152,24 +157,32 @@ int Solution::getValeur() {
 			itAction = (*itAct);
 			if (itAction->getType() == DEPLACEMENT)
 			{
+				int ttemp = 0;
 				if (itAction->getEnd() == (Client*)0)
 				{
-					tempDep += getData()->getKTransport() * getData()->distanceClient(itAction->getStart());
+					ttemp = getData()->getKTransport() * getData()->distanceClient(itAction->getStart());
+					tempDep += ttemp;
 				}
-				else if (itAction->getEnd() == (Client*)0)
+				else if (itAction->getStart() == (Client*)0)
 				{
-					tempDep += getData()->getKTransport() * getData()->distanceClient(itAction->getEnd());
+					ttemp = getData()->getKTransport() * getData()->distanceClient(itAction->getEnd());
+					tempDep += ttemp;
 				}
 				else
 				{
-					tempDep += getData()->getKTransport() * getData()->distanceClient(itAction->getStart(), itAction->getEnd());
+					ttemp = getData()->getKTransport() * getData()->distanceClient(itAction->getStart(), itAction->getEnd());
+					std::cout << ttemp << endl;
+					tempDep += ttemp;
 				}
 			}
 			else if (itAction->getType() == DEPOT)
 			{
 				Client* itCli = itAction->getStart();
 				Commande* itCom = itAction->getCommande();
-				tempStock +=  itCli->getKStockage() * (temps - itCom->getDate());
+				int tprim = temps - getData()->distanceClient(itCli);
+				float t = itCli->getKStockage() * abs(tprim - itCom->getDate());
+				std::cout << "d" << t << endl;
+				tempStock += t;
 			}
 		}
 	}
@@ -221,6 +234,10 @@ int Solution::generate() {
 		sol[temp]->push_back(new Action(cLast, commTemp));
 
 	}
+
+	sol[temp+d->distanceClient(cLast)] = new vector<Action*>();
+	sol[temp+d->distanceClient(cLast)]->push_back(new Action(cLast, (Client*)0));
+
 	listeAscClient.pop_back();
 
 	cout << "Calcul" << endl;

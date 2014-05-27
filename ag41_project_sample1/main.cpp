@@ -5,7 +5,10 @@
 #include "Solution.h"
 #include "Client.h"
 #include "Produit.h"
-
+float calculCout(int i)
+{
+	return 3 * i / 2;
+}
 int main(void)
 {
 	Client* c1 = new Client("Client 1");
@@ -33,6 +36,11 @@ int main(void)
 	c3->addCommande(co4);
 	c3->addCommande(co5);
 
+	c1->setKStockage(calculCout(1));
+	c2->setKStockage(calculCout(2));
+
+	c3->setKStockage(calculCout(3));
+
 	std::cout << "Affichage des clients:" << endl;
 	//std::cout << c1 << c2 << c3 << c4 << c5;
 	Data* d = new Data();
@@ -57,6 +65,7 @@ int main(void)
 	std::cout << s << endl;
 	std::cout << "Difference de sol: " << s.computeDifference() << endl;
 	std::cout << s << endl;
+	s.getValeur();
 	std::cout << "Fini"<<"\n";
 	return 0;
 }
