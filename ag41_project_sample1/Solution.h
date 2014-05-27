@@ -10,25 +10,25 @@
 #include <map>
 #include <utility>
 #include <vector>
-#include "Client.h"
-#include "Action.h"
 #include "Data.h"
-using namespace std;
+using namespace Donnees;
 
-class Solution {
-private:
-	Data* d;
-	map<int, vector<Action*>* > sol;
-public:
-	Solution(Data* dat);
-	Solution(Solution &s);
-	virtual ~Solution();
-	bool operator<(Solution& s);
-	friend ostream& operator<< (ostream& flux, Solution& s);
-	int generate();
-	int getValeur();
-	Data* getData();
-	int computeDifference();
-};
-
+namespace Calcul
+{
+	class Solution {
+	private:
+		Data* d;
+		map<int, vector<Action*>* > sol;
+	public:
+		Solution(Data* dat);
+		Solution(Solution &s);
+		virtual ~Solution();
+		bool operator<(Solution& s);
+		friend ostream& operator<< (ostream& flux, Solution& s);
+		int generate();
+		int getValeur();
+		Data* getData();
+		int computeDifference();
+	};
+}
 #endif /* SOLUTION_H_ */

@@ -7,26 +7,25 @@
 
 #ifndef ACTION_H_
 #define ACTION_H_
-
 #include "Client.h"
-#include "Commande.h"
 
-enum TypeAction { DEPLACEMENT, DEPOT };
-
-class Action {
-private:
-	TypeAction t;
-	Client* start;
-	Client* end;
-	Commande* comm;
-public:
-	Action(Client* s, Client* e);
-	Action(Client* cli, Commande* co);
-	TypeAction getType();
-	Client* getStart();
-	Client* getEnd();
-	Commande* getCommande();
-	virtual ~Action();
-};
-
+namespace Donnees
+{
+	enum TypeAction { DEPLACEMENT, DEPOT };
+	class Action {
+	private:
+		TypeAction t;
+		Client* start;
+		Client* end;
+		Commande* comm;
+	public:
+		Action(Client* s, Client* e);
+		Action(Client* cli, Commande* co);
+		TypeAction getType();
+		Client* getStart();
+		Client* getEnd();
+		Commande* getCommande();
+		virtual ~Action();
+	};
+}
 #endif /* ACTION_H_ */

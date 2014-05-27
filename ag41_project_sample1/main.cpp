@@ -5,6 +5,9 @@
 #include "Solution.h"
 #include "Client.h"
 #include "Produit.h"
+using namespace Donnees;
+using namespace Calcul;
+
 float calculCout(int i)
 {
 	return 3 * (float)i / 2;

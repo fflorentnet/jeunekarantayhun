@@ -9,299 +9,302 @@
  * Conseil de Papa Caminada : Hill Climbing (Heuristique d'exploration maximale, recherche aléatoire)
  */
 #include "Solution.h"
-#include "Commande.h"
 #include <algorithm>
-Solution::Solution(Data* dat): d(dat) {
-	// TODO Auto-generated constructor stub
 
-}
-
-Solution::~Solution() {
-	// TODO Auto-generated destructor stub
-}
-
-bool Solution::operator<(Solution& s)
+namespace Calcul
 {
-	return (this->getValeur() < s.getValeur());
-}
-Solution::Solution(Solution &s)
-{
-	d = s.getData();
-	sol = s.sol;
-}
-Data* Solution::getData()
-{
-	return d;
-}
-int Solution::computeDifference()
-{
-	map<int, vector<Action*>* >::iterator itMap;
-	vector<Action*>* vTemp;
-	vector<Action*>::iterator itAction;
-	Action* aTemp;
-	int date=0;
-	int min = 1500000;
+	Solution::Solution(Data* dat): d(dat) {
+		// TODO Auto-generated constructor stub
 
-	for (itMap = sol.begin() ; itMap != sol.end() ; itMap++)
-	{
-		vTemp = (*itMap).second;
-		date = (*itMap).first;
-		for (itAction = vTemp->begin(); itAction != vTemp->end(); itAction++)
-		{
-			aTemp = (*itAction);
-			int ttemp = 0;
-			if (aTemp->getType() == DEPLACEMENT)
-			{
-				Client* start = aTemp->getStart();
-				Client* end = aTemp->getEnd();
-				if (start == (Client*)0)
-				{
-					ttemp = date - getData()->distanceClient(end);
-				}
-				else if (end == (Client*)0){
-					ttemp = date - getData()->distanceClient(start);
-				}
-				else{
-
-					ttemp = date - getData()->distanceClient(start, end);
-				}
-				//flux << "----> (Parti à " << ttemp << ")" << endl;
-				if (ttemp < min)
-				{
-					min = ttemp;
-				}
-			}
-		}
 	}
-	map<int, vector<Action*>* > tempSol;
-	for (itMap = sol.begin() ; itMap != sol.end() ; itMap++)
-	{
-		vTemp = (*itMap).second;
-		date = (*itMap).first;
-		//vector<Action* >* veActions = new vector();
-		for (itAction = vTemp->begin(); itAction != vTemp->end(); itAction++)
-		{
-			if ((*itAction)->getType() == DEPOT)
-				(*itAction)->getCommande()->setDate((*itAction)->getCommande()->getDate() - min);
-		}
-		tempSol[date-min] = vTemp;
+
+	Solution::~Solution() {
+		// TODO Auto-generated destructor stub
 	}
-	sol = tempSol;
-	return min;
-}
-ostream& operator<<(ostream& flux, Solution& s) {
-	map<int, vector<Action*>* >::iterator itMap;
-	vector<Action*>* vTemp;
-	vector<Action*>::iterator itAction;
-	Action* aTemp;
-	int date=0;
 
-	for (itMap = s.sol.begin() ; itMap != s.sol.end() ; itMap++)
+	bool Solution::operator<(Solution& s)
 	{
-		vTemp = (*itMap).second;
-		date = (*itMap).first;
-		string temp = "A la date : ";
-		flux << temp << date << endl;
+		return (this->getValeur() < s.getValeur());
+	}
+	Solution::Solution(Solution &s)
+	{
+		d = s.getData();
+		sol = s.sol;
+	}
+	Data* Solution::getData()
+	{
+		return d;
+	}
+	int Solution::computeDifference()
+	{
+		map<int, vector<Action*>* >::iterator itMap;
+		vector<Action*>* vTemp;
+		vector<Action*>::iterator itAction;
+		Action* aTemp;
+		int date=0;
+		int min = 1500000;
 
-		for (itAction = vTemp->begin(); itAction != vTemp->end(); itAction++)
+		for (itMap = sol.begin() ; itMap != sol.end() ; itMap++)
 		{
-			aTemp = (*itAction);
-			if (aTemp->getType() == DEPOT)
+			vTemp = (*itMap).second;
+			date = (*itMap).first;
+			for (itAction = vTemp->begin(); itAction != vTemp->end(); itAction++)
 			{
-				flux << "Depot de " << aTemp->getCommande()->getProduit()->getNom() << " chez " << aTemp->getStart()->getNom() << endl;
-				flux << "---> Produit demandé à " << aTemp->getCommande()->getDate() << endl;
-			}
-			else if (aTemp->getType() == DEPLACEMENT)
-			{
-				Client* start = aTemp->getStart();
-				Client* end = aTemp->getEnd();
+				aTemp = (*itAction);
 				int ttemp = 0;
-				if (start == (Client*)0)
+				if (aTemp->getType() == DEPLACEMENT)
 				{
-					flux << "Deplacement terminé du fournisseur à " << end->getNom() << endl;
-					ttemp = date - s.getData()->distanceClient(end);
-				}
-				else if (end == (Client*)0){
-					flux << "Deplacement terminé de " << start->getNom() << " au fournisseur" << endl;
-					ttemp = date - s.getData()->distanceClient(start);
-				}
-				else{
+					Client* start = aTemp->getStart();
+					Client* end = aTemp->getEnd();
+					if (start == (Client*)0)
+					{
+						ttemp = date - getData()->distanceClient(end);
+					}
+					else if (end == (Client*)0){
+						ttemp = date - getData()->distanceClient(start);
+					}
+					else{
 
-					flux << "Deplacement terminé de " << start->getNom() << " à " << end->getNom() << endl;
-					ttemp = date - s.getData()->distanceClient(start, end);
+						ttemp = date - getData()->distanceClient(start, end);
+					}
+					//flux << "----> (Parti à " << ttemp << ")" << endl;
+					if (ttemp < min)
+					{
+						min = ttemp;
+					}
 				}
-				flux << "----> (Déplacement commencé à " << ttemp << ")" << endl;
 			}
 		}
-
-	}
-
-	return flux;
-}
-bool compareClient(Client* c1, Client* c2) {
-	Commande* co1 = (*c1).derniereCommande();
-	Commande* co2 = (*c2).derniereCommande();
-	if (co1 == (Commande*) 0 || co2 == (Commande*) 0)
-		return false;
-	int d1 = co1->getDate();
-	int d2 = co2->getDate();
-
-	return (d1 < d2);
-}
-int Solution::getValeur() {
-
-	// Calcul des coûts de déplacement:
-	float tempDep = 0;
-	float tempStock = 0;
-
-	vector<Action*> *veListeAction;
-	Action* itAction;
-
-	map<int, vector<Action*>* >::iterator itSol;
-	vector<Action*>::iterator itAct;
-
-	for (itSol=sol.begin(); itSol != sol.end(); itSol++)
-	{
-		int temps = (*itSol).first;
-		veListeAction = (*itSol).second;
-		for (itAct = veListeAction->begin(); itAct != veListeAction->end(); itAct++)
+		map<int, vector<Action*>* > tempSol;
+		for (itMap = sol.begin() ; itMap != sol.end() ; itMap++)
 		{
-			itAction = (*itAct);
-			if (itAction->getType() == DEPLACEMENT)
+			vTemp = (*itMap).second;
+			date = (*itMap).first;
+			//vector<Action* >* veActions = new vector();
+			for (itAction = vTemp->begin(); itAction != vTemp->end(); itAction++)
 			{
-				int ttemp = 0;
-				if (itAction->getEnd() == (Client*)0)
-				{
-					ttemp = getData()->getKTransport() * getData()->distanceClient(itAction->getStart());
-					tempDep += ttemp;
-				}
-				else if (itAction->getStart() == (Client*)0)
-				{
-					ttemp = getData()->getKTransport() * getData()->distanceClient(itAction->getEnd());
-					tempDep += ttemp;
-				}
-				else
-				{
-					ttemp = getData()->getKTransport() * getData()->distanceClient(itAction->getStart(), itAction->getEnd());
-					std::cout << ttemp << endl;
-					tempDep += ttemp;
-				}
+				if ((*itAction)->getType() == DEPOT)
+					(*itAction)->getCommande()->setDate((*itAction)->getCommande()->getDate() - min);
 			}
-			else if (itAction->getType() == DEPOT)
+			tempSol[date-min] = vTemp;
+		}
+		sol = tempSol;
+		return min;
+	}
+	ostream& operator<<(ostream& flux, Solution& s) {
+		map<int, vector<Action*>* >::iterator itMap;
+		vector<Action*>* vTemp;
+		vector<Action*>::iterator itAction;
+		Action* aTemp;
+		int date=0;
+
+		for (itMap = s.sol.begin() ; itMap != s.sol.end() ; itMap++)
+		{
+			vTemp = (*itMap).second;
+			date = (*itMap).first;
+			string temp = "A la date : ";
+			flux << temp << date << endl;
+
+			for (itAction = vTemp->begin(); itAction != vTemp->end(); itAction++)
 			{
-				Client* itCli = itAction->getStart();
-				Commande* itCom = itAction->getCommande();
-				int tprim = temps;
-				float t = itCli->getKStockage() * abs(tprim - itCom->getDate());
-				//std::cout << itCli->getKStockage() << "*" << itCli->getNom() << "/" << itCom->getProduit()->getNom() << "(" << itCom->getDate() << " - " << temps << ") d" << t << endl;
-				tempStock += t;
-			}
-		}
-	}
-	std::cout << "Coût de deplacement: " << tempDep << endl;
-	std::cout << "Coût de stockage: " << tempStock << endl;
-
-	return (tempDep+tempStock);
-}
-int Solution::generate() {
-	vector<Client*> listeAscClient = d->getListeClient();
-
-	vector<int> t;
-
-	cout << "Recopie des données" << endl;
-	cout << "Nombre de clients : " << listeAscClient.size() << endl;
-
-	vector<Commande*>::iterator itComm;
-
-	vector<Client*>::iterator itC;
-	for (itC = listeAscClient.begin(); itC != listeAscClient.end(); itC++) {
-		Client* c = (Client*) (*itC);
-		if (c->derniereCommande() == (Commande*) 0) {
-			listeAscClient.erase(
-					std::remove(listeAscClient.begin(), listeAscClient.end(),
-							c), listeAscClient.end());
-			itC = listeAscClient.begin(); // Faudra penser à optimiser ça. un jour.
-		}
-	}
-
-	cout << "Nombre de clients ayant commandé au moins un produit :"
-			<< listeAscClient.size() << endl;
-
-	cout << "Tri des elements..." << endl;
-	sort(listeAscClient.begin(), listeAscClient.end(), compareClient);
-	cout << "Tri terminé" << endl;
-	Client* cLast = (Client*) listeAscClient.back();
-	Client* cCurrent;
-	Commande* commTemp;
-	Commande* commLast = (Commande*) cLast->premiereCommande();
-	int temp = commLast->getDate();
-	t.push_back(temp);
-
-	if (sol[temp] == NULL)
-		sol[temp] = new vector<Action*>();
-	sol[temp]->push_back(new Action((Client*)0, cLast));
-
-	for (itComm = cLast->getCommande()->begin();itComm != cLast->getCommande()->end(); itComm++) {
-		commTemp = (Commande*) (*itComm);
-		sol[temp]->push_back(new Action(cLast, commTemp));
-
-	}
-
-	sol[temp+d->distanceClient(cLast)] = new vector<Action*>();
-	sol[temp+d->distanceClient(cLast)]->push_back(new Action(cLast, (Client*)0));
-
-	listeAscClient.pop_back();
-
-	cout << "Calcul" << endl;
-	int temps=0;
-	while (!listeAscClient.empty()) {
-		cout << "Iteration " << endl;
-		cCurrent = (Client*) listeAscClient.back();
-		commTemp = cCurrent->derniereCommande();
-		if (commTemp != NULL) {
-			int ttemp = t.back();
-			if (commTemp->getDate()+d->distanceClient(cCurrent) > ttemp) {
-
-				temps = ttemp - 2 * d->distanceClient(cCurrent);
-
-				if (sol[temps] == NULL)
-					sol[temps] = new vector<Action*>();
-
-				sol[temps]->push_back(new Action((Client*)0, cCurrent));
-				t.push_back(temps);
-
-				for (itComm = cCurrent->getCommande()->begin(); itComm != cCurrent->getCommande()->end(); itComm++) {
-					commTemp = (Commande*) (*itComm);
-					sol[temps]->push_back(new Action(cCurrent, commTemp));
+				aTemp = (*itAction);
+				if (aTemp->getType() == DEPOT)
+				{
+					flux << "Depot de " << aTemp->getCommande()->getProduit()->getNom() << " chez " << aTemp->getStart()->getNom() << endl;
+					flux << "---> Produit demandé à " << aTemp->getCommande()->getDate() << endl;
 				}
-				int retour = ttemp - 1 * d->distanceClient(cCurrent);
+				else if (aTemp->getType() == DEPLACEMENT)
+				{
+					Client* start = aTemp->getStart();
+					Client* end = aTemp->getEnd();
+					int ttemp = 0;
+					if (start == (Client*)0)
+					{
+						flux << "Deplacement terminé du fournisseur à " << end->getNom() << endl;
+						ttemp = date - s.getData()->distanceClient(end);
+					}
+					else if (end == (Client*)0){
+						flux << "Deplacement terminé de " << start->getNom() << " au fournisseur" << endl;
+						ttemp = date - s.getData()->distanceClient(start);
+					}
+					else{
 
-				if (sol[retour] == NULL)
-					sol[retour] = new vector<Action*>();
-
-				sol[retour]->push_back(new Action(cCurrent,(Client*)0));
-				t.push_back(retour);
-
-			}
-			else {
-				temps = cCurrent->premiereCommande()->getDate();
-
-				if (sol[temps] == NULL)
-					sol[temps] = new vector<Action*>();
-
-				sol[temps]->push_back(new Action((Client*)0, cCurrent));
-
-				for (itComm = cCurrent->getCommande()->begin();	itComm != cCurrent->getCommande()->end(); itComm++) {
-					commTemp = cCurrent->premiereCommande();
-					sol[temps]->push_back(new Action(cCurrent, commTemp));
+						flux << "Deplacement terminé de " << start->getNom() << " à " << end->getNom() << endl;
+						ttemp = date - s.getData()->distanceClient(start, end);
+					}
+					flux << "----> (Déplacement commencé à " << ttemp << ")" << endl;
 				}
+			}
 
-				t.push_back(temps);
+		}
+
+		return flux;
+	}
+	bool compareClient(Client* c1, Client* c2) {
+		Commande* co1 = (*c1).derniereCommande();
+		Commande* co2 = (*c2).derniereCommande();
+		if (co1 == (Commande*) 0 || co2 == (Commande*) 0)
+			return false;
+		int d1 = co1->getDate();
+		int d2 = co2->getDate();
+
+		return (d1 < d2);
+	}
+	int Solution::getValeur() {
+
+		// Calcul des coûts de déplacement:
+		float tempDep = 0;
+		float tempStock = 0;
+
+		vector<Action*> *veListeAction;
+		Action* itAction;
+
+		map<int, vector<Action*>* >::iterator itSol;
+		vector<Action*>::iterator itAct;
+
+		for (itSol=sol.begin(); itSol != sol.end(); itSol++)
+		{
+			int temps = (*itSol).first;
+			veListeAction = (*itSol).second;
+			for (itAct = veListeAction->begin(); itAct != veListeAction->end(); itAct++)
+			{
+				itAction = (*itAct);
+				if (itAction->getType() == DEPLACEMENT)
+				{
+					int ttemp = 0;
+					if (itAction->getEnd() == (Client*)0)
+					{
+						ttemp = getData()->getKTransport() * getData()->distanceClient(itAction->getStart());
+						tempDep += ttemp;
+					}
+					else if (itAction->getStart() == (Client*)0)
+					{
+						ttemp = getData()->getKTransport() * getData()->distanceClient(itAction->getEnd());
+						tempDep += ttemp;
+					}
+					else
+					{
+						ttemp = getData()->getKTransport() * getData()->distanceClient(itAction->getStart(), itAction->getEnd());
+						std::cout << ttemp << endl;
+						tempDep += ttemp;
+					}
+				}
+				else if (itAction->getType() == DEPOT)
+				{
+					Client* itCli = itAction->getStart();
+					Commande* itCom = itAction->getCommande();
+					int tprim = temps;
+					float t = itCli->getKStockage() * abs(tprim - itCom->getDate());
+					//std::cout << itCli->getKStockage() << "*" << itCli->getNom() << "/" << itCom->getProduit()->getNom() << "(" << itCom->getDate() << " - " << temps << ") d" << t << endl;
+					tempStock += t;
+				}
 			}
 		}
+		std::cout << "Coût de deplacement: " << tempDep << endl;
+		std::cout << "Coût de stockage: " << tempStock << endl;
+
+		return (tempDep+tempStock);
+	}
+	int Solution::generate() {
+		vector<Client*> listeAscClient = d->getListeClient();
+
+		vector<int> t;
+
+		cout << "Recopie des données" << endl;
+		cout << "Nombre de clients : " << listeAscClient.size() << endl;
+
+		vector<Commande*>::iterator itComm;
+
+		vector<Client*>::iterator itC;
+		for (itC = listeAscClient.begin(); itC != listeAscClient.end(); itC++) {
+			Client* c = (Client*) (*itC);
+			if (c->derniereCommande() == (Commande*) 0) {
+				listeAscClient.erase(
+						std::remove(listeAscClient.begin(), listeAscClient.end(),
+								c), listeAscClient.end());
+				itC = listeAscClient.begin(); // Faudra penser à optimiser ça. un jour.
+			}
+		}
+
+		cout << "Nombre de clients ayant commandé au moins un produit :"
+				<< listeAscClient.size() << endl;
+
+		cout << "Tri des elements..." << endl;
+		sort(listeAscClient.begin(), listeAscClient.end(), compareClient);
+		cout << "Tri terminé" << endl;
+		Client* cLast = (Client*) listeAscClient.back();
+		Client* cCurrent;
+		Commande* commTemp;
+		Commande* commLast = (Commande*) cLast->premiereCommande();
+		int temp = commLast->getDate();
+		t.push_back(temp);
+
+		if (sol[temp] == NULL)
+			sol[temp] = new vector<Action*>();
+		sol[temp]->push_back(new Action((Client*)0, cLast));
+
+		for (itComm = cLast->getCommande()->begin();itComm != cLast->getCommande()->end(); itComm++) {
+			commTemp = (Commande*) (*itComm);
+			sol[temp]->push_back(new Action(cLast, commTemp));
+
+		}
+
+		sol[temp+d->distanceClient(cLast)] = new vector<Action*>();
+		sol[temp+d->distanceClient(cLast)]->push_back(new Action(cLast, (Client*)0));
+
 		listeAscClient.pop_back();
-	}
-	cout << "Fin du calcul" << endl;
-	return 0;
-}
 
+		cout << "Calcul" << endl;
+		int temps=0;
+		while (!listeAscClient.empty()) {
+			cout << "Iteration " << endl;
+			cCurrent = (Client*) listeAscClient.back();
+			commTemp = cCurrent->derniereCommande();
+			if (commTemp != NULL) {
+				int ttemp = t.back();
+				if (commTemp->getDate()+d->distanceClient(cCurrent) > ttemp) {
+
+					temps = ttemp - 2 * d->distanceClient(cCurrent);
+
+					if (sol[temps] == NULL)
+						sol[temps] = new vector<Action*>();
+
+					sol[temps]->push_back(new Action((Client*)0, cCurrent));
+					t.push_back(temps);
+
+					for (itComm = cCurrent->getCommande()->begin(); itComm != cCurrent->getCommande()->end(); itComm++) {
+						commTemp = (Commande*) (*itComm);
+						sol[temps]->push_back(new Action(cCurrent, commTemp));
+					}
+					int retour = ttemp - 1 * d->distanceClient(cCurrent);
+
+					if (sol[retour] == NULL)
+						sol[retour] = new vector<Action*>();
+
+					sol[retour]->push_back(new Action(cCurrent,(Client*)0));
+					t.push_back(retour);
+
+				}
+				else {
+					temps = cCurrent->premiereCommande()->getDate();
+
+					if (sol[temps] == NULL)
+						sol[temps] = new vector<Action*>();
+
+					sol[temps]->push_back(new Action((Client*)0, cCurrent));
+
+					for (itComm = cCurrent->getCommande()->begin();	itComm != cCurrent->getCommande()->end(); itComm++) {
+						commTemp = cCurrent->premiereCommande();
+						sol[temps]->push_back(new Action(cCurrent, commTemp));
+					}
+
+					t.push_back(temps);
+				}
+			}
+			listeAscClient.pop_back();
+		}
+		cout << "Fin du calcul" << endl;
+		return 0;
+	}
+
+}
