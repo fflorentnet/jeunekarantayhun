@@ -21,6 +21,7 @@ class Data {
 public:
 	Data();
 	virtual ~Data();
+	Data(Data &d);
 	vector<Client*> getListeClient();
 	void ajouterClient(Client* c);
 	int distanceClient(Client* c);

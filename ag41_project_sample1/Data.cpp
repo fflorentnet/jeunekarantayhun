@@ -15,6 +15,13 @@ Data::Data(): kTransport(0) {
 Data::~Data() {
 	// TODO Auto-generated destructor stub
 }
+Data::Data(Data &d)
+{
+	distanceClients = this->distanceClients;
+	distanceFournisseur = this->distanceFournisseur;
+	listeClient =  this->listeClient;
+	sol = this->sol;
+}
 void Data::ajouterClient(Client* c) {
 	listeClient.push_back(c);
 }

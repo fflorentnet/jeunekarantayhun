@@ -21,7 +21,9 @@ private:
 	map<int, vector<Action*>* > sol;
 public:
 	Solution(Data* dat);
+	Solution(Solution &s);
 	virtual ~Solution();
+	bool operator<(Solution& s);
 	friend ostream& operator<< (ostream& flux, Solution& s);
 	int generate();
 	int getValeur();

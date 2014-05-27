@@ -5,6 +5,9 @@
  *      Author: florent
  */
 
+/**
+ * Conseil de Papa Caminada : Hill Climbing (Heuristique d'exploration maximale, recherche aléatoire)
+ */
 #include "Solution.h"
 #include "Commande.h"
 #include <algorithm>
@@ -17,6 +20,15 @@ Solution::~Solution() {
 	// TODO Auto-generated destructor stub
 }
 
+bool Solution::operator<(Solution& s)
+{
+	return (this->getValeur() < s.getValeur());
+}
+Solution::Solution(Solution &s)
+{
+	d = s.getData();
+	sol = s.sol;
+}
 Data* Solution::getData()
 {
 	return d;
@@ -248,7 +260,7 @@ int Solution::generate() {
 		commTemp = cCurrent->derniereCommande();
 		if (commTemp != NULL) {
 			int ttemp = t.back();
-			if (commTemp->getDate() > ttemp) {
+			if (commTemp->getDate()+d->distanceClient(cCurrent) > ttemp) {
 
 				temps = ttemp - 2 * d->distanceClient(cCurrent);
 

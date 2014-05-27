@@ -19,6 +19,11 @@ Commande::Commande(Produit* pro, int d): p(pro), date(d){
 Commande::~Commande() {
 	// TODO Auto-generated destructor stub
 }
+Commande::Commande(Commande &c)
+{
+	p = c.getProduit();
+	date = c.getDate();
+}
 
 ostream& operator<<(ostream &flux, Commande* c)
 {

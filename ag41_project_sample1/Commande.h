@@ -18,6 +18,7 @@ private:
 	int date;
 public:
 	Commande(Produit* pro, int d);
+	Commande(Commande &c);
 	virtual ~Commande();
 	int getDate();
 	void setDate(int d);
