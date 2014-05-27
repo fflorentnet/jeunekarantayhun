@@ -6,20 +6,22 @@
  */
 
 #include "Produit.h"
+namespace Donnees
+{
+	Produit::Produit(string i): nom(i) {
+		// TODO Auto-generated constructor stub
 
-Produit::Produit(string i): nom(i) {
-	// TODO Auto-generated constructor stub
+	}
 
-}
+	Produit::~Produit() {
+		// TODO Auto-generated destructor stub
+	}
 
-Produit::~Produit() {
-	// TODO Auto-generated destructor stub
-}
+	string Produit::getNom() const {
+		return nom;
+	}
 
-string Produit::getNom() const {
-	return nom;
-}
-
-void Produit::setNom(string id) {
-	this->nom = nom;
+	void Produit::setNom(string id) {
+		this->nom = nom;
+	}
 }
