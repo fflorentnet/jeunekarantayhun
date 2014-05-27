@@ -26,6 +26,7 @@ namespace Donnees
 		Client* getEnd();
 		Commande* getCommande();
 		virtual ~Action();
+		bool operator==(Action & a);
 	};
 }
 #endif /* ACTION_H_ */

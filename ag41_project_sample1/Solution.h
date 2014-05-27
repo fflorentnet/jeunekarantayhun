@@ -29,6 +29,7 @@ namespace Calcul
 		int getValeur();
 		Data* getData();
 		int computeDifference();
+		Modification* deplacerAction(Action* ac, int tAct, int tDema);
 	};
 }
 #endif /* SOLUTION_H_ */

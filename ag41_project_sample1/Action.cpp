@@ -10,14 +10,13 @@
 namespace Donnees
 {
 	Action::~Action() {
-		// TODO Auto-generated destructor stub
-	}
-
-	Action::Action(Client* s, Client* e): start(s), end(e), t(DEPLACEMENT){
 
 	}
-	Action::Action(Client* cli, Commande* co) : start(cli), comm(co), t(DEPOT) {
 
+	Action::Action(Client* s, Client* e): start(s), end(e), t(DEPLACEMENT), comm((Commande*)0){
+
+	}
+	Action::Action(Client* cli, Commande* co) : start(cli), comm(co), end((Client*)0), t(DEPOT) {
 	}
 	TypeAction Action::getType()
 	{
@@ -40,5 +39,23 @@ namespace Donnees
 				return comm;
 			else
 				return (Commande*)0;
+	}
+
+	bool Action::operator==(Action & a)
+	{
+		bool b=true;
+		if (getType() == a.getType())
+		{
+			if (getType() == DEPLACEMENT)
+				if (getStart() == a.getStart())
+					if (getEnd() == a.getEnd())
+						b = true;
+			else if (getType() == DEPOT)
+				if (getCommande() == a.getCommande())
+					if (getStart() == a.getStart())
+						if (getEnd() == a.getEnd())
+							b = true;
+		}
+		return b;
 	}
 }

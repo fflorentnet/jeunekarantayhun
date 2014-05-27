@@ -307,4 +307,19 @@ namespace Calcul
 		return 0;
 	}
 
+	Modification* Solution::deplacerAction(Action* ac, int tAct, int tDema)
+	{
+		Modification* m = NULL;
+		if (sol[tAct])
+		{
+			vector<Action* >* pVecSol = sol[tAct];
+			vector<Action *>::iterator pos = find(pVecSol->begin(), pVecSol->end(), ac) - pVecSol->begin();
+			pVecSol->erase(pos);
+			if (sol[tDema] == NULL)
+				sol[tDema] = new vector();
+			sol[tDema]->push_back(ac);
+			m = new Modification(ac, tAct, tDema);
+		}
+		return m;
+	}
 }
