@@ -313,10 +313,10 @@ namespace Calcul
 		if (sol[tAct])
 		{
 			vector<Action* >* pVecSol = sol[tAct];
-			vector<Action *>::iterator pos = find(pVecSol->begin(), pVecSol->end(), ac) - pVecSol->begin();
-			pVecSol->erase(pos);
+			//vector<Action *>::iterator pos = find(pVecSol->begin(), pVecSol->end(), ac) - pVecSol->begin();
+			pVecSol->erase(std::remove(pVecSol->begin(), pVecSol->end(), ac), pVecSol->end());
 			if (sol[tDema] == NULL)
-				sol[tDema] = new vector();
+				sol[tDema] = new vector<Action*>();
 			sol[tDema]->push_back(ac);
 			m = new Modification(ac, tAct, tDema);
 		}

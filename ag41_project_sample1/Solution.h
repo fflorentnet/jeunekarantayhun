@@ -11,6 +11,7 @@
 #include <utility>
 #include <vector>
 #include "Data.h"
+#include "Modification.h"
 using namespace Donnees;
 
 namespace Calcul
