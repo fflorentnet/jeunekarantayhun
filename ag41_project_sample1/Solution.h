@@ -10,27 +10,28 @@
 #include <map>
 #include <utility>
 #include <vector>
-#include "Client.h"
-using namespace std;
+#include "Data.h"
+#include "Modification.h"
+using namespace Donnees;
 
-class Solution {
-private:
-	map<pair<Client*, Client*>, int> distanceClients;
-	map<Client*, int> distanceFournisseur;
-	vector<Client*> listeClient;
-public:
-	Solution();
-	virtual ~Solution();
-
-	void ajouterClient(Client* c);
-	int distanceClient(Client* c);
-	void distanceClient(Client* c, int dist);
-	int distanceClient(Client* c1, Client* c2);
-	void distanceClient(Client* c1, Client* c2, int dist);
-	friend ostream& operator<< (ostream& flux, Solution& s);
-
-
-	int generate();
-};
-
+namespace Calcul
+{
+	class Solution {
+	private:
+		Data* d;
+		map<int, vector<Action*>* > sol;
+	public:
+		Solution(Data* dat);
+		Solution(Solution &s);
+		virtual ~Solution();
+		bool operator<(Solution& s);
+		friend ostream& operator<< (ostream& flux, Solution& s);
+		int generate();
+		int getValeur();
+		Data* getData();
+		int computeDifference();
+		Modification* deplacerAction(Action* ac, int tAct, int tDema);
+		Modification* meilleurMouvement();
+	};
+}
 #endif /* SOLUTION_H_ */

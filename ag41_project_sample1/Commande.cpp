@@ -12,38 +12,45 @@
 #include <string>
 
 
-
-Commande::Commande(Produit* pro, int d): p(pro), date(d){
-}
-
-Commande::~Commande() {
-	// TODO Auto-generated destructor stub
-}
-
-ostream& operator<<(ostream &flux, Commande* c)
+namespace Donnees
 {
+	Commande::Commande(Produit* pro, int d): p(pro), date(d){
+	}
 
-	stringstream ss1;
-	stringstream ss2;
-	ss1 << c->getDate();
+	Commande::~Commande() {
+		// TODO Auto-generated destructor stub
+	}
+	Commande::Commande(Commande &c)
+	{
+		p = c.getProduit();
+		date = c.getDate();
+	}
 
-	flux << "Date de livraison de " << c->getProduit()->getNom() << " : " << ss1.str();
-	return flux;
-}
+	ostream& operator<<(ostream &flux, Commande* c)
+	{
 
-int Commande::getDate()
-{
-	return date;
-}
-void Commande::setDate(int d)
-{
-	date = d;
-}
-Produit* Commande::getProduit()
-{
-	return p;
-}
-void Commande::setProduit(Produit* p)
-{
-	this->p = p;
+		stringstream ss1;
+		stringstream ss2;
+		ss1 << c->getDate();
+
+		flux << "Date de livraison de " << c->getProduit()->getNom() << " : " << ss1.str();
+		return flux;
+	}
+
+	int Commande::getDate()
+	{
+		return date;
+	}
+	void Commande::setDate(int d)
+	{
+		date = d;
+	}
+	Produit* Commande::getProduit()
+	{
+		return p;
+	}
+	void Commande::setProduit(Produit* p)
+	{
+		this->p = p;
+	}
 }
