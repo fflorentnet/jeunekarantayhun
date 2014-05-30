@@ -31,6 +31,7 @@ namespace Calcul
 		Data* getData();
 		int computeDifference();
 		Modification* deplacerAction(Action* ac, int tAct, int tDema);
+		Modification* meilleurMouvement();
 	};
 }
 #endif /* SOLUTION_H_ */

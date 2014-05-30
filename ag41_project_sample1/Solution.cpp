@@ -256,15 +256,19 @@ namespace Calcul
 
 		cout << "Calcul" << endl;
 		int temps=0;
+		/*
+		 * On parcourt la liste des clients par ordre de commande : Du dernier à l'avant dernier
+		 */
 		while (!listeAscClient.empty()) {
 			cout << "Iteration " << endl;
 			cCurrent = (Client*) listeAscClient.back();
 			commTemp = cCurrent->derniereCommande();
 			if (commTemp != NULL) {
+
 				int ttemp = t.back();
 				if (commTemp->getDate()+d->distanceClient(cCurrent) > ttemp) {
 
-					temps = ttemp - 2 * d->distanceClient(cCurrent);
+					temps = ttemp - 2*d->distanceClient(cCurrent);
 
 					if (sol[temps] == NULL)
 						sol[temps] = new vector<Action*>();
@@ -276,17 +280,18 @@ namespace Calcul
 						commTemp = (Commande*) (*itComm);
 						sol[temps]->push_back(new Action(cCurrent, commTemp));
 					}
-					int retour = ttemp - 1 * d->distanceClient(cCurrent);
+					int retour = ttemp - d->distanceClient(cCurrent);
 
 					if (sol[retour] == NULL)
 						sol[retour] = new vector<Action*>();
 
-					sol[retour]->push_back(new Action(cCurrent,(Client*)0));
-					t.push_back(retour);
+					sol[retour]->insert(sol[retour]->begin(), new Action(cCurrent,(Client*)0));
+					//sol[retour]->push_back(new Action(cCurrent,(Client*)0));
+					t.push_back(temps);
 
 				}
 				else {
-					temps = cCurrent->premiereCommande()->getDate();
+					temps = cCurrent->premiereCommande()->getDate() ;
 
 					if (sol[temps] == NULL)
 						sol[temps] = new vector<Action*>();
@@ -321,5 +326,12 @@ namespace Calcul
 			m = new Modification(ac, tAct, tDema);
 		}
 		return m;
+	}
+	Modification* Solution::meilleurMouvement()
+	{
+		Modification* m = NULL;
+
+		return m;
+
 	}
 }
