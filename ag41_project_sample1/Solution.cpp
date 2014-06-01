@@ -14,27 +14,25 @@
 namespace Calcul
 {
 	Solution::Solution(Data* dat): d(dat) {
-		// TODO Auto-generated constructor stub
-
 	}
-
 	Solution::~Solution() {
-		// TODO Auto-generated destructor stub
 	}
-
-	bool Solution::operator<(Solution& s)
-	{
+	bool Solution::operator<(Solution& s) {
 		return (this->getValeur() < s.getValeur());
 	}
-	Solution::Solution(Solution &s)
-	{
+	Solution::Solution(Solution &s) {
 		d = s.getData();
 		sol = s.sol;
 	}
-	Data* Solution::getData()
-	{
+	Data* Solution::getData() {
 		return d;
 	}
+
+	/*
+	 * Calcul la difference entre le temps 0 et la date du premier depart du livreur
+	 * et met a jour la solution
+	 * ( permet d'eviter les dates negatives )
+	 */
 	int Solution::computeDifference()
 	{
 		map<int, vector<Action*>* >::iterator itMap;
@@ -91,6 +89,10 @@ namespace Calcul
 		sol = tempSol;
 		return min;
 	}
+
+	/*
+	 * @return le flux de l'ensemble des livraisons effectuées dans cette solution
+	 */
 	ostream& operator<<(ostream& flux, Solution& s) {
 		map<int, vector<Action*>* >::iterator itMap;
 		vector<Action*>* vTemp;
@@ -140,6 +142,7 @@ namespace Calcul
 
 		return flux;
 	}
+
 	bool compareClient(Client* c1, Client* c2) {
 		Commande* co1 = (*c1).derniereCommande();
 		Commande* co2 = (*c2).derniereCommande();
@@ -150,6 +153,7 @@ namespace Calcul
 
 		return (d1 < d2);
 	}
+
 	int Solution::getValeur() {
 
 		// Calcul des coûts de déplacement:
@@ -205,6 +209,10 @@ namespace Calcul
 
 		return (tempDep+tempStock);
 	}
+
+	/*
+	 * Genere une solution en attribuant les livraisons successivement en partant du dernier client
+	 */
 	int Solution::generate() {
 		vector<Client*> listeAscClient = d->getListeClient();
 
@@ -232,10 +240,12 @@ namespace Calcul
 		cout << "Tri des elements..." << endl;
 		sort(listeAscClient.begin(), listeAscClient.end(), compareClient);
 		cout << "Tri terminé" << endl;
+
 		Client* cLast = (Client*) listeAscClient.back();
 		Client* cCurrent;
 		Commande* commTemp;
 		Commande* commLast = (Commande*) cLast->premiereCommande();
+
 		int temp = commLast->getDate();
 		t.push_back(temp);
 
@@ -246,7 +256,6 @@ namespace Calcul
 		for (itComm = cLast->getCommande()->begin();itComm != cLast->getCommande()->end(); itComm++) {
 			commTemp = (Commande*) (*itComm);
 			sol[temp]->push_back(new Action(cLast, commTemp));
-
 		}
 
 		sol[temp+d->distanceClient(cLast)] = new vector<Action*>();
@@ -256,13 +265,13 @@ namespace Calcul
 
 		cout << "Calcul" << endl;
 		int temps=0;
-		/*
-		 * On parcourt la liste des clients par ordre de commande : Du dernier à l'avant dernier
-		 */
+
+		// On parcourt la liste des clients par ordre de commande : Du dernier à l'avant dernier
 		while (!listeAscClient.empty()) {
 			cout << "Iteration " << endl;
 			cCurrent = (Client*) listeAscClient.back();
 			commTemp = cCurrent->derniereCommande();
+
 			if (commTemp != NULL) {
 
 				int ttemp = t.back();
@@ -332,6 +341,5 @@ namespace Calcul
 		Modification* m = NULL;
 
 		return m;
-
 	}
 }

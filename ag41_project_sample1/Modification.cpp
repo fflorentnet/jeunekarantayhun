@@ -10,12 +10,9 @@
 namespace Calcul {
 
 Modification::Modification(Action* ac, int tDep, int tArr): act(ac), tDepart(tDep), tArrive(tArr) {
-	// TODO Auto-generated constructor stub
-
 }
 
 Modification::~Modification() {
-	// TODO Auto-generated destructor stub
 }
 
 bool Modification::operator==(Modification &m)

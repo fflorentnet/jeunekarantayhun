@@ -10,11 +10,8 @@
 namespace Donnees
 {
 	Action::~Action() {
-
 	}
-
 	Action::Action(Client* s, Client* e): start(s), end(e), t(DEPLACEMENT), comm((Commande*)0){
-
 	}
 	Action::Action(Client* cli, Commande* co) : start(cli), comm(co), end((Client*)0), t(DEPOT) {
 	}

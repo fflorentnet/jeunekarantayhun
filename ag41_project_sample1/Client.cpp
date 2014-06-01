@@ -13,12 +13,10 @@
 namespace Donnees
 {
 	Client::Client(string n): nom(n) {
-		// TODO Auto-generated constructor stub
 		listeCommande = new vector<Commande*>();
 	}
 
 	Client::~Client() {
-		// TODO Auto-generated destructor stub
 	}
 
 	void Client::addCommande(Commande* c)

@@ -9,12 +9,9 @@
 namespace Donnees
 {
 	Produit::Produit(string i): nom(i) {
-		// TODO Auto-generated constructor stub
-
 	}
 
 	Produit::~Produit() {
-		// TODO Auto-generated destructor stub
 	}
 
 	string Produit::getNom() const {

@@ -98,7 +98,7 @@ void jeuEssai2()
 	c3->setKStockage(calculCout(3));
 	c4->setKStockage(calculCout(4));
 
-	std::cout << "Affichage des clients:" << endl;
+	//std::cout << "Affichage des clients:" << endl;
 	//std::cout << c1 << c2 << c3 << c4 << c5;
 	Data* d = new Data();
 	Solution s(d);
@@ -121,16 +121,25 @@ void jeuEssai2()
 	d->distanceClient(c3,c2, 140);
 	d->distanceClient(c4,c3, 10);
 
-
 	d->setKTransport(2);
 
+	// Génération d'une première solution
 	std::cout << "Generation de la solution:" << endl;
 	s.generate();
+	std::cout << endl;
+
+	// Affichage de la solution
 	std::cout << s << endl;
+	std::cout << endl;
+
+	// Calcul de la difference et affichage de la solution corrigée
 	std::cout << "Difference de sol: " << s.computeDifference() << endl;
 	std::cout << s << endl;
+	std::cout << endl;
+
+	// Affichage du cout total
 	std::cout << "Coût total de la solution: " << s.getValeur() << endl;
-	std::cout << "Fini"<<"\n";
+	std::cout << "Fini"<< endl;
 }
 int main(void)
 {

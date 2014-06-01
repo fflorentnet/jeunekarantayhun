@@ -1,6 +1,8 @@
 /*
  * Data.cpp
  *
+ * Rassemble les donnees du probleme
+ *
  *  Created on: May 25, 2014
  *      Author: florent
  */
@@ -10,12 +12,9 @@
 namespace Donnees
 {
 	Data::Data(): kTransport(0) {
-		// TODO Auto-generated constructor stub
-
 	}
 
 	Data::~Data() {
-		// TODO Auto-generated destructor stub
 	}
 	Data::Data(Data &d)
 	{

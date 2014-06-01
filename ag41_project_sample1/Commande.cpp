@@ -18,7 +18,6 @@ namespace Donnees
 	}
 
 	Commande::~Commande() {
-		// TODO Auto-generated destructor stub
 	}
 	Commande::Commande(Commande &c)
 	{
