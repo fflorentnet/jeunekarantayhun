@@ -149,7 +149,7 @@ int main(void)
 
 	Parser* p = new Parser();
 
-	Data* d = p->parseFile("./instances/instance10n3cl.txt");
+	Data* d = p->parseFile("./instances/instance15n3cl.txt");
 	Solution s(d);
 
 	// Génération d'une première solution

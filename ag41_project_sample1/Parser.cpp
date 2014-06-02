@@ -42,7 +42,10 @@ Data* Parser::parseFile(string path) {
 
 				if(fields.at(0) == "NBR_PRODUCT") {
 					for(int i=0; i < atoi( fields.at(1).c_str()); i++) {
-						Produit* p = new Produit("Produit "+i);
+						ostringstream oss;
+						oss << i;
+						string name = "Produit "+oss.str();
+						Produit* p = new Produit(name);
 						vectProduit.push_back(p);
 					}
 				}
