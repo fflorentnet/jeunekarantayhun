@@ -5,6 +5,8 @@
 #include "Solution.h"
 #include "Client.h"
 #include "Produit.h"
+#include "Parser.h"
+
 using namespace Donnees;
 using namespace Calcul;
 
@@ -143,6 +145,30 @@ void jeuEssai2()
 }
 int main(void)
 {
-	jeuEssai2();
+	//jeuEssai2();
+
+	Parser* p = new Parser();
+
+	Data* d = p->parseFile("./instances/instance10n3cl.txt");
+	Solution s(d);
+
+	// Génération d'une première solution
+	std::cout << "Generation de la solution:" << endl;
+	s.generate();
+	std::cout << endl;
+
+	// Affichage de la solution
+	std::cout << s << endl;
+	std::cout << endl;
+
+	// Calcul de la difference et affichage de la solution corrigée
+	std::cout << "Difference de sol: " << s.computeDifference() << endl;
+	std::cout << s << endl;
+	std::cout << endl;
+
+	// Affichage du cout total
+	std::cout << "Coût total de la solution: " << s.getValeur() << endl;
+	std::cout << "Fini"<< endl;
+
 	return 0;
 }

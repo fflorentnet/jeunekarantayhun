@@ -46,11 +46,11 @@ namespace Donnees
 		pair<Client*, Client*> p(c1, c2);
 		distanceClients[p] = dist;
 	}
-	int Data::getKTransport()
+	float Data::getKTransport()
 	{
 		return kTransport;
 	}
-	void Data::setKTransport(int k)
+	void Data::setKTransport(float k)
 	{
 		kTransport = k;
 	}
