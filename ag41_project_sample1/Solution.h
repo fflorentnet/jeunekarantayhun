@@ -31,7 +31,7 @@ namespace Calcul
 		Data* getData();
 		int computeDifference();
 		Modification* deplacerAction(Action* ac, int tAct, int tDema);
-		Modification* meilleurMouvement();
+		vector<Modification*> detectMerge();
 	};
 }
 #endif /* SOLUTION_H_ */

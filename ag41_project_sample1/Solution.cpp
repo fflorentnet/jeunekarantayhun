@@ -327,11 +327,56 @@ namespace Calcul
 		}
 		return m;
 	}
-	Modification* Solution::meilleurMouvement()
+
+	/*
+	 * A IMPLEMENTER : gestion de la capacité
+	 */
+	vector<Modification*> Solution::detectMerge()
 	{
-		Modification* m = NULL;
+		vector<Modification*> vMod;
 
-		return m;
+		int t = 0;
+		map<int, vector<Action*>* >::iterator itSol;
+		map<int, vector<Action*>* >::iterator itNextSol;
 
+		vector<Action*>* pVecAct = NULL;
+		vector<Action*>* pNextVecAct = NULL;
+		Action* pAct;
+		Action* pNextAct;
+
+		for(itSol = sol.begin(); itSol != sol.end(); itSol++)
+		{
+			t = (*itSol).first;
+			pVecAct = (*itSol).second;
+			itNextSol = itSol;
+			itNextSol++;
+			if (itNextSol != sol.end())
+				pNextVecAct = (*itNextSol).second;
+			if (pNextVecAct != NULL)
+			{
+				pAct = pVecAct->back();
+				pNextAct = pNextVecAct->front();
+				/*
+				 * On vérifie que les deux actions sont bien des déplacements
+				 * puis on regarde si la destination de la première action est l'origine de la seconde action
+				 * S'il existe une route entre les deux clients
+				 * 		On stocke la modification et on passe à la suite
+				 */
+				if (pAct->getType() == DEPLACEMENT && pNextAct->getType() == DEPLACEMENT)
+				{
+					if (pAct->getEnd() == pNextAct->getStart())
+					{
+						if ( (d->distanceClient(pAct->getStart(),pNextAct->getEnd()) != -1))
+						{
+							int gain = d->distanceClient(pAct->getStart(),pNextAct->getEnd()) - (d->distanceClient(pAct->getStart(),pAct->getStart()))+(d->distanceClient(pNextAct->getStart(),pNextAct->getEnd()));
+							vMod.push_back(new Modification(pAct, pNextAct, gain));
+						}
+					}
+				}
+			}
+		}
+		return vMod;
 	}
+
+
 }
