@@ -16,7 +16,7 @@ private:
 public:
 	Tabou(int i);
 	virtual ~Tabou();
-	void execute(Solution *solInitiale);
+	Solution* execute(Solution *solInitiale);
 };
 
 } /* namespace Calcul */

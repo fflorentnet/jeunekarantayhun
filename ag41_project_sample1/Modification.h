@@ -21,21 +21,21 @@ private:
 	int gain;
 public:
 	Modification(Action* ac, int tDep, int tArr, int g);
-	Modification(Action* ac1, Action* ac2, int g);
+	Modification(Action* ac1, Action* ac2, int g, int t, int tNext);
 
 	virtual ~Modification();
 	bool operator==(Modification &m);
-	const Action*& getAct1() const;
-	void setAct1(const Action*& act1);
-	const Action*& getAct2() const;
-	void setAct2(const Action*& act2);
-	int getGain() const;
+	 Action*& getAct1() ;
+	void setAct1( Action*& act1);
+	 Action*& getAct2() ;
+	void setAct2( Action*& act2);
+	int getGain() ;
 	void setGain(int gain);
-	TypeModification getT() const;
+	TypeModification getT() ;
 	void setT(TypeModification t);
-	int getArrive() const;
+	int getArrive() ;
 	void setArrive(int arrive);
-	int getDepart() const;
+	int getDepart() ;
 	void setDepart(int depart);
 };
 

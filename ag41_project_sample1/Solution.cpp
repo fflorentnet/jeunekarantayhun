@@ -52,7 +52,7 @@ namespace Calcul
 			{
 				aTemp = (*itAction);
 				int ttemp = 0;
-				if (aTemp->getType() == DEPLACEMENT)
+				if (aTemp->getType() == Donnees::DEPLACEMENT)
 				{
 					Client* start = aTemp->getStart();
 					Client* end = aTemp->getEnd();
@@ -83,7 +83,7 @@ namespace Calcul
 			//vector<Action* >* veActions = new vector();
 			for (itAction = vTemp->begin(); itAction != vTemp->end(); itAction++)
 			{
-				if ((*itAction)->getType() == DEPOT)
+				if ((*itAction)->getType() == Donnees::DEPOT)
 					(*itAction)->getCommande()->setDate((*itAction)->getCommande()->getDate() - min);
 			}
 			tempSol[date-min] = vTemp;
@@ -108,12 +108,12 @@ namespace Calcul
 			for (itAction = vTemp->begin(); itAction != vTemp->end(); itAction++)
 			{
 				aTemp = (*itAction);
-				if (aTemp->getType() == DEPOT)
+				if (aTemp->getType() == Donnees::DEPOT)
 				{
 					flux << "Depot de " << aTemp->getCommande()->getProduit()->getNom() << " chez " << aTemp->getStart()->getNom() << endl;
 					flux << "---> Produit demandé à " << aTemp->getCommande()->getDate() << endl;
 				}
-				else if (aTemp->getType() == DEPLACEMENT)
+				else if (aTemp->getType() == Donnees::DEPLACEMENT)
 				{
 					Client* start = aTemp->getStart();
 					Client* end = aTemp->getEnd();
@@ -140,6 +140,56 @@ namespace Calcul
 
 		return flux;
 	}
+	ostream& operator<<(ostream& flux, Solution* s) {
+			map<int, vector<Action*>* >::iterator itMap;
+			vector<Action*>* vTemp;
+			vector<Action*>::iterator itAction;
+			Action* aTemp;
+			int date=0;
+
+			for (itMap = s->sol.begin() ; itMap != s->sol.end() ; itMap++)
+			{
+				vTemp = (*itMap).second;
+				date = (*itMap).first;
+				string temp = "A la date : ";
+				flux << temp << date << endl;
+
+				for (itAction = vTemp->begin(); itAction != vTemp->end(); itAction++)
+				{
+					aTemp = (*itAction);
+					if (aTemp->getType() == Donnees::DEPOT)
+					{
+						flux << "Depot de " << aTemp->getCommande()->getProduit()->getNom() << " chez " << aTemp->getStart()->getNom() << endl;
+						flux << "---> Produit demandé à " << aTemp->getCommande()->getDate() << endl;
+					}
+					else if (aTemp->getType() == Donnees::DEPLACEMENT)
+					{
+						Client* start = aTemp->getStart();
+						Client* end = aTemp->getEnd();
+						int ttemp = 0;
+						if (start == (Client*)0)
+						{
+							flux << "Deplacement terminé du fournisseur à " << end->getNom() << endl;
+							ttemp = date - s->getData()->distanceClient(end);
+						}
+						else if (end == (Client*)0){
+							flux << "Deplacement terminé de " << start->getNom() << " au fournisseur" << endl;
+							ttemp = date - s->getData()->distanceClient(start);
+						}
+						else{
+
+							flux << "Deplacement terminé de " << start->getNom() << " à " << end->getNom() << endl;
+							ttemp = date - s->getData()->distanceClient(start, end);
+						}
+						flux << "----> (Déplacement commencé à " << ttemp << ")" << endl;
+					}
+				}
+
+			}
+
+			return flux;
+		}
+
 	bool compareClient(Client* c1, Client* c2) {
 		Commande* co1 = (*c1).derniereCommande();
 		Commande* co2 = (*c2).derniereCommande();
@@ -169,7 +219,7 @@ namespace Calcul
 			for (itAct = veListeAction->begin(); itAct != veListeAction->end(); itAct++)
 			{
 				itAction = (*itAct);
-				if (itAction->getType() == DEPLACEMENT)
+				if (itAction->getType() == Donnees::DEPLACEMENT)
 				{
 					int ttemp = 0;
 					if (itAction->getEnd() == (Client*)0)
@@ -189,7 +239,7 @@ namespace Calcul
 						tempDep += ttemp;
 					}
 				}
-				else if (itAction->getType() == DEPOT)
+				else if (itAction->getType() == Donnees::DEPOT)
 				{
 					Client* itCli = itAction->getStart();
 					Commande* itCom = itAction->getCommande();
@@ -323,7 +373,7 @@ namespace Calcul
 			if (sol[tDema] == NULL)
 				sol[tDema] = new vector<Action*>();
 			sol[tDema]->push_back(ac);
-			m = new Modification(ac, tAct, tDema);
+			m = new Modification(ac, tAct, tDema, 0);
 		}
 		return m;
 	}
@@ -336,6 +386,8 @@ namespace Calcul
 		vector<Modification*> vMod;
 
 		int t = 0;
+		int tNext;
+		int min = 100000;
 		map<int, vector<Action*>* >::iterator itSol;
 		map<int, vector<Action*>* >::iterator itNextSol;
 
@@ -343,15 +395,29 @@ namespace Calcul
 		vector<Action*>* pNextVecAct = NULL;
 		Action* pAct;
 		Action* pNextAct;
+		Action* pActTemp;
+		vector<Action*>::iterator itVActTemp;
 
 		for(itSol = sol.begin(); itSol != sol.end(); itSol++)
 		{
 			t = (*itSol).first;
 			pVecAct = (*itSol).second;
+			for (itVActTemp = pVecAct->begin(); itVActTemp != pVecAct->end(); itVActTemp++)
+			{
+				pActTemp = (*itVActTemp);
+				if (pActTemp->getType() == Donnees::DEPOT)
+				{
+					if ((pActTemp->getCommande()->getDate() - t) < min)
+						min = (pActTemp->getCommande()->getDate() - t);
+				}
+			}
 			itNextSol = itSol;
 			itNextSol++;
 			if (itNextSol != sol.end())
+			{
 				pNextVecAct = (*itNextSol).second;
+				tNext = (*itNextSol).first;
+			}
 			if (pNextVecAct != NULL)
 			{
 				pAct = pVecAct->back();
@@ -362,14 +428,17 @@ namespace Calcul
 				 * S'il existe une route entre les deux clients
 				 * 		On stocke la modification et on passe à la suite
 				 */
-				if (pAct->getType() == DEPLACEMENT && pNextAct->getType() == DEPLACEMENT)
+				if (pAct->getType() == Donnees::DEPLACEMENT && pNextAct->getType() == Donnees::DEPLACEMENT)
 				{
+					std::cout << "meh meh" << endl;
 					if (pAct->getEnd() == pNextAct->getStart())
 					{
 						if ( (d->distanceClient(pAct->getStart(),pNextAct->getEnd()) != -1))
 						{
-							int gain = d->distanceClient(pAct->getStart(),pNextAct->getEnd()) - (d->distanceClient(pAct->getStart(),pAct->getStart()))+(d->distanceClient(pNextAct->getStart(),pNextAct->getEnd()));
-							vMod.push_back(new Modification(pAct, pNextAct, gain));
+							int gain = d->distanceClient(pAct->getStart(),pNextAct->getEnd()) - (d->distanceClient(pAct->getStart()))+(d->distanceClient(pNextAct->getEnd()));
+							std::cout << "Gain: "<< gain << endl;
+							if (gain < min)
+								vMod.push_back(new Modification(pAct, pNextAct, gain, t, tNext));
 						}
 					}
 				}
@@ -378,5 +447,52 @@ namespace Calcul
 		return vMod;
 	}
 
+	vector<Modification*> Solution::listeVoisins()
+	{
+		return detectMerge();
+	}
+	Solution* Solution::applyModification(Modification* m)
+	{
+		Solution* s = this;
+
+
+		if (m->getT() == Calcul::FUSION)
+		{
+
+			std::cout << "Application d'une fusion de deplacement"  << endl;
+
+			//(Action* ac1, Action* ac2, int g) : gain(g), act1(ac1), act2(ac2), t(FUSION), tDepart(-1),tArrive(-1) {
+			Action* acA = m->getAct1();
+			Action* acB = m->getAct2();
+			(s->sol[m->getArrive()])->pop_back();
+			(s->sol[m->getArrive()])->push_back(new Action(acA->getStart(),acB->getEnd()));
+			(s->sol[m->getDepart()])->pop_back();
+			//s->sol.erase(s->sol.find(m->getDepart()));
+			int g =  (d->distanceClient(acA->getStart()) + d->distanceClient(acB->getEnd())) - d->distanceClient(acA->getStart(),acB->getEnd());
+			int tTemp;
+
+			map<int, vector<Action*>* >::iterator itMSol;
+			map<int, vector<Action*>* > mapTemp;
+
+
+			for (itMSol = s->sol.begin(); itMSol != s->sol.end(); itMSol++)
+			{
+
+				std::cout << "meh" << endl;
+				if ((*itMSol).first < m->getArrive())
+				{
+					tTemp = (*itMSol).first + g;
+				}
+				else
+					tTemp = (*itMSol).first;
+				mapTemp[tTemp] = (*itMSol).second;
+			}
+			s->sol = mapTemp;
+			s->computeDifference();
+		}
+		std::cout << s << endl;
+		std::cout << "Coût total de la solution: " << s->getValeur() << endl;
+		return s;
+	}
 
 }

@@ -26,12 +26,16 @@ namespace Calcul
 		virtual ~Solution();
 		bool operator<(Solution& s);
 		friend ostream& operator<< (ostream& flux, Solution& s);
+		friend ostream& operator<< (ostream& flux, Solution* s);
+
 		int generate();
 		int getValeur();
 		Data* getData();
 		int computeDifference();
 		Modification* deplacerAction(Action* ac, int tAct, int tDema);
 		vector<Modification*> detectMerge();
+		vector<Modification*> listeVoisins();
+		Solution* applyModification(Modification* m);
 	};
 }
 #endif /* SOLUTION_H_ */

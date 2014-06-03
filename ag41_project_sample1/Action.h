@@ -24,6 +24,7 @@ namespace Donnees
 		TypeAction getType();
 		Client* getStart();
 		Client* getEnd();
+		void setEnd(Client* c);
 		Commande* getCommande();
 		virtual ~Action();
 		bool operator==(Action & a);

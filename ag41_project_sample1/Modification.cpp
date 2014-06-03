@@ -10,10 +10,10 @@
 namespace Calcul {
 
 Modification::Modification(Action* ac, int tDep, int tArr, int g): gain(g), act1(ac), act2(NULL),  t(DEPLACEMENT), tDepart(tDep), tArrive(tArr) {
-	// TODO Auto-generated constructor stub
+	// TODO Auto-generated ructor stub
 
 }
-Modification::Modification(Action* ac1, Action* ac2, int g) : gain(g), act1(ac1), act2(ac2), t(FUSION), tDepart(-1),tArrive(-1) {
+Modification::Modification(Action* ac1, Action* ac2, int g, int t, int tNext) : gain(g), act1(ac1), act2(ac2), t(FUSION), tDepart(t),tArrive(tNext) {
 
 }
 
@@ -21,23 +21,23 @@ Modification::~Modification() {
 	// TODO Auto-generated destructor stub
 }
 
-const Action*& Modification::getAct1() const {
+ Action*& Modification::getAct1() {
 	return act1;
 }
 
-void Modification::setAct1(const Action*& act1) {
+void Modification::setAct1(Action*& act1) {
 	this->act1 = act1;
 }
 
-const Action*& Modification::getAct2() const {
+ Action*& Modification::getAct2() {
 	return act2;
 }
 
-void Modification::setAct2(const Action*& act2) {
+void Modification::setAct2(Action*& act2) {
 	this->act2 = act2;
 }
 
-int Modification::getGain() const {
+int Modification::getGain() {
 	return gain;
 }
 
@@ -45,7 +45,7 @@ void Modification::setGain(int gain) {
 	this->gain = gain;
 }
 
-TypeModification Modification::getT() const {
+TypeModification Modification::getT()  {
 	return t;
 }
 
@@ -53,7 +53,7 @@ void Modification::setT(TypeModification t) {
 	this->t = t;
 }
 
-int Modification::getArrive() const {
+int Modification::getArrive()  {
 	return tArrive;
 }
 
@@ -61,7 +61,7 @@ void Modification::setArrive(int arrive) {
 	tArrive = arrive;
 }
 
-int Modification::getDepart() const {
+int Modification::getDepart()  {
 	return tDepart;
 }
 

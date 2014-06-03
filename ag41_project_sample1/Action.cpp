@@ -40,7 +40,10 @@ namespace Donnees
 			else
 				return (Commande*)0;
 	}
-
+	void Action::setEnd(Client* c)
+	{
+		end = c;
+	}
 	bool Action::operator==(Action & a)
 	{
 		bool b=true;

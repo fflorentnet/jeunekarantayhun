@@ -5,6 +5,7 @@
 #include "Solution.h"
 #include "Client.h"
 #include "Produit.h"
+#include "Tabou.h"
 using namespace Donnees;
 using namespace Calcul;
 
@@ -101,7 +102,7 @@ void jeuEssai2()
 	std::cout << "Affichage des clients:" << endl;
 	//std::cout << c1 << c2 << c3 << c4 << c5;
 	Data* d = new Data();
-	Solution s(d);
+	Solution* s = new Solution(d);
 
 	d->ajouterClient(c1);
 	d->ajouterClient(c2);
@@ -125,12 +126,18 @@ void jeuEssai2()
 	d->setKTransport(2);
 
 	std::cout << "Generation de la solution:" << endl;
-	s.generate();
+	s->generate();
 	std::cout << s << endl;
-	std::cout << "Difference de sol: " << s.computeDifference() << endl;
+	std::cout << "Difference de sol: " << s->computeDifference() << endl;
 	std::cout << s << endl;
-	std::cout << "Coût total de la solution: " << s.getValeur() << endl;
+	std::cout << "Coût total de la solution: " << s->getValeur() << endl;
 	std::cout << "Fini"<<"\n";
+
+	Tabou* t = new Tabou(500);
+	s = t->execute(s);
+	std::cout << s << endl;
+	std::cout << "Coût total de la solution: " << s->getValeur() << endl;
+
 }
 int main(void)
 {
