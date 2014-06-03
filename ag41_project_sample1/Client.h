@@ -34,6 +34,8 @@ namespace Donnees
 		friend ostream& operator<< (ostream& flux, Client& c);
 		float getKStockage();
 		void setKStockage(float k);
+		bool operator==(Client& c);
+
 	};
 }
 #endif /* CLIENT_H_ */

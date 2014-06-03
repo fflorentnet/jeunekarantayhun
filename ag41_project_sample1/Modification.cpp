@@ -9,7 +9,7 @@
 
 namespace Calcul {
 
-Modification::Modification(Action* ac, int tDep, int tArr): act(ac), tDepart(tDep), tArrive(tArr) {
+Modification::Modification(Action* ac, int tDep, int tArr): act1(ac), act2(NULL), actFinal(NULL), t(DEPLACEMENT), tDepart(tDep), tArrive(tArr) {
 	// TODO Auto-generated constructor stub
 
 }
@@ -22,7 +22,7 @@ bool Modification::operator==(Modification &m)
 {
 	bool b = false;
 	if (tDepart == m.tDepart && tArrive == m.tArrive)
-		if (act == m.act)
+		if (act1 == m.act1)
 			b = true;
 	return b;
 }

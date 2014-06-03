@@ -19,6 +19,8 @@ namespace Donnees
 		virtual ~Produit();
 		string getNom() const;
 		void setNom(string id);
+		bool operator==(Produit & p);
+
 	};
 }
 #endif /* PRODUIT_H_ */

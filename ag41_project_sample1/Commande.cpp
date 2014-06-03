@@ -53,4 +53,14 @@ namespace Donnees
 	{
 		this->p = p;
 	}
+	bool Commande::operator==(Commande & c)
+	{
+		bool b = true;
+		if (c.date != this->date)
+			return false;
+		else
+			if (c.p != this->p)
+				return false;
+		return true;
+	}
 }

@@ -20,6 +20,7 @@ namespace Donnees
 		vector<Client*> listeClient;
 		map<int, vector<Action*>* > sol;
 		int kTransport;
+		int capacite;
 	public:
 		Data();
 		virtual ~Data();
@@ -32,8 +33,8 @@ namespace Donnees
 		void distanceClient(Client* c1, Client* c2, int dist);
 		int getKTransport();
 		void setKTransport(int k);
-
-
-	};
+	int getCapacite() const;
+	void setCapacite(int capacite);
+};
 }
 #endif /* DATA_H_ */

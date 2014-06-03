@@ -24,4 +24,14 @@ namespace Donnees
 	void Produit::setNom(string id) {
 		this->nom = nom;
 	}
+	bool Produit::operator==(Produit & p)
+	{
+		if (p.nom != this-> nom)
+			return false;
+		else
+			return true;
+	}
+
+
+
 }

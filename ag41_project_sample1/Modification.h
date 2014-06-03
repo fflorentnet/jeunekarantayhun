@@ -10,13 +10,20 @@
 #include "Action.h"
 using namespace Donnees;
 namespace Calcul {
+enum TypeModification { DEPLACEMENT, FUSION };
 class Modification {
 private:
-	Action* act;
+	TypeModification t;
+	Action* act1;
+	Action* act2;
+	Action* actFinal;
 	int tDepart;
 	int tArrive;
+	int gain;
 public:
 	Modification(Action* ac, int tDep, int tArr);
+	Modification(Action* ac1, Action* ac2, Action* acF, int tDep);
+
 	virtual ~Modification();
 	bool operator==(Modification &m);
 

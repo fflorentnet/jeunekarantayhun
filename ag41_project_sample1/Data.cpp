@@ -59,4 +59,13 @@ namespace Donnees
 	{
 		return listeClient;
 	}
+
+	int Data::getCapacite() const {
+		return capacite;
+	}
+
+	void Data::setCapacite(int capacite) {
+		this->capacite = capacite;
+	}
 }
+
