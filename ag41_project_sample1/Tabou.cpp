@@ -8,7 +8,7 @@
 #include "Tabou.h"
 #include <deque>
 #include <algorithm>
-#define MAXTABULISTSIZE 500
+#define MAXTABULISTSIZE 5
 namespace Calcul {
 
 Tabou::Tabou(int i): it(i) {
@@ -19,28 +19,6 @@ Tabou::Tabou(int i): it(i) {
 Tabou::~Tabou() {
 	// TODO Auto-generated destructor stub
 }
-/*
- *    s ← s0
-2:   sBest ← s
-3:   tabuList ← null
-4:   while (not stoppingCondition())
-5:      candidateList ← null
-6:      for(sCandidate in sNeighborhood)
-7:           if(not containsTabuElements(sCandidate, tabuList))
-8:                 candidateList ← candidateList + sCandidate
-9:           end
-10:     end
-11:     sCandidate ← LocateBestCandidate(candidateList)
-12:     if(fitness(sCandidate) > fitness(sBest))
-13:          tabuList ← featureDifferences(sCandidate, sBest)
-14:          sBest ← sCandidate
-15:          while(size(tabuList) > maxTabuListSize)
-16:               ExpireFeatures(tabuList)
-17:          end
-18:     end
-19:  end
-20:  return(sBest)
- */
 Solution* Tabou::execute(Solution *solInitiale)
 {
 	Solution* s = solInitiale;
@@ -83,7 +61,7 @@ Solution* Tabou::execute(Solution *solInitiale)
 		}
 		sCandidate = sBest->applyModification(bestCandidate);
 
-		if (sCandidate < sBest)
+		if (sCandidate->getValeur() < sBest->getValeur())
 		{
 			tabuList.push_back(bestCandidate);
 			sBest = sCandidate;

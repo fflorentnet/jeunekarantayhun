@@ -10,7 +10,7 @@
 #include "Action.h"
 using namespace Donnees;
 namespace Calcul {
-enum TypeModification { DEPLACEMENT, FUSION };
+enum TypeModification { DEPLACEMENT, FUSION, MOVE };
 class Modification {
 private:
 	TypeModification t;
@@ -18,10 +18,12 @@ private:
 	Action* act2;
 	int tDepart;
 	int tArrive;
+	int tFinal;
 	int gain;
 public:
 	Modification(Action* ac, int tDep, int tArr, int g);
 	Modification(Action* ac1, Action* ac2, int g, int t, int tNext);
+	Modification(int tD, int tA, int tF, int g);
 
 	virtual ~Modification();
 	bool operator==(Modification &m);
@@ -37,6 +39,8 @@ public:
 	void setArrive(int arrive);
 	int getDepart() ;
 	void setDepart(int depart);
+	int getFinal();
+	void setFinal(int final);
 };
 
 } /* namespace Calcul */

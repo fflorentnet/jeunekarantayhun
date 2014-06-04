@@ -33,6 +33,7 @@ namespace Calcul
 		Data* getData();
 		int computeDifference();
 		Modification* deplacerAction(Action* ac, int tAct, int tDema);
+		vector<Modification*> detectMove();
 		vector<Modification*> detectMerge();
 		vector<Modification*> listeVoisins();
 		Solution* applyModification(Modification* m);

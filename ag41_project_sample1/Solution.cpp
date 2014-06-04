@@ -396,6 +396,7 @@ namespace Calcul
 		Action* pAct;
 		Action* pNextAct;
 		Action* pActTemp;
+
 		vector<Action*>::iterator itVActTemp;
 
 		for(itSol = sol.begin(); itSol != sol.end(); itSol++)
@@ -407,7 +408,7 @@ namespace Calcul
 				pActTemp = (*itVActTemp);
 				if (pActTemp->getType() == Donnees::DEPOT)
 				{
-					if ((pActTemp->getCommande()->getDate() - t) < min)
+					if ((pActTemp->getCommande()->getDate() - t) <= min)
 						min = (pActTemp->getCommande()->getDate() - t);
 				}
 			}
@@ -430,14 +431,13 @@ namespace Calcul
 				 */
 				if (pAct->getType() == Donnees::DEPLACEMENT && pNextAct->getType() == Donnees::DEPLACEMENT)
 				{
-					std::cout << "meh meh" << endl;
 					if (pAct->getEnd() == pNextAct->getStart())
 					{
 						if ( (d->distanceClient(pAct->getStart(),pNextAct->getEnd()) != -1))
 						{
 							int gain = d->distanceClient(pAct->getStart(),pNextAct->getEnd()) - (d->distanceClient(pAct->getStart()))+(d->distanceClient(pNextAct->getEnd()));
 							std::cout << "Gain: "<< gain << endl;
-							if (gain < min)
+							if (gain <= min)
 								vMod.push_back(new Modification(pAct, pNextAct, gain, t, tNext));
 						}
 					}
@@ -447,9 +447,84 @@ namespace Calcul
 		return vMod;
 	}
 
+	vector<Modification*> Solution::detectMove()
+	{
+		vector<Modification*> vMod;
+		map<int, vector<Action*>* >::iterator itSol;
+		map<int, vector<Action*>* >::iterator itSolBis;
+
+		vector<Action*>::iterator itAct;
+		Action* aTemp;
+
+		vector<int> listeDebut;
+		vector<int>::iterator itListeDebut;
+		int tDepart = 0 ;
+		int tLastDepart = 0 ;
+		int tLastArrivee = 0;
+		int t;
+		bool bChangement = false;
+
+
+		//Client* cCurrent;
+		for(itSol = sol.begin(); itSol != sol.end(); itSol++)
+		{
+			t = (*itSol).first;
+			for(itAct = ((*itSol).second)->begin(); itAct != ((*itSol).second)->end(); itAct++)
+			{
+				aTemp = (*itAct);
+				if (aTemp->getType() == Donnees::DEPLACEMENT)
+				{
+					tLastArrivee = t;
+					tLastDepart = tDepart;
+					tDepart = t;
+					listeDebut.push_back(t);
+
+					//cCurrent = aTemp->getEnd();
+					bChangement = true;
+				}
+			}
+			if (bChangement)
+			{
+				for(itListeDebut = listeDebut.begin(); itListeDebut != listeDebut.end(); itListeDebut++)
+				{
+					int temp = (*itListeDebut);
+					int gain = 0;
+					for(itSolBis = sol.begin(); itSolBis != sol.end(); itSolBis++)
+					{
+						int ttemp = (*itSolBis).first;
+						if (ttemp >= tLastDepart && ttemp < tLastArrivee)
+						{
+							for(itAct = ((*itSolBis).second)->begin(); itAct != ((*itSolBis).second)->end(); itAct++)
+							{
+								aTemp = (*itAct);
+								if (aTemp->getType() == Donnees::DEPOT)
+								{
+									gain += aTemp->getStart()->getKStockage()*(aTemp->getCommande()->getDate()-(ttemp-temp));
+								}
+							}
+						}
+						vMod.push_back(new Modification(tLastDepart, tLastArrivee, temp, gain));
+					}
+				}
+				bChangement = false;
+			}
+		}
+		return vMod;
+
+	}
+
 	vector<Modification*> Solution::listeVoisins()
 	{
-		return detectMerge();
+		vector<Modification*> mTotal;
+		vector<Modification*> merge = detectMerge();
+		vector<Modification*> move = detectMove();
+		vector<Modification *>::iterator itVModif;
+		for (itVModif = merge.begin(); itVModif != merge.end(); itVModif++)
+			mTotal.push_back((*itVModif));
+		for (itVModif = move.begin(); itVModif != move.end(); itVModif++)
+					mTotal.push_back((*itVModif));
+
+		return mTotal;
 	}
 	Solution* Solution::applyModification(Modification* m)
 	{
@@ -464,10 +539,17 @@ namespace Calcul
 			//(Action* ac1, Action* ac2, int g) : gain(g), act1(ac1), act2(ac2), t(FUSION), tDepart(-1),tArrive(-1) {
 			Action* acA = m->getAct1();
 			Action* acB = m->getAct2();
-			(s->sol[m->getArrive()])->pop_back();
-			(s->sol[m->getArrive()])->push_back(new Action(acA->getStart(),acB->getEnd()));
-			(s->sol[m->getDepart()])->pop_back();
-			//s->sol.erase(s->sol.find(m->getDepart()));
+			std::cout  << acB->getEnd()->getNom() << endl;
+			(s->sol[m->getArrive()])->insert((s->sol[m->getArrive()])->begin()+1 ,new Action(acA->getStart(),acB->getEnd()));
+
+
+			std::cout << "tDepart:" << (m->getDepart() + d->distanceClient(m->getAct2()->getEnd())) << endl;
+
+
+			s->sol.erase(s->sol.find((m->getDepart())));
+
+
+			(s->sol[(m->getDepart() + d->distanceClient(m->getAct2()->getEnd()))])->erase((s->sol[(m->getDepart() + d->distanceClient(m->getAct2()->getEnd()))])->begin());
 			int g =  (d->distanceClient(acA->getStart()) + d->distanceClient(acB->getEnd())) - d->distanceClient(acA->getStart(),acB->getEnd());
 			int tTemp;
 
@@ -477,8 +559,6 @@ namespace Calcul
 
 			for (itMSol = s->sol.begin(); itMSol != s->sol.end(); itMSol++)
 			{
-
-				std::cout << "meh" << endl;
 				if ((*itMSol).first < m->getArrive())
 				{
 					tTemp = (*itMSol).first + g;
@@ -488,10 +568,95 @@ namespace Calcul
 				mapTemp[tTemp] = (*itMSol).second;
 			}
 			s->sol = mapTemp;
+
 			s->computeDifference();
+
+			std::cout << s << endl;
 		}
-		std::cout << s << endl;
-		std::cout << "Coût total de la solution: " << s->getValeur() << endl;
+		else if(m->getT() == Calcul::MOVE)
+		{
+			int diff = m->getDepart()-m->getArrive();
+			map<int, vector<Action*>* > mapTemp;
+			map<int, vector<Action*>* >::iterator itMSol;
+			for (itMSol = s->sol.begin(); itMSol != s->sol.end(); itMSol++)
+			{
+				int t = (*itMSol).first;
+				vector<Action*>* temp = (*itMSol).second;
+
+				if (t < m->getFinal())
+				{
+					mapTemp[t-diff] = temp;
+				}
+				else if (t == m->getFinal() && t < m->getFinal()+diff)
+				{
+						mapTemp[t] = temp;
+				}
+				else if (t > m->getFinal() && (t < m->getArrive() || t > m->getDepart()))
+				{
+					if (t < m->getArrive())
+					{
+						mapTemp[t] = temp;
+
+					}
+					else
+					{
+						mapTemp[t-diff] = temp;
+					}
+				}
+			}
+
+			map<int, vector<Action*>* >::iterator itMSolNext;
+			map<int, vector<Action*>* > mapTempBis;
+			int decal = 0;
+			bool bAdd = false;
+			for (itMSol = mapTemp.begin(); itMSol != mapTemp.end(); itMSol++)
+			{
+				itMSolNext = itMSol;
+				itMSolNext++;
+				int t = (*itMSol).first;
+				int tNext = (*itMSolNext).first;
+
+				vector<Action*>* temp = (*itMSol).second;
+				vector<Action*>* tempNext = (*itMSolNext).second;
+				vector<Action*>* modif = new vector<Action*>();
+				if (itMSolNext != mapTemp.end())
+				{
+					if (temp != NULL)
+					{
+						if (temp->size() != 0)
+						{
+							if (temp->back() != NULL)
+							{
+								if (temp->back()->getType() == Donnees::DEPLACEMENT)
+								{
+									if (temp->back()->getEnd() != tempNext->front()->getStart())
+									{
+										temp->back()->setEnd(NULL);
+										modif->push_back(new Action(NULL, tempNext->front()->getStart()));
+									}
+								}
+							}
+						}
+					}
+				}
+				mapTempBis[t+decal] = temp;
+				if (bAdd)
+				{
+					decal += d->distanceClient(tempNext->front()->getStart());
+					mapTempBis[t+decal] = modif;
+					bAdd = false;
+				}
+			}
+
+			s->sol = mapTempBis;
+			s->computeDifference();
+			std::cout << "#########################################" << endl;
+			std::cout << s << endl;
+
+			std::cout << "Coût total de la solution: " << s->getValeur() << endl;
+
+			std::cout << "#########################################" << endl;
+		}
 		return s;
 	}
 

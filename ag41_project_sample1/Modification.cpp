@@ -9,14 +9,16 @@
 
 namespace Calcul {
 
-Modification::Modification(Action* ac, int tDep, int tArr, int g): gain(g), act1(ac), act2(NULL),  t(DEPLACEMENT), tDepart(tDep), tArrive(tArr) {
-	// TODO Auto-generated ructor stub
+Modification::Modification(Action* ac, int tDep, int tArr, int g): gain(g), act1(ac), act2(NULL),  t(DEPLACEMENT), tDepart(tDep), tArrive(tArr), tFinal(-1) {
 
 }
-Modification::Modification(Action* ac1, Action* ac2, int g, int t, int tNext) : gain(g), act1(ac1), act2(ac2), t(FUSION), tDepart(t),tArrive(tNext) {
+Modification::Modification(Action* ac1, Action* ac2, int g, int t, int tNext) : gain(g), act1(ac1), act2(ac2), t(FUSION), tDepart(t),tArrive(tNext), tFinal(-1) {
 
 }
+Modification::Modification(int tD, int tA, int tF, int g):  gain(g), act1(NULL), act2(NULL),  t(MOVE), tDepart(tD), tArrive(tA), tFinal(tF)
+{
 
+}
 Modification::~Modification() {
 	// TODO Auto-generated destructor stub
 }
@@ -77,4 +79,13 @@ bool Modification::operator==(Modification &m)
 			b = true;
 	return b;
 }
+int Modification::getFinal() {
+	return tFinal;
+}
+
+void Modification::setFinal(int final) {
+	tFinal = final;
+}
 } /* namespace Calcul */
+
+
