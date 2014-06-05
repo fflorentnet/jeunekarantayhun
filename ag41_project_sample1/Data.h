@@ -15,12 +15,17 @@ using namespace std;
 namespace Donnees
 {
 	class Data {
+	private:
 		map<pair<Client*, Client*>, int> distanceClients;
+		map<pair<Client*, Client*>, vector<Client*> > Chemins;
+		map<pair<Client*, Client*>, Client*> mNext;
+
 		map<Client*, int> distanceFournisseur;
 		vector<Client*> listeClient;
 		map<int, vector<Action*>* > sol;
 		int kTransport;
 		int capacite;
+		void Next();
 	public:
 		Data();
 		virtual ~Data();
@@ -33,8 +38,9 @@ namespace Donnees
 		void distanceClient(Client* c1, Client* c2, int dist);
 		int getKTransport();
 		void setKTransport(int k);
-	int getCapacite() const;
-	void setCapacite(int capacite);
+		int getCapacite() const;
+		void setCapacite(int capacite);
+		void floydWarshall();
 };
 }
 #endif /* DATA_H_ */

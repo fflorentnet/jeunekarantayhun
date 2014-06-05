@@ -9,13 +9,13 @@
 
 namespace Calcul {
 
-Modification::Modification(Action* ac, int tDep, int tArr, int g): gain(g), act1(ac), act2(NULL),  t(DEPLACEMENT), tDepart(tDep), tArrive(tArr), tFinal(-1) {
+Modification::Modification(Action* ac, int tDep, int tArr, float g): gain(g), act1(ac), act2(NULL),  t(DEPLACEMENT), tDepart(tDep), tArrive(tArr), tFinal(-1) {
 
 }
-Modification::Modification(Action* ac1, Action* ac2, int g, int t, int tNext) : gain(g), act1(ac1), act2(ac2), t(FUSION), tDepart(t),tArrive(tNext), tFinal(-1) {
+Modification::Modification(Action* ac1, Action* ac2, float g, int t, int tNext) : gain(g), act1(ac1), act2(ac2), t(FUSION), tDepart(t),tArrive(tNext), tFinal(-1) {
 
 }
-Modification::Modification(int tD, int tA, int tF, int g):  gain(g), act1(NULL), act2(NULL),  t(MOVE), tDepart(tD), tArrive(tA), tFinal(tF)
+Modification::Modification(int tD, int tA, int tF, float g):  gain(g), act1(NULL), act2(NULL),  t(MOVE), tDepart(tD), tArrive(tA), tFinal(tF)
 {
 
 }
@@ -86,6 +86,16 @@ int Modification::getFinal() {
 void Modification::setFinal(int final) {
 	tFinal = final;
 }
+
+void Modification::toFlux()
+{
+	if (t == Calcul::MOVE)
+	{
+		std::cout << "-> Depart:" << tDepart << endl << "<- Arrivée:" << tArrive << endl << "# Final:" << tFinal << endl;
+	}
+
+}
+
 } /* namespace Calcul */
 
 

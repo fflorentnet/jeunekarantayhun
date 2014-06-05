@@ -19,11 +19,11 @@ private:
 	int tDepart;
 	int tArrive;
 	int tFinal;
-	int gain;
+	float gain;
 public:
-	Modification(Action* ac, int tDep, int tArr, int g);
-	Modification(Action* ac1, Action* ac2, int g, int t, int tNext);
-	Modification(int tD, int tA, int tF, int g);
+	Modification(Action* ac, int tDep, int tArr, float g);
+	Modification(Action* ac1, Action* ac2, float g, int t, int tNext);
+	Modification(int tD, int tA, int tF, float g);
 
 	virtual ~Modification();
 	bool operator==(Modification &m);
@@ -41,6 +41,8 @@ public:
 	void setDepart(int depart);
 	int getFinal();
 	void setFinal(int final);
+	void toFlux();
+
 };
 
 } /* namespace Calcul */

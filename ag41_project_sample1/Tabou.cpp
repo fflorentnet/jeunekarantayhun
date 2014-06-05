@@ -8,7 +8,7 @@
 #include "Tabou.h"
 #include <deque>
 #include <algorithm>
-#define MAXTABULISTSIZE 5
+#define MAXTABULISTSIZE 100
 namespace Calcul {
 
 Tabou::Tabou(int i): it(i) {
@@ -32,42 +32,49 @@ Solution* Tabou::execute(Solution *solInitiale)
 	Modification* bestCandidate;
 	Modification* temp;
 	Solution* sCandidate;
-	int max;
+	float max;
 	while(i != this->it)
 	{
 		std::cout << "Iteration " << i << endl;
 		max = 0;
 		vector<Modification *> candidateList = sBest->listeVoisins();
-		if (candidateList.size() > 1)
+		if (candidateList != (vector<Modification *>)NULL)
 		{
-			for (itVModif= candidateList.begin(); itVModif != candidateList.end(); itVModif++)
+			if (candidateList.size() > 1)
 			{
-				temp = (*itVModif);
-				if (find(tabuList.begin(), tabuList.end(), temp) == tabuList.end())
+				for (itVModif= candidateList.begin(); itVModif != candidateList.end(); itVModif++)
 				{
-					if (temp->getGain() > max)
+					temp = (*itVModif);
+					if (find(tabuList.begin(), tabuList.end(), temp) == tabuList.end())
 					{
-						max = temp->getGain();
-						bestCandidate = temp;
+						if (temp->getGain() > max)
+						{
+							max = temp->getGain();
+							bestCandidate = temp;
 
-						std::cout << "bestCandidate found" << endl;
+							std::cout << "bestCandidate found" << endl;
+						}
 					}
 				}
 			}
-		}
-		else
-		{
-			bestCandidate = candidateList.back();
-		}
-		sCandidate = sBest->applyModification(bestCandidate);
-
-		if (sCandidate->getValeur() < sBest->getValeur())
-		{
-			tabuList.push_back(bestCandidate);
-			sBest = sCandidate;
-			if (tabuList.size() > MAXTABULISTSIZE)
+			else
 			{
-				tabuList.pop_front();
+				bestCandidate = candidateList.back();
+			}
+			if (bestCandidate != NULL)
+			{
+				sCandidate = sBest->applyModification(bestCandidate);
+
+				if (sCandidate->getValeur() < sBest->getValeur())
+				{
+					std::cout << "bestSolution found" << endl;
+					tabuList.push_back(bestCandidate);
+					sBest = sCandidate;
+					if (tabuList.size() > MAXTABULISTSIZE)
+					{
+						tabuList.pop_front();
+					}
+				}
 			}
 		}
 		i++;
