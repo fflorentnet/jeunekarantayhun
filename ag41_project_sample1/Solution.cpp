@@ -26,10 +26,10 @@ namespace Calcul
 	{
 		return (this->getValeur() < s.getValeur());
 	}
-	Solution::Solution(Solution &s)
+	Solution::Solution(Solution* s)
 	{
-		d = s.getData();
-		sol = s.sol;
+		d = s->getData();
+		sol = map<int, vector<Action*>* >(s->sol);
 	}
 	Data* Solution::getData()
 	{
@@ -560,7 +560,7 @@ namespace Calcul
 	}
 	Solution* Solution::applyModification(Modification* m)
 	{
-		Solution* s = this;
+		Solution* s = new Solution(this);
 
 
 		if (m->getT() == Calcul::FUSION)
