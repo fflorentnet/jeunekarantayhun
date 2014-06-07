@@ -27,10 +27,10 @@ bool Solution::operator<(Solution& s)
 {
 	return (this->getValeur() < s.getValeur());
 }
-Solution::Solution(Solution &s)
+Solution::Solution(Solution* s)
 {
-	d = s.getData();
-	sol = s.sol;
+	d = s->getData();
+	sol = map<int,vector<Action*>* >(s->sol);
 }
 Data* Solution::getData()
 {
@@ -516,7 +516,7 @@ vector<Modification*> Solution::detectMove()
 
 vector<Modification*> Solution::listeVoisins()
 {
-	/*
+
 	vector<Modification*> mTotal;
 	vector<Modification*> merge = detectMerge();
 	vector<Modification*> move = detectMove();
@@ -527,15 +527,15 @@ vector<Modification*> Solution::listeVoisins()
 	for (itVModif = move.begin(); itVModif != move.end(); itVModif++)
 	{
 		//mTotal.push_back((*itVModif));
-		//(*itVModif)->toFlux();
+		(*itVModif)->toFlux();
 	}
 	return mTotal;
-	 */
-	return detectMerge();
+
+	//return detectMerge();
 }
 Solution* Solution::applyModification(Modification* m)
 {
-	Solution* s = this;
+	Solution* s = new Solution(this);
 
 
 	if (m->getT() == Calcul::FUSION)
@@ -631,6 +631,8 @@ Solution* Solution::applyModification(Modification* m)
 						{
 							temp->back()->setEnd(NULL);
 							modif->push_back(new Action(NULL, tempNext->front()->getStart()));
+							bAdd = true;
+
 						}
 					}
 				}
@@ -645,7 +647,7 @@ Solution* Solution::applyModification(Modification* m)
 		}
 
 		s->sol = mapTempBis;
-		s->computeDifference();
+		//s->computeDifference();
 		std::cout << "#########################################" << endl;
 		std::cout << s << endl;
 
@@ -654,6 +656,92 @@ Solution* Solution::applyModification(Modification* m)
 		std::cout << "#########################################" << endl;
 	}
 	return s;
+}
+
+bool Solution::check()
+{
+	bool b=true;
+	map<Commande*, bool> commandesEffectuees;
+	map<Commande*, bool>::iterator itCommandesEffectuees;
+	vector<Commande*>::iterator itCommandes;
+	vector<Client*>::iterator itClient;
+
+	map<int, vector<Action*>* >::iterator itSolution;
+
+	vector<Action*>::iterator itAction;
+	Client* currentClient = NULL;
+	int temps;
+	vector<Action*>* listeActions;
+	Action* action;
+	Commande* comm;
+
+	std::cout << "Creation de la liste des commandes à faire" << endl;
+	for (itClient = d->getListeClient().begin(); itClient != d->getListeClient().end(); ++itClient)
+	{
+		if ((*itClient) != NULL)
+		{
+			for (itCommandes = ((*itClient)->getCommande())->begin(); itCommandes != ((*itClient)->getCommande())->end(); ++itCommandes)
+			{
+				commandesEffectuees[(*itCommandes)] = false;
+			}
+		}
+	}
+	std::cout << "Liste créée" << endl;
+	for (itSolution = sol.begin(); itSolution != sol.end(); ++itSolution)
+	{
+		temps = (*itSolution).first;
+		listeActions = (*itSolution).second;
+		for (itAction = listeActions->begin(); itAction != listeActions->end(); ++itAction)
+		{
+			action = (*itAction);
+			if (action->getType() == Donnees::DEPLACEMENT)
+			{
+				if (action->getStart() == currentClient)
+				{
+					currentClient = action->getEnd();
+				}
+				else
+				{
+					b=false;
+					break;
+				}
+			}
+			if (action->getType() == Donnees::DEPOT)
+			{
+				if (action->getStart() == currentClient)
+				{
+					comm = action->getCommande();
+					if (comm->getDate() >= temps)
+					{
+						commandesEffectuees[comm] = true;
+					}
+					else
+					{
+						b=false;
+						break;
+					}
+				}
+				else
+				{
+					b=false;
+					break;
+				}
+			}
+		}
+	}
+	bool c;
+	for (itCommandesEffectuees = commandesEffectuees.begin(); itCommandesEffectuees != commandesEffectuees.end(); ++itCommandesEffectuees)
+	{
+		c = (*itCommandesEffectuees).second;
+		if (!c)
+		{
+			b=false;
+			break;
+		}
+	}
+
+
+	return b;
 }
 
 }

@@ -129,18 +129,23 @@ void jeuEssai2()
 	s->generate();
 
 	std::cout << "Application d'un Floyd-Warshall:" << endl;
-	d->floydWarshall();
+	//d->floydWarshall();
 	std::cout << "terminé" << endl;
 	std::cout << "Difference de sol: " << s->computeDifference() << endl;
 	std::cout << s << endl;
 	std::cout << "Coût total de la solution: " << s->getValeur() << endl;
 	std::cout << "Fini"<<"\n";
 
+	if (s->check())
+			std::cout << "La solution est valide" << endl;
+	else
+			std::cout << "La solution est fausse" << endl;
 	Tabou* t = new Tabou(100);
 	s = t->execute(s);
 	std::cout << s << endl;
 	std::cout << "Coût total de la solution: " << s->getValeur() << endl;
 	std::cout << d->distanceClient(c1,c3) << endl;
+
 }
 int main(void)
 {
