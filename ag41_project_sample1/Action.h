@@ -9,24 +9,25 @@
 #define ACTION_H_
 #include "Client.h"
 
-namespace Donnees
-{
-	enum TypeAction { DEPLACEMENT, DEPOT };
-	class Action {
-	private:
-		TypeAction t;
-		Client* start;
-		Client* end;
-		Commande* comm;
-	public:
-		Action(Client* s, Client* e);
-		Action(Client* cli, Commande* co);
-		TypeAction getType();
-		Client* getStart();
-		Client* getEnd();
-		Commande* getCommande();
-		virtual ~Action();
-		bool operator==(Action & a);
-	};
+namespace Donnees {
+enum TypeAction {
+	DEPLACEMENT, DEPOT
+};
+class Action {
+private:
+	TypeAction t;
+	Client* start;
+	Client* end;
+	Commande* comm;
+public:
+	Action(Client* s, Client* e);
+	Action(Client* cli, Commande* co);
+	TypeAction getType();
+	Client* getStart();
+	Client* getEnd();
+	Commande* getCommande();
+	virtual ~Action();
+	bool operator==(Action & a);
+};
 }
 #endif /* ACTION_H_ */

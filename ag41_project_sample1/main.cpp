@@ -10,12 +10,10 @@
 using namespace Donnees;
 using namespace Calcul;
 
-float calculCout(int i)
-{
-	return 3 * (float)i / 2;
+double calculCout(double i) {
+	return 3 * (double) i / 2;
 }
-void jeuEssai1()
-{
+void jeuEssai1() {
 	Client* c1 = new Client("Client 1");
 	Client* c2 = new Client("Client 2");
 	Client* c3 = new Client("Client 3");
@@ -68,10 +66,9 @@ void jeuEssai1()
 	std::cout << "Difference de sol: " << s.computeDifference() << endl;
 	std::cout << s << endl;
 	std::cout << "Coût total de la solution: " << s.getValeur() << endl;
-	std::cout << "Fini"<<"\n";
+	std::cout << "Fini" << "\n";
 }
-void jeuEssai2()
-{
+void jeuEssai2() {
 	Client* c1 = new Client("Client 1");
 	Client* c2 = new Client("Client 2");
 	Client* c3 = new Client("Client 3");
@@ -115,13 +112,13 @@ void jeuEssai2()
 	d->distanceClient(c3, 100);
 	d->distanceClient(c4, 100);
 
-	d->distanceClient(c1,c2, 10);
-	d->distanceClient(c2,c3, 140);
-	d->distanceClient(c3,c4, 10);
+	d->distanceClient(c1, c2, 10);
+	d->distanceClient(c2, c3, 140);
+	d->distanceClient(c3, c4, 10);
 
-	d->distanceClient(c2,c1, 10);
-	d->distanceClient(c3,c2, 140);
-	d->distanceClient(c4,c3, 10);
+	d->distanceClient(c2, c1, 10);
+	d->distanceClient(c3, c2, 140);
+	d->distanceClient(c4, c3, 10);
 
 	d->setKTransport(2);
 
@@ -141,15 +138,14 @@ void jeuEssai2()
 
 	// Affichage du cout total
 	std::cout << "Coût total de la solution: " << s.getValeur() << endl;
-	std::cout << "Fini"<< endl;
+	std::cout << "Fini" << endl;
 }
-int main(void)
-{
+int main(void) {
 	//jeuEssai2();
 
 	Parser* p = new Parser();
 
-	Data* d = p->parseFile("./instances/instance15n3cl.txt");
+	Data* d = p->parseFile("./instances/instance10n3cl.txt");
 	Solution s(d);
 
 	// Génération d'une première solution
@@ -168,7 +164,7 @@ int main(void)
 
 	// Affichage du cout total
 	std::cout << "Coût total de la solution: " << s.getValeur() << endl;
-	std::cout << "Fini"<< endl;
+	std::cout << "Fini" << endl;
 
 	return 0;
 }

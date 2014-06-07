@@ -6,19 +6,19 @@
  */
 
 #include "Produit.h"
-namespace Donnees
-{
-	Produit::Produit(string i): nom(i) {
-	}
+namespace Donnees {
+Produit::Produit(string i) :
+		nom(i) {
+}
 
-	Produit::~Produit() {
-	}
+Produit::~Produit() {
+}
 
-	string Produit::getNom() const {
-		return nom;
-	}
+string Produit::getNom() const {
+	return nom;
+}
 
-	void Produit::setNom(string id) {
-		this->nom = nom;
-	}
+void Produit::setNom(string id) {
+	this->nom = nom;
+}
 }

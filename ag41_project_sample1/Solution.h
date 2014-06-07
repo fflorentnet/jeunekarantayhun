@@ -14,24 +14,23 @@
 #include "Modification.h"
 using namespace Donnees;
 
-namespace Calcul
-{
-	class Solution {
-	private:
-		Data* d;
-		map<int, vector<Action*>* > sol;
-	public:
-		Solution(Data* dat);
-		Solution(Solution &s);
-		virtual ~Solution();
-		bool operator<(Solution& s);
-		friend ostream& operator<< (ostream& flux, Solution& s);
-		int generate();
-		int getValeur();
-		Data* getData();
-		int computeDifference();
-		Modification* deplacerAction(Action* ac, int tAct, int tDema);
-		Modification* meilleurMouvement();
-	};
+namespace Calcul {
+class Solution {
+private:
+	Data* d;
+	map<double, vector<Action*>*> sol;
+public:
+	Solution(Data* dat);
+	Solution(Solution &s);
+	virtual ~Solution();
+	bool operator<(Solution& s);
+	friend ostream& operator<<(ostream& flux, Solution& s);
+	double generate();
+	double getValeur();
+	Data* getData();
+	double computeDifference();
+	Modification* deplacerAction(Action* ac, double tAct, double tDema);
+	Modification* meilleurMouvement();
+};
 }
 #endif /* SOLUTION_H_ */

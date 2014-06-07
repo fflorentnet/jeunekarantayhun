@@ -13,10 +13,10 @@ namespace Calcul {
 class Modification {
 private:
 	Action* act;
-	int tDepart;
-	int tArrive;
+	double tDepart;
+	double tArrive;
 public:
-	Modification(Action* ac, int tDep, int tArr);
+	Modification(Action* ac, double tDep, double tArr);
 	virtual ~Modification();
 	bool operator==(Modification &m);
 

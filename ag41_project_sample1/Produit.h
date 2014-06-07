@@ -9,16 +9,15 @@
 #define PRODUIT_H_
 #include <string>
 using namespace std;
-namespace Donnees
-{
-	class Produit {
-	private:
-		string nom;
-	public:
-		Produit(string i);
-		virtual ~Produit();
-		string getNom() const;
-		void setNom(string id);
-	};
+namespace Donnees {
+class Produit {
+private:
+	string nom;
+public:
+	Produit(string i);
+	virtual ~Produit();
+	string getNom() const;
+	void setNom(string id);
+};
 }
 #endif /* PRODUIT_H_ */

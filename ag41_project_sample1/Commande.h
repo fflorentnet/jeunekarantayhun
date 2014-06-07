@@ -11,21 +11,20 @@
 #include "Produit.h"
 
 using namespace std;
-namespace Donnees
-{
-	class Commande {
-	private:
-		Produit* p;
-		int date;
-	public:
-		Commande(Produit* pro, int d);
-		Commande(Commande &c);
-		virtual ~Commande();
-		int getDate();
-		void setDate(int d);
-		Produit* getProduit();
-		void setProduit(Produit* p);
-		friend ostream& operator<<(ostream &flux, Commande* c);
-	};
+namespace Donnees {
+class Commande {
+private:
+	Produit* p;
+	double date;
+public:
+	Commande(Produit* pro, double d);
+	Commande(Commande &c);
+	virtual ~Commande();
+	double getDate();
+	void setDate(double d);
+	Produit* getProduit();
+	void setProduit(Produit* p);
+	friend ostream& operator<<(ostream &flux, Commande* c);
+};
 }
 #endif /* COMMANDE_H_ */
