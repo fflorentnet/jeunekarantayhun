@@ -19,7 +19,7 @@ namespace Calcul
 	class Solution {
 	private:
 		Data* d;
-		map<int, vector<Action*>* > sol;
+		map<float, vector<Action*>* > sol;
 	public:
 		Solution(Data* dat);
 		Solution(Solution *s);
@@ -28,11 +28,11 @@ namespace Calcul
 		friend ostream& operator<< (ostream& flux, Solution& s);
 		friend ostream& operator<< (ostream& flux, Solution* s);
 
-		int generate();
-		int getValeur();
+		float generate();
+		float getValeur();
 		Data* getData();
-		int computeDifference();
-		Modification* deplacerAction(Action* ac, int tAct, int tDema);
+		float computeDifference();
+		Modification* deplacerAction(Action* ac, float tAct, float tDema);
 		vector<Modification*> detectMove();
 		vector<Modification*> detectMerge();
 		vector<Modification*> listeVoisins();

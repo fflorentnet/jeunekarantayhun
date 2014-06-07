@@ -27,31 +27,31 @@ namespace Donnees
 	void Data::ajouterClient(Client* c) {
 		listeClient.push_back(c);
 	}
-	int Data::distanceClient(Client* c) {
+	float Data::distanceClient(Client* c) {
 		if (distanceFournisseur.find(c) != distanceFournisseur.end())
 			return distanceFournisseur.at(c);
 		else
 			return -1;
 	}
-	void Data::distanceClient(Client* c, int dist) {
+	void Data::distanceClient(Client* c, float dist) {
 		distanceFournisseur[c] = dist;
 	}
-	int Data::distanceClient(Client* c1, Client* c2) {
+	float Data::distanceClient(Client* c1, Client* c2) {
 		pair<Client*, Client*> p(c1, c2);
 		if (distanceClients.find(p) != distanceClients.end())
 			return distanceClients.at(p);
 		else
 			return -1;
 	}
-	void Data::distanceClient(Client* c1, Client* c2, int dist) {
+	void Data::distanceClient(Client* c1, Client* c2, float dist) {
 		pair<Client*, Client*> p(c1, c2);
 		distanceClients[p] = dist;
 	}
-	int Data::getKTransport()
+	float Data::getKTransport()
 	{
 		return kTransport;
 	}
-	void Data::setKTransport(int k)
+	void Data::setKTransport(float k)
 	{
 		kTransport = k;
 	}
@@ -60,11 +60,11 @@ namespace Donnees
 		return listeClient;
 	}
 
-	int Data::getCapacite() const {
+	float Data::getCapacite() const {
 		return capacite;
 	}
 
-	void Data::setCapacite(int capacite) {
+	void Data::setCapacite(float capacite) {
 		this->capacite = capacite;
 	}
 }

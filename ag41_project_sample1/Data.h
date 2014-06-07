@@ -15,26 +15,26 @@ using namespace std;
 namespace Donnees
 {
 	class Data {
-		map<pair<Client*, Client*>, int> distanceClients;
-		map<Client*, int> distanceFournisseur;
+		map<pair<Client*, Client*>, float> distanceClients;
+		map<Client*, float> distanceFournisseur;
 		vector<Client*> listeClient;
-		map<int, vector<Action*>* > sol;
-		int kTransport;
-		int capacite;
+		map<float, vector<Action*>* > sol;
+		float kTransport;
+		float capacite;
 	public:
 		Data();
 		virtual ~Data();
 		Data(Data &d);
 		vector<Client*> getListeClient();
 		void ajouterClient(Client* c);
-		int distanceClient(Client* c);
-		void distanceClient(Client* c, int dist);
-		int distanceClient(Client* c1, Client* c2);
-		void distanceClient(Client* c1, Client* c2, int dist);
-		int getKTransport();
-		void setKTransport(int k);
-	int getCapacite() const;
-	void setCapacite(int capacite);
+		float distanceClient(Client* c);
+		void distanceClient(Client* c, float dist);
+		float distanceClient(Client* c1, Client* c2);
+		void distanceClient(Client* c1, Client* c2, float dist);
+		float getKTransport();
+		void setKTransport(float k);
+	float getCapacite() const;
+	void setCapacite(float capacite);
 };
 }
 #endif /* DATA_H_ */

@@ -16,14 +16,14 @@ private:
 	TypeModification t;
 	Action* act1;
 	Action* act2;
-	int tDepart;
-	int tArrive;
-	int tFinal;
-	int gain;
+	float tDepart;
+	float tArrive;
+	float tFinal;
+	float gain;
 public:
-	Modification(Action* ac, int tDep, int tArr, int g);
-	Modification(Action* ac1, Action* ac2, int g, int t, int tNext);
-	Modification(int tD, int tA, int tF, int g);
+	Modification(Action* ac, float tDep, float tArr, float g);
+	Modification(Action* ac1, Action* ac2, float g, float t, float tNext);
+	Modification(float tD, float tA, float tF, float g);
 
 	virtual ~Modification();
 	bool operator==(Modification &m);
@@ -31,16 +31,16 @@ public:
 	void setAct1( Action*& act1);
 	 Action*& getAct2() ;
 	void setAct2( Action*& act2);
-	int getGain() ;
-	void setGain(int gain);
+	float getGain() ;
+	void setGain(float gain);
 	TypeModification getT() ;
 	void setT(TypeModification t);
-	int getArrive() ;
-	void setArrive(int arrive);
-	int getDepart() ;
-	void setDepart(int depart);
-	int getFinal();
-	void setFinal(int final);
+	float getArrive() ;
+	void setArrive(float arrive);
+	float getDepart() ;
+	void setDepart(float depart);
+	float getFinal();
+	void setFinal(float final);
 };
 
 } /* namespace Calcul */

@@ -11,7 +11,7 @@
 #define MAXTABULISTSIZE 5
 namespace Calcul {
 
-Tabou::Tabou(int i): it(i) {
+Tabou::Tabou(float i): it(i) {
 	// TODO Auto-generated constructor stub
 
 }
@@ -24,7 +24,7 @@ Solution* Tabou::execute(Solution *solInitiale)
 	Solution* s = solInitiale;
 	Solution* sBest = s;
 
-	int i = 0;
+	float i = 0;
 
 	vector<Modification *>::iterator itVModif;
 	deque<Modification *> tabuList(50);
@@ -32,7 +32,7 @@ Solution* Tabou::execute(Solution *solInitiale)
 	Modification* bestCandidate;
 	Modification* temp;
 	Solution* sCandidate;
-	int max;
+	float max;
 	while(i != this->it)
 	{
 		std::cout << "Iteration " << i << endl;

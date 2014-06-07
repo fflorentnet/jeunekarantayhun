@@ -9,13 +9,13 @@
 
 namespace Calcul {
 
-Modification::Modification(Action* ac, int tDep, int tArr, int g): gain(g), act1(ac), act2(NULL),  t(DEPLACEMENT), tDepart(tDep), tArrive(tArr), tFinal(-1) {
+Modification::Modification(Action* ac, float tDep, float tArr, float g): gain(g), act1(ac), act2(NULL),  t(DEPLACEMENT), tDepart(tDep), tArrive(tArr), tFinal(-1) {
 
 }
-Modification::Modification(Action* ac1, Action* ac2, int g, int t, int tNext) : gain(g), act1(ac1), act2(ac2), t(FUSION), tDepart(t),tArrive(tNext), tFinal(-1) {
+Modification::Modification(Action* ac1, Action* ac2, float g, float t, float tNext) : gain(g), act1(ac1), act2(ac2), t(FUSION), tDepart(t),tArrive(tNext), tFinal(-1) {
 
 }
-Modification::Modification(int tD, int tA, int tF, int g):  gain(g), act1(NULL), act2(NULL),  t(MOVE), tDepart(tD), tArrive(tA), tFinal(tF)
+Modification::Modification(float tD, float tA, float tF, float g):  gain(g), act1(NULL), act2(NULL),  t(MOVE), tDepart(tD), tArrive(tA), tFinal(tF)
 {
 
 }
@@ -39,11 +39,11 @@ void Modification::setAct2(Action*& act2) {
 	this->act2 = act2;
 }
 
-int Modification::getGain() {
+float Modification::getGain() {
 	return gain;
 }
 
-void Modification::setGain(int gain) {
+void Modification::setGain(float gain) {
 	this->gain = gain;
 }
 
@@ -55,19 +55,19 @@ void Modification::setT(TypeModification t) {
 	this->t = t;
 }
 
-int Modification::getArrive()  {
+float Modification::getArrive()  {
 	return tArrive;
 }
 
-void Modification::setArrive(int arrive) {
+void Modification::setArrive(float arrive) {
 	tArrive = arrive;
 }
 
-int Modification::getDepart()  {
+float Modification::getDepart()  {
 	return tDepart;
 }
 
-void Modification::setDepart(int depart) {
+void Modification::setDepart(float depart) {
 	tDepart = depart;
 }
 
@@ -79,11 +79,11 @@ bool Modification::operator==(Modification &m)
 			b = true;
 	return b;
 }
-int Modification::getFinal() {
+float Modification::getFinal() {
 	return tFinal;
 }
 
-void Modification::setFinal(int final) {
+void Modification::setFinal(float final) {
 	tFinal = final;
 }
 } /* namespace Calcul */

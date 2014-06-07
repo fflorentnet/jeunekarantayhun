@@ -16,13 +16,13 @@ namespace Donnees
 	class Commande {
 	private:
 		Produit* p;
-		int date;
+		float date;
 	public:
-		Commande(Produit* pro, int d);
+		Commande(Produit* pro, float d);
 		Commande(Commande &c);
 		virtual ~Commande();
-		int getDate();
-		void setDate(int d);
+		float getDate();
+		void setDate(float d);
 		Produit* getProduit();
 		void setProduit(Produit* p);
 		friend ostream& operator<<(ostream &flux, Commande* c);
