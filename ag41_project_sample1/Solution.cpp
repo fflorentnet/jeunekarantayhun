@@ -608,18 +608,16 @@ namespace Calcul
 		}
 		else if(m->getT() == Calcul::MOVE)
 		{
-
+			// Déplacement d'Action
 			std::cout << "|- Application d'un déplacement de livraison"  << endl;
 			std::cout << "|- m->getDepart() : " << m->getDepart() << endl;
 			std::cout << "|- m->getArrive() : " << m->getArrive() << endl;
 			std::cout << "|- m->getFinal() : " << m->getFinal() << endl;
 			std::cout << "|- m->getGain() : " << m->getGain() << endl;
 
-			//float diff = m->getDepart()-m->getArrive();
-			//std::cout << "|- diff (départ - arrivée) de la modification : " << diff << endl;
-
 			map<float, vector<Action*>* > mapTemp;
 			map<float, vector<Action*>* >::iterator itMSol;
+
 			for (itMSol = s->sol.begin(); itMSol != s->sol.end(); itMSol++)
 			{
 				float t = (*itMSol).first;
@@ -633,55 +631,53 @@ namespace Calcul
 					std::cout << "|- 1 - Déplacement en avancant dans le temps " << endl;
 
 					if (t < m->getDepart()) {
+						// Pas de mouvement
 						std::cout << "|- 1 - t < depart -> on ne bouge rien " << endl;
 						mapTemp[t] = temp;
 					}
-					else if (t >= m->getDepart()) {
-						std::cout << "|- 1 - t >= m->getDepart() -> on décale " << endl;
+					else if (t >= m->getDepart() && t <= m->getArrive()) {
+						// Avancement des Action à déplacer
+						std::cout << "|- 1 - t >= m->getDepart() && t <= m->getArrive() " << endl;
 						mapTemp[t + (m->getFinal() - m->getDepart())] = temp;
+					}
+					else if (t > m->getArrive()) {
+						if(t >= m->getFinal() && t <= (m->getFinal() + m->getArrive() - m->getDepart())) {
+							// Recul des Action qui ont été touchées par le déplacement
+							std::cout << "|- 1 - t >= m->getFinal() && t <= (m->getFinal() + m->getArrive() - m->getDepart()) " << endl;
+							mapTemp[t - (m->getFinal() - m->getDepart())] = temp;
+						}
+						else {
+							// Pas de mouvement
+							mapTemp[t] = temp;
+						}
 					}
 				}
 				else if(m->getDepart() > m->getFinal()) {
 					// Déplacement en reculant dans le temps
 					std::cout << "|- 1 - Déplacement en reculant dans le temps " << endl;
 
-					if (t <= m->getArrive()) {
-						std::cout << "|- 1 - t <= m->getArrive() -> on décale " << endl;
-						mapTemp[t - (m->getDepart() - m->getFinal())] = temp;
-					}
-					else if (t > m->getArrive()) {
-						std::cout << "|- 1 - t > m->getArrive() -> on ne bouge rien " << endl;
+					if (t < m->getFinal()) {
+						// Pas de mouvement
+						std::cout << "|- 1 - t < m->getFinal() -> on ne bouge rien " << endl;
 						mapTemp[t] = temp;
 					}
-				}
-
-				/*std::cout << "|- var t (indice de la liste d'action dans la map) : " << t << endl;
-				vector<Action*>* temp = (*itMSol).second;
-
-				if (t < m->getFinal())
-				{
-					mapTemp[t-diff] = temp;
-					std::cout << "|- 1 - t < final -> mapTemp[t-diff] = temp -> t-diff : " << t-diff << endl;
-				}
-				else if (t == m->getFinal() && t < m->getFinal()+diff)
-				{
-						mapTemp[t] = temp;
-						std::cout << "|- 2 - t < final -> mapTemp[t-diff] = temp -> t-diff : " << t-diff << endl;
-				}
-				else if (t > m->getFinal() && (t < m->getArrive() || t > m->getDepart()))
-				{
-					if (t < m->getArrive())
-					{
-						mapTemp[t] = temp;
-						std::cout << "|- 3 - t < final -> mapTemp[t-diff] = temp -> t-diff : " << t-diff << endl;
-
+					else if (t >= m->getFinal() && t <= (m->getFinal() + m->getArrive() - m->getDepart())) {
+						// Avancement des Action qui ont été touchées par le déplacement
+						std::cout << "|- 1 - t >= m->getFinal() && t <= (m->getFinal() + m->getArrive() - m->getDepart()) " << endl;
+						mapTemp[t + (m->getDepart() - m->getFinal())] = temp;
 					}
-					else
-					{
-						mapTemp[t-diff] = temp;
-						std::cout << "|- 4 - t < final -> mapTemp[t-diff] = temp -> t-diff : " << t-diff << endl;
+					else if (t > (m->getFinal() + m->getArrive() - m->getDepart())) {
+						if(t >= m->getDepart() && t <= m->getArrive()) {
+							// Recul des Action à déplacer
+							std::cout << "|- 1 - t >= m->getDepart() && t <= m->getArrive() " << endl;
+							mapTemp[t - (m->getDepart() - m->getFinal())] = temp;
+						}
+						else {
+							// Pas de mouvement
+							mapTemp[t] = temp;
+						}
 					}
-				}*/
+				}
 			}
 
 			map<float, vector<Action*>* >::iterator itMSolNext;
