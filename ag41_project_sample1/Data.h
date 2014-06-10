@@ -42,7 +42,7 @@ namespace Donnees
 		void setCapacite(double capacite);
 		void floydWarshall();
 		void toString();
-
+		vector<Client*> getPath(Client* a, Client* b);
 };
 }
 #endif /* DATA_H_ */

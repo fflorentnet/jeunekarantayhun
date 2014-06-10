@@ -44,6 +44,26 @@ namespace Donnees
 	{
 		end = c;
 	}
+	string Action::toString()
+	{
+		string s = "";
+		if (getType() == DEPLACEMENT)
+		{
+			if (getStart() != NULL)
+				s = " DEPLACEMENT de " + getStart()->getNom();
+			else
+				s = " DEPLACEMENT depuis le Fournisseur";
+			if (getEnd() != NULL)
+				s += " vers " + getEnd()->getNom();
+			else
+				s += " vers le Fournisseur";
+		}
+		else if (getType() == DEPOT)
+		{
+			s = " DEPOT de " + getCommande()->getProduit()->getNom() + " chez " + getStart()->getNom();
+		}
+		return s;
+	}
 	bool Action::operator==(Action & a)
 	{
 		bool b=true;

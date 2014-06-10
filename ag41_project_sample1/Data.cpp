@@ -91,6 +91,13 @@ let next be a |V| × |V| array of vertex indices initialized to null
 			   next[i][j] ← next[i][k]
  *
  */
+vector<Client*> Data::getPath(Client* a, Client* b)
+{
+	vector<Client*> temp = Chemins[pair<Client*, Client*>(a,b)];
+	//temp.insert(temp.begin(), a);
+	//temp.push_back(b);
+	return temp;
+}
 void Data::floydWarshall()
 {
 	vector<Client*>::iterator k;
@@ -249,7 +256,6 @@ void Data::Next()
 					break;
 
 			}
-			std::cout << endl;
 			Chemins[pair<Client*, Client*>((*i),(*j))]=vCli;
 		}
 	}

@@ -28,6 +28,7 @@ namespace Donnees
 		Commande* getCommande();
 		virtual ~Action();
 		bool operator==(Action & a);
+		string toString();
 	};
 }
 #endif /* ACTION_H_ */

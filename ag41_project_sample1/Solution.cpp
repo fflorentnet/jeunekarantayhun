@@ -531,8 +531,8 @@ vector<Modification*> Solution::listeVoisins()
 		mTotal.push_back((*itVModif));
 	for (itVModif = move.begin(); itVModif != move.end(); itVModif++)
 	{
-		//mTotal.push_back((*itVModif));
-		(*itVModif)->toFlux();
+		//	mTotal.push_back((*itVModif));
+		//(*itVModif)->toFlux();
 	}
 	return mTotal;
 
@@ -545,36 +545,78 @@ Solution* Solution::applyModification(Modification* m)
 
 	if (m->getT() == Calcul::FUSION)
 	{
-
+		std::cout << "Depart :" << m->getDepart() << " | Arrive :" << m->getArrive() << endl;
 
 		//(Action* ac1, Action* ac2, double g) : gain(g), act1(ac1), act2(ac2), t(FUSION), tDepart(-1),tArrive(-1) {
 		Action* acA = m->getAct1();
 		Action* acB = m->getAct2();
-
-		(s->sol[m->getArrive()])->insert((s->sol[m->getArrive()])->begin()+1 ,new Action(acA->getStart(),acB->getEnd()));
-
-		s->sol.erase(s->sol.find((m->getDepart())));
-
-
-		(s->sol[(m->getDepart() + d->distanceClient(m->getAct2()->getEnd()))])->erase((s->sol[(m->getDepart() + d->distanceClient(m->getAct2()->getEnd()))])->begin());
-		double g =  (d->distanceClient(acA->getStart()) + d->distanceClient(acB->getEnd())) - d->distanceClient(acA->getStart(),acB->getEnd());
-		double tTemp;
+		Client* A;
+		Client* B;
+		vector<Client*> pathClients = d->getPath(acA->getStart(), acB->getEnd());
+		vector<Client*>::iterator itClients;
+		vector<Client*>::iterator itClientSuivant;
 
 		map<double, vector<Action*>* >::iterator itMSol;
 		map<double, vector<Action*>* > mapTemp;
+		vector<Action*>::iterator itAction;
+		double delay = 0;
+		/*		double g =  (d->distanceClient(acA->getStart()) + d->distanceClient(acB->getEnd())) - d->distanceClient(acA->getStart(),acB->getEnd());
+		double tTemp;
+		 */
 
-
+		/*
+ 		(s->sol[m->getArrive()])->insert((s->sol[m->getArrive()])->begin()+1 ,new Action(acA->getStart(),acB->getEnd()));
+		s->sol.erase(s->sol.find((m->getDepart())));
+		(s->sol[(m->getDepart() + d->distanceClient(m->getAct2()->getEnd()))])->erase((s->sol[(m->getDepart() + d->distanceClient(m->getAct2()->getEnd()))])->begin());
+*/
+		vector<Action*>* vAct = (s->sol[m->getDepart()]);
+		vAct->erase(find(vAct->begin(), vAct->end(), m->getAct1()));
+		vAct = (s->sol[m->getArrive()]);
+		vAct->erase(find(vAct->begin(), vAct->end(), m->getAct2()));
 		for (itMSol = s->sol.begin(); itMSol != s->sol.end(); itMSol++)
 		{
-			if ((*itMSol).first < m->getArrive())
-			{
-				tTemp = (*itMSol).first + g;
-			}
-			else
-				tTemp = (*itMSol).first;
-			mapTemp[tTemp] = (*itMSol).second;
+				if ((*itMSol).first <= m->getDepart())
+				{
+					mapTemp[(*itMSol).first]=(*itMSol).second;
+				}
+
 		}
-		s->sol = mapTemp;
+
+		for (itClients = pathClients.begin(); itClients != pathClients.end(); ++itClients)
+		{
+			std::cout << (*itClients)->getNom() << " -> ";
+			itClientSuivant = itClients;
+			++itClientSuivant;
+			vAct = (mapTemp[m->getDepart()+delay]);
+			if (vAct == NULL)
+				vAct = new vector<Action*>();
+			if (itClientSuivant != pathClients.end())
+			{
+				A = (*itClients);
+				B = (*itClientSuivant);
+				vAct->push_back(new Action(A,B));
+				delay += d->distanceClient(A,B);
+			}
+
+		}
+		std::cout << endl;
+		for (itMSol = mapTemp.begin(); itMSol != mapTemp.end(); itMSol++)
+		{
+
+			if ((*itMSol).second != NULL)
+			{
+
+				for (itAction = (*itMSol).second->begin(); itAction != (*itMSol).second->end(); ++itAction)
+				{
+					std::cout << (*itMSol).first << " : ";
+					if (m->getAct1() == (*itAction) ||  (*itAction) == m->getAct2())
+						std::cout << " /!\\ " ;
+					std::cout << (*itAction)->toString() << endl;
+				}
+			}
+		}
+
+		//s->sol = mapTemp;
 		s->computeDifference();
 
 	}
@@ -744,8 +786,6 @@ bool Solution::check()
 			break;
 		}
 	}
-
-
 	return b;
 }
 
