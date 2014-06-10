@@ -94,8 +94,7 @@ let next be a |V| × |V| array of vertex indices initialized to null
 vector<Client*> Data::getPath(Client* a, Client* b)
 {
 	vector<Client*> temp = Chemins[pair<Client*, Client*>(a,b)];
-	//temp.insert(temp.begin(), a);
-	//temp.push_back(b);
+	temp.insert(temp.begin(), a);
 	return temp;
 }
 void Data::floydWarshall()

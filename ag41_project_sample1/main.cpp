@@ -102,6 +102,7 @@ void jeuEssai2()
 	std::cout << "Affichage des clients:" << endl;
 	//std::cout << c1 << c2 << c3 << c4 << c5;
 	Data* d = new Data();
+	d->setCapacite(5);
 	Solution* s = new Solution(d);
 
 	d->ajouterClient(c1);

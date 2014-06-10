@@ -6,6 +6,7 @@
  */
 
 #include "Action.h"
+#include <sstream>
 
 namespace Donnees
 {
@@ -60,7 +61,9 @@ namespace Donnees
 		}
 		else if (getType() == DEPOT)
 		{
-			s = " DEPOT de " + getCommande()->getProduit()->getNom() + " chez " + getStart()->getNom();
+			std::stringstream ss;
+			ss << getCommande()->getDate();
+			s = " DEPOT de " + getCommande()->getProduit()->getNom() + " chez " + getStart()->getNom() + " (avant " + ss.str() + ")";
 		}
 		return s;
 	}
