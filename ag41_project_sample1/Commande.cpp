@@ -14,7 +14,7 @@
 
 namespace Donnees
 {
-	Commande::Commande(Produit* pro, int d): p(pro), date(d){
+	Commande::Commande(Produit* pro, double d): p(pro), date(d){
 	}
 
 	Commande::~Commande() {
@@ -37,11 +37,11 @@ namespace Donnees
 		return flux;
 	}
 
-	int Commande::getDate()
+	double Commande::getDate()
 	{
 		return date;
 	}
-	void Commande::setDate(int d)
+	void Commande::setDate(double d)
 	{
 		date = d;
 	}

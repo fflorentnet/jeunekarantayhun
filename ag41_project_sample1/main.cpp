@@ -9,7 +9,7 @@
 using namespace Donnees;
 using namespace Calcul;
 
-float calculCout(int i)
+float calculCout(double i)
 {
 	return 3 * (float)i / 2;
 }
@@ -125,11 +125,11 @@ void jeuEssai2()
 
 	d->setKTransport(2);
 
-	std::cout << "Generation de la solution:" << endl;
+	std::cout << "reGeneration de la solution:" << endl;
 	s->generate();
 
 	std::cout << "Application d'un Floyd-Warshall:" << endl;
-	//d->floydWarshall();
+	d->floydWarshall();
 	std::cout << "terminé" << endl;
 	std::cout << "Difference de sol: " << s->computeDifference() << endl;
 	std::cout << s << endl;
@@ -140,11 +140,13 @@ void jeuEssai2()
 			std::cout << "La solution est valide" << endl;
 	else
 			std::cout << "La solution est fausse" << endl;
-	Tabou* t = new Tabou(100);
+
+	/*Tabou* t = new Tabou(100);
 	s = t->execute(s);
 	std::cout << s << endl;
 	std::cout << "Coût total de la solution: " << s->getValeur() << endl;
-	std::cout << d->distanceClient(c1,c3) << endl;
+	std::cout << d->distanceClient(c1,c3) << endl;*/
+	d->toString();
 
 }
 int main(void)

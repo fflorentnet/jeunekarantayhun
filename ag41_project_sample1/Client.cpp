@@ -27,7 +27,7 @@ namespace Donnees
 		listeCommande->push_back(c);
 	}
 	ostream& operator<< (ostream& flux, Client& c) {
-		int i = 0;
+		double i = 0;
 		flux << "Nom: " << c.getNom() << "\n";
 		Commande* premiereCommande = c.premiereCommande();
 		Commande* derniereCommande = c.derniereCommande();
@@ -56,8 +56,8 @@ namespace Donnees
 
 	Commande* Client::derniereCommande() const
 	{
-		int dateMax = 0;
-		int date;
+		double dateMax = 0;
+		double date;
 		Commande* c = (Commande*)0;
 		Commande* temp = (Commande*)0;
 		std::vector<Commande*>::const_iterator it;
@@ -75,8 +75,8 @@ namespace Donnees
 	}
 	Commande* Client::premiereCommande() const
 	{
-		int dateMin = -1;
-		int date;
+		double dateMin = -1;
+		double date;
 		Commande* c = (Commande*)0;
 		Commande* temp = (Commande*)0;
 		std::vector<Commande*>::const_iterator it;

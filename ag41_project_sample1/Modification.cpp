@@ -9,13 +9,13 @@
 
 namespace Calcul {
 
-Modification::Modification(Action* ac, int tDep, int tArr, float g): gain(g), act1(ac), act2(NULL),  t(DEPLACEMENT), tDepart(tDep), tArrive(tArr), tFinal(-1) {
+Modification::Modification(Action* ac, double tDep, double tArr, float g): gain(g), act1(ac), act2(NULL),  t(DEPLACEMENT), tDepart(tDep), tArrive(tArr), tFinal(-1) {
 
 }
-Modification::Modification(Action* ac1, Action* ac2, float g, int t, int tNext) : gain(g), act1(ac1), act2(ac2), t(FUSION), tDepart(t),tArrive(tNext), tFinal(-1) {
+Modification::Modification(Action* ac1, Action* ac2, float g, double t, double tNext) : gain(g), act1(ac1), act2(ac2), t(FUSION), tDepart(t),tArrive(tNext), tFinal(-1) {
 
 }
-Modification::Modification(int tD, int tA, int tF, float g):  gain(g), act1(NULL), act2(NULL),  t(MOVE), tDepart(tD), tArrive(tA), tFinal(tF)
+Modification::Modification(double tD, double tA, double tF, float g):  gain(g), act1(NULL), act2(NULL),  t(MOVE), tDepart(tD), tArrive(tA), tFinal(tF)
 {
 
 }
@@ -39,11 +39,11 @@ void Modification::setAct2(Action*& act2) {
 	this->act2 = act2;
 }
 
-int Modification::getGain() {
+double Modification::getGain() {
 	return gain;
 }
 
-void Modification::setGain(int gain) {
+void Modification::setGain(double gain) {
 	this->gain = gain;
 }
 
@@ -55,19 +55,19 @@ void Modification::setT(TypeModification t) {
 	this->t = t;
 }
 
-int Modification::getArrive()  {
+double Modification::getArrive()  {
 	return tArrive;
 }
 
-void Modification::setArrive(int arrive) {
+void Modification::setArrive(double arrive) {
 	tArrive = arrive;
 }
 
-int Modification::getDepart()  {
+double Modification::getDepart()  {
 	return tDepart;
 }
 
-void Modification::setDepart(int depart) {
+void Modification::setDepart(double depart) {
 	tDepart = depart;
 }
 
@@ -79,11 +79,11 @@ bool Modification::operator==(Modification &m)
 			b = true;
 	return b;
 }
-int Modification::getFinal() {
+double Modification::getFinal() {
 	return tFinal;
 }
 
-void Modification::setFinal(int final) {
+void Modification::setFinal(double final) {
 	tFinal = final;
 }
 

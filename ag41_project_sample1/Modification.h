@@ -16,14 +16,14 @@ private:
 	TypeModification t;
 	Action* act1;
 	Action* act2;
-	int tDepart;
-	int tArrive;
-	int tFinal;
+	double tDepart;
+	double tArrive;
+	double tFinal;
 	float gain;
 public:
-	Modification(Action* ac, int tDep, int tArr, float g);
-	Modification(Action* ac1, Action* ac2, float g, int t, int tNext);
-	Modification(int tD, int tA, int tF, float g);
+	Modification(Action* ac, double tDep, double tArr, float g);
+	Modification(Action* ac1, Action* ac2, float g, double t, double tNext);
+	Modification(double tD, double tA, double tF, float g);
 
 	virtual ~Modification();
 	bool operator==(Modification &m);
@@ -31,16 +31,16 @@ public:
 	void setAct1( Action*& act1);
 	 Action*& getAct2() ;
 	void setAct2( Action*& act2);
-	int getGain() ;
-	void setGain(int gain);
+	double getGain() ;
+	void setGain(double gain);
 	TypeModification getT() ;
 	void setT(TypeModification t);
-	int getArrive() ;
-	void setArrive(int arrive);
-	int getDepart() ;
-	void setDepart(int depart);
-	int getFinal();
-	void setFinal(int final);
+	double getArrive() ;
+	void setArrive(double arrive);
+	double getDepart() ;
+	void setDepart(double depart);
+	double getFinal();
+	void setFinal(double final);
 	void toFlux();
 
 };

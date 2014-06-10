@@ -16,15 +16,15 @@ namespace Donnees
 {
 	class Data {
 	private:
-		map<pair<Client*, Client*>, int> distanceClients;
+		map<pair<Client*, Client*>, double> distanceClients;
 		map<pair<Client*, Client*>, vector<Client*> > Chemins;
 		map<pair<Client*, Client*>, Client*> mNext;
 
-		map<Client*, int> distanceFournisseur;
+		map<Client*, double> distanceFournisseur;
 		vector<Client*> listeClient;
-		map<int, vector<Action*>* > sol;
-		int kTransport;
-		int capacite;
+		map<double, vector<Action*>* > sol;
+		double kTransport;
+		double capacite;
 		void Next();
 	public:
 		Data();
@@ -32,15 +32,17 @@ namespace Donnees
 		Data(Data &d);
 		vector<Client*> getListeClient();
 		void ajouterClient(Client* c);
-		int distanceClient(Client* c);
-		void distanceClient(Client* c, int dist);
-		int distanceClient(Client* c1, Client* c2);
-		void distanceClient(Client* c1, Client* c2, int dist);
-		int getKTransport();
-		void setKTransport(int k);
-		int getCapacite() const;
-		void setCapacite(int capacite);
+		double distanceClient(Client* c);
+		void distanceClient(Client* c, double dist);
+		double distanceClient(Client* c1, Client* c2);
+		void distanceClient(Client* c1, Client* c2, double dist);
+		double getKTransport();
+		void setKTransport(double k);
+		double getCapacite() const;
+		void setCapacite(double capacite);
 		void floydWarshall();
+		void toString();
+
 };
 }
 #endif /* DATA_H_ */
