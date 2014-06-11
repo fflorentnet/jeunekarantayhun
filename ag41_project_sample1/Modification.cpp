@@ -91,7 +91,6 @@ bool Modification::operator==(Modification &m)
 bool Modification::operator==(Modification* m)
 {
 	bool b = false;
-	std::cout << "meh==" << endl;
 	if (m != NULL)
 	{
 		if (t == m->t && gain == m->gain)
@@ -131,12 +130,9 @@ bool Modification::operator==(Modification* m)
 				}
 				else
 				{
-					std::cout << "meh fusion" << endl;
 
 					if ((*act1) == m->act1 && (*act2) == m->act2 && tDepart == m->tDepart && tArrive == m->tArrive)
 					{
-						std::cout << "meh fusion" << endl;
-
 						b = true;
 					}
 				}
@@ -159,7 +155,6 @@ gain(g), act1(NULL), act2(NULL),  t(MOVE), tDepart(tD), tArrive(tA), tFinal(tF)
 			if (act1 == (m->act1) && act2 == (m->act2) && gain == m->gain)
 				b = true;*/
 	}
-	std::cout << "meh== fini" << endl;
 	return b;
 }
 double Modification::getFinal() {

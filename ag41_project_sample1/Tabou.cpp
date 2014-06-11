@@ -9,7 +9,7 @@
 #include <deque>
 #include <algorithm>
 #include <cmath>
-#define MAXTABULISTSIZE 10
+#define MAXTABULISTSIZE 15
 namespace Calcul {
 
 Tabou::Tabou(double i): it(i) {
@@ -49,15 +49,14 @@ Solution* Tabou::execute(Solution *solInitiale)
 		std::cout << "Iteration " << i << endl;
 		max = 0;
 
-		std::cout << "meh" << endl;
 		candidateList = sBest->listeVoisins();
-		std::cout << "meh" << candidateList.size() << endl;
 		if (candidateList.size() >= 1)
 		{
 			for (itVModif= candidateList.begin(); itVModif != candidateList.end(); itVModif++)
 			{
 				temp = (*itVModif);
 				b = false;
+				temp->toFlux();
 				for (itTabu = tabuList.begin(); itTabu != tabuList.end(); ++itTabu)
 				{
 					rechercheTemp = (*itTabu);
@@ -82,6 +81,7 @@ Solution* Tabou::execute(Solution *solInitiale)
 		else
 		{
 			bestCandidate = candidateList.back();
+			bSol = true;
 		}
 		if (bSol)
 		{
@@ -99,7 +99,7 @@ Solution* Tabou::execute(Solution *solInitiale)
 			std::cout << "######################################" << endl;
 
 
-			if (sCandidate->getValeur() < sBest->getValeur())
+			if (sCandidate->getValeur() <= sBest->getValeur())
 			{
 				std::cout << "bestSolution found" << endl;
 				tabuList.push_back(bestCandidate);

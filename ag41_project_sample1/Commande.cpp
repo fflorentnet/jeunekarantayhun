@@ -61,10 +61,7 @@ namespace Donnees
 	bool Commande::operator==(Commande & c)
 	{
 		bool b = true;
-		if (c.date != this->date)
-			return false;
-		else
-			if (c.p != this->p)
+		if (c.p != this->p)
 				return false;
 		return true;
 	}
