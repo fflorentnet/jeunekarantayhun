@@ -35,6 +35,7 @@ namespace Donnees
 		float getKStockage();
 		void setKStockage(float k);
 		bool operator==(Client& c);
+		bool operator==(Client* c);
 
 	};
 }

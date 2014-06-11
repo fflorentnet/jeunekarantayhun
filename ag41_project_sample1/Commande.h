@@ -27,6 +27,8 @@ namespace Donnees
 		void setProduit(Produit* p);
 		friend ostream& operator<<(ostream &flux, Commande* c);
 		bool operator==(Commande & c);
+		Commande(Commande* c);
+
 	};
 }
 #endif /* COMMANDE_H_ */

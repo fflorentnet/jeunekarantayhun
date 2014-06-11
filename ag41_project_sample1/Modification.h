@@ -27,7 +27,9 @@ public:
 
 	virtual ~Modification();
 	bool operator==(Modification &m);
+	bool operator==(Modification* m);
 	 Action*& getAct1() ;
+
 	void setAct1( Action*& act1);
 	 Action*& getAct2() ;
 	void setAct2( Action*& act2);

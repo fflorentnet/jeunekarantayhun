@@ -25,6 +25,11 @@ namespace Donnees
 		p = c.getProduit();
 		date = c.getDate();
 	}
+	Commande::Commande(Commande* c)
+		{
+			p = c->getProduit();
+			date = c->getDate();
+		}
 
 	ostream& operator<<(ostream &flux, Commande* c)
 	{

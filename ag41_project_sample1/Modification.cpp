@@ -71,12 +71,95 @@ void Modification::setDepart(double depart) {
 	tDepart = depart;
 }
 
+/*
+ * 	TypeModification t;
+	Action* act1;
+	Action* act2;
+	double tDepart;
+	double tArrive;
+	double tFinal;
+	float gain;
+ */
 bool Modification::operator==(Modification &m)
 {
 	bool b = false;
-	if (tDepart == m.tDepart && tArrive == m.tArrive)
-		if (act1 == m.act1)
+	if (t == m.t && tDepart == m.tDepart && tFinal == m.tFinal && tArrive == m.tArrive)
+		if (act1 == m.act1 && act2 == m.act2 && gain == m.gain)
 			b = true;
+	return b;
+}
+bool Modification::operator==(Modification* m)
+{
+	bool b = false;
+	std::cout << "meh==" << endl;
+	if (m != NULL)
+	{
+		if (t == m->t && gain == m->gain)
+		{
+			if (t == DEPLACEMENT)
+			{
+				//gain(g), act1(ac), act2(NULL),  t(DEPLACEMENT), tDepart(tDep), tArrive(tArr), tFinal(-1) {
+				if (tDepart == m->tDepart && tArrive == m->tArrive)
+				{
+					if ((*act1) == m->act1)
+					{
+						b = true;
+					}
+				}
+
+			}
+			else if (t == FUSION)
+			{
+				//gain(g), act1(ac1), act2(ac2), t(FUSION), tDepart(t),tArrive(tNext), tFinal(-1) {
+				if (act1 == NULL || act2 == NULL)
+				{
+
+					if (m->act1 == NULL && act1 == NULL)
+					{
+						if ((*act2) == m->act2)
+						{
+							b = true;
+						}
+					}
+					else if (m->act2 == NULL && act2 == NULL)
+					{
+						if ((*act1) == m->act1)
+						{
+							b = true;
+						}
+					}
+				}
+				else
+				{
+					std::cout << "meh fusion" << endl;
+
+					if ((*act1) == m->act1 && (*act2) == m->act2 && tDepart == m->tDepart && tArrive == m->tArrive)
+					{
+						std::cout << "meh fusion" << endl;
+
+						b = true;
+					}
+				}
+
+
+			}
+			else if (t == MOVE)
+			{
+
+			}
+		}
+		/*
+		 *
+gain(g), act1(ac1), act2(ac2), t(FUSION), tDepart(t),tArrive(tNext), tFinal(-1) {
+gain(g), act1(NULL), act2(NULL),  t(MOVE), tDepart(tD), tArrive(tA), tFinal(tF)
+
+		 */
+
+		/*if (t == m->t && tDepart == m->tDepart && tFinal == m->tFinal && tArrive == m->tArrive)
+			if (act1 == (m->act1) && act2 == (m->act2) && gain == m->gain)
+				b = true;*/
+	}
+	std::cout << "meh== fini" << endl;
 	return b;
 }
 double Modification::getFinal() {
@@ -92,6 +175,10 @@ void Modification::toFlux()
 	if (t == Calcul::MOVE)
 	{
 		std::cout << "-> Depart:" << tDepart << endl << "<- Arrivée:" << tArrive << endl << "# Final:" << tFinal << endl;
+	}
+	else if (t == Calcul::FUSION)
+	{
+			std::cout << "-> Depart:" << tDepart << endl << "<- Arrivée:" << tArrive << endl << "Action 1" << act1->toString() << endl << "Action 2" << act2->toString() << endl;
 	}
 
 }

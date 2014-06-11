@@ -21,13 +21,15 @@ namespace Donnees
 	public:
 		Action(Client* s, Client* e);
 		Action(Client* cli, Commande* co);
+		Action(Action* a);
 		TypeAction getType();
 		Client* getStart();
 		Client* getEnd();
 		void setEnd(Client* c);
 		Commande* getCommande();
 		virtual ~Action();
-		bool operator==(Action & a);
+		bool operator==(Action& a);
+		bool operator==(Action* a);
 		string toString();
 	};
 }

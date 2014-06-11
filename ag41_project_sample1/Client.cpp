@@ -126,4 +126,16 @@ namespace Donnees
 			return false;
 		return true;
 	}
+	bool Client::operator==(Client* c)
+	{
+		if (c->getNom() != this->getNom())
+			return false;
+		if (c->getKStockage() != this->getKStockage())
+			return false;
+		if (c->getCommande()->size() != this->getCommande()->size())
+			return false;
+		if (!equal(c->getCommande()->begin(), c->getCommande()->end(), this->getCommande()->begin()))
+			return false;
+		return true;
+	}
 }

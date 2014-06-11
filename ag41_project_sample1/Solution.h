@@ -23,8 +23,10 @@ namespace Calcul
 	public:
 		Solution(Data* dat);
 		Solution(Solution* s);
+		Solution(Solution& s);
 		virtual ~Solution();
 		bool operator<(Solution& s);
+
 		friend ostream& operator<< (ostream& flux, Solution& s);
 		friend ostream& operator<< (ostream& flux, Solution* s);
 
@@ -37,7 +39,7 @@ namespace Calcul
 		vector<Modification*> detectMerge();
 		vector<Modification*> listeVoisins();
 		bool check();
-		Solution* applyModification(Modification* m);
+		void applyModification(Modification* m);
 	};
 }
 #endif /* SOLUTION_H_ */
