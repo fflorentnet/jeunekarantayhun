@@ -170,8 +170,8 @@ bool compareClient(Client* c1, Client* c2) {
 double Solution::getValeur() {
 
 	// Calcul des coûts de déplacement:
-	float tempDep = 0;
-	float tempStock = 0;
+	double tempDep = 0;
+	double tempStock = 0;
 
 	vector<Action*> *veListeAction;
 	Action* itAction;
@@ -199,7 +199,7 @@ double Solution::getValeur() {
 				Client* itCli = itAction->getStart();
 				Commande* itCom = itAction->getCommande();
 
-				float t = itCli->getKStockage() * abs(temps - itCom->getDate());
+				double t = itCli->getKStockage() * abs(temps - itCom->getDate());
 
 				//std::cout << itCli->getKStockage() << "*" << itCli->getNom() << "/" << itCom->getProduit()->getNom() << "(" << itCom->getDate() << " - " << temps << ") d" << t << endl;
 				tempStock += t;
@@ -217,8 +217,8 @@ double Solution::generate() {
 
 	vector<double> t;
 
-	cout << "Recopie des données" << endl;
-	cout << "Nombre de clients : " << listeAscClient.size() << endl;
+	std::cout << "Recopie des données" << endl;
+	std::cout << "Nombre de clients : " << listeAscClient.size() << endl;
 
 	vector<Commande*>::iterator itComm;
 
@@ -238,12 +238,12 @@ double Solution::generate() {
 			listeAscClient.erase(itC);
 	}
 
-	cout << "Nombre de clients ayant commandé au moins un produit :"
+	std::cout << "Nombre de clients ayant commandé au moins un produit :"
 			<< listeAscClient.size() << endl;
 
-	cout << "Tri des elements..." << endl;
+	std::cout << "Tri des elements..." << endl;
 	sort(listeAscClient.begin(), listeAscClient.end(), compareClient);
-	cout << "Tri terminé" << endl;
+	std::cout << "Tri terminé" << endl;
 	Client* cLast = (Client*) listeAscClient.back();
 	Client* cCurrent;
 	Commande* commTemp;
@@ -266,13 +266,13 @@ double Solution::generate() {
 
 	listeAscClient.pop_back();
 
-	cout << "Calcul" << endl;
+	std::cout << "Calcul" << endl;
 	double temps=0;
 	/*
 	 * On parcourt la liste des clients par ordre de commande : Du dernier à l'avant dernier
 	 */
 	while (!listeAscClient.empty()) {
-		cout << "Iteration " << endl;
+		std::cout << "Iteration " << endl;
 		cCurrent = (Client*) listeAscClient.back();
 		commTemp = cCurrent->derniereCommande();
 		if (commTemp != NULL) {
@@ -320,7 +320,7 @@ double Solution::generate() {
 		}
 		listeAscClient.pop_back();
 	}
-	cout << "Fin du calcul" << endl;
+	std::cout << "Fin du calcul" << endl;
 	return 0;
 }
 
@@ -442,8 +442,8 @@ vector<Modification*> Solution::detectMerge()
 vector<Modification*> Solution::detectMove()
 {
 	vector<Modification*> vMod;
-	map<double, vector<Action*>* >::iterator itSol;
-	map<double, vector<Action*>* >::iterator itSolBis;
+	map<double, vector<Action*>*>::iterator itSol;
+	map<double, vector<Action*>*>::iterator itSolBis;
 
 	vector<Action*>::iterator itAct;
 	Action* aTemp;
@@ -458,44 +458,63 @@ vector<Modification*> Solution::detectMove()
 
 
 	//Client* cCurrent;
-	for(itSol = sol.begin(); itSol != sol.end(); itSol++)
+	for (itSol = sol.begin(); itSol != sol.end(); ++itSol)
 	{
 		t = (*itSol).first;
+		//std::cout << "|- detectMove : t : " << t << endl;
+
+		// Construit une liste contenant tous les temps départs d'action de déplacement
 		for(itAct = ((*itSol).second)->begin(); itAct != ((*itSol).second)->end(); itAct++)
 		{
 			aTemp = (*itAct);
 			if (aTemp->getType() == Donnees::DEPLACEMENT)
 			{
 				tLastArrivee = t;
+				//std::cout << "|- detectMove : tLastArrivee : " << tLastArrivee << endl;
 				tLastDepart = tDepart;
-				tDepart = t-d->distanceClient(aTemp->getStart(),aTemp->getEnd());
+				//std::cout << "|- detectMove : tLastDepart : " << tLastDepart << endl;
+				tDepart = t;
+				//std::cout << "|- detectMove : tDepart : " << tDepart << endl;
+				listeDebut.push_back(t);
 
 				//cCurrent = aTemp->getEnd();
 				bChangement = true;
 			}
 		}
-		listeDebut.push_back(t);
+
 		if (bChangement)
 		{
 			for(itListeDebut = listeDebut.begin(); itListeDebut != listeDebut.end(); itListeDebut++)
 			{
 				double temp = (*itListeDebut);
+				std::cout << "|- detectMove : temp : " << temp << endl;
 				double gain = 0;
-				for(itSolBis = sol.begin(); itSolBis != sol.end(); itSolBis++)
+				for (itSolBis = sol.begin(); itSolBis != sol.end(); ++itSolBis)
 				{
 					double ttemp = (*itSolBis).first;
-					if (ttemp >= tLastDepart)
+					std::cout << "|- detectMove : ttemp : " << ttemp << endl;
+					if (ttemp >= tLastDepart && ttemp < tLastArrivee)
 					{
+						std::cout << "|- detectMove : ttemp >= tLastDepart && ttemp < tLastArrivee " << endl;
 						for(itAct = ((*itSolBis).second)->begin(); itAct != ((*itSolBis).second)->end(); itAct++)
 						{
 							aTemp = (*itAct);
 							if (aTemp->getType() == Donnees::DEPOT)
 							{
-								gain += aTemp->getStart()->getKStockage()*(aTemp->getCommande()->getDate()-(ttemp-temp));
+								double A = (aTemp->getCommande()->getDate() - ttemp) * aTemp->getStart()->getKStockage();
+								double B = (aTemp->getCommande()->getDate() - temp) * aTemp->getStart()->getKStockage();
+								//gain += aTemp->getStart()->getKStockage()*(aTemp->getCommande()->getDate()-temp);
+								gain += B-A;
+								std::cout << "|- detectMove : if(Action == Dépot), gain += " << gain << endl;
 							}
 						}
 					}
 					vMod.push_back(new Modification(tLastDepart, tLastArrivee, temp, gain));
+					std::cout << "|----> detectMove : NEW MODIFICATION" << endl;
+					std::cout << "|----> tLastDepart : " << tLastDepart << endl;
+					std::cout << "|----> tLastArrivee : " << tLastArrivee << endl;
+					std::cout << "|----> temp : " << temp << endl;
+					std::cout << "|----> gainMove : " << gain << endl;
 				}
 			}
 			bChangement = false;
@@ -517,7 +536,7 @@ vector<Modification*> Solution::listeVoisins()
 		mTotal.push_back((*itVModif));
 	for (itVModif = move.begin(); itVModif != move.end(); itVModif++)
 	{
-		//	mTotal.push_back((*itVModif));
+		mTotal.push_back((*itVModif));
 		//(*itVModif)->toFlux();
 	}
 	return mTotal;
@@ -616,9 +635,9 @@ void Solution::applyModification(Modification* m)
 		}
 		if (min != 0 && min != std::numeric_limits<double>::infinity())
 		{
-		std::cout << "Minimum à soustraire:" << min << endl;
+			std::cout << "Minimum à soustraire:" << min << endl;
 
-		for (itMSol = mapTemp.begin(); itMSol != mapTemp.end(); itMSol++)
+			for (itMSol = mapTemp.begin(); itMSol != mapTemp.end(); itMSol++)
 			{
 				//double time = (*itMSol).first;
 				if ((*itMSol).second != NULL)
@@ -644,32 +663,74 @@ void Solution::applyModification(Modification* m)
 	}
 	else if(m->getT() == Calcul::MOVE)
 	{
-		double diff = m->getArrive()-m->getDepart();
+		// Déplacement d'Action
+		std::cout << "|- Application d'un déplacement de livraison" << endl;
+		std::cout << "|- m->getDepart() : " << m->getDepart() << endl;
+		std::cout << "|- m->getArrive() : " << m->getArrive() << endl;
+		std::cout << "|- m->getFinal() : " << m->getFinal() << endl;
+		std::cout << "|- m->getGain() : " << m->getGain() << endl;
+
 		map<double, vector<Action*>* > mapTemp;
 		map<double, vector<Action*>* >::iterator itMSol;
+
 		for (itMSol = sol.begin(); itMSol != sol.end(); itMSol++)
 		{
 			double t = (*itMSol).first;
 			vector<Action*>* temp = (*itMSol).second;
 
-			if (t < m->getFinal())
-			{
-				mapTemp[t-diff] = temp;
-			}
-			else if (t == m->getFinal() && t < m->getFinal()+diff)
-			{
-				mapTemp[t] = temp;
-			}
-			else
-			{
-				if (t < m->getArrive())
-				{
-					mapTemp[t-diff] = temp;
+			std::cout << "|- FOR-1 : t : " << t << endl;
 
+			// Deux possibilités en fonction du sens du déplacement
+			if(m->getDepart() <= m->getFinal()) {
+				// Déplacement en avancant dans le temps
+				std::cout << "|- 1 - Déplacement en avancant dans le temps " << endl;
+
+				if (t < m->getDepart()) {
+					// Pas de mouvement
+					std::cout << "|- 1 - t < depart -> on ne bouge rien " << endl;
+					mapTemp[t] = temp;
 				}
-				else
-				{
-					mapTemp[t-diff] = temp;
+				else if (t >= m->getDepart() && t <= m->getArrive()) {
+					// Avancement des Action à déplacer
+					std::cout << "|- 1 - t >= m->getDepart() && t <= m->getArrive() " << endl;
+					mapTemp[t + (m->getFinal() - m->getDepart())] = temp;
+				}
+				else if (t > m->getArrive()) {
+					if(t >= m->getFinal() && t <= (m->getFinal() + m->getArrive() - m->getDepart())) {
+						// Recul des Action qui ont été touchées par le déplacement
+						std::cout << "|- 1 - t >= m->getFinal() && t <= (m->getFinal() + m->getArrive() - m->getDepart()) " << endl;
+						mapTemp[t - (m->getFinal() - m->getDepart())] = temp;
+					}
+					else {
+						// Pas de mouvement
+						mapTemp[t] = temp;
+					}
+				}
+			}
+			else if(m->getDepart() > m->getFinal()) {
+				// Déplacement en reculant dans le temps
+				std::cout << "|- 1 - Déplacement en reculant dans le temps " << endl;
+
+				if (t < m->getFinal()) {
+					// Pas de mouvement
+					std::cout << "|- 1 - t < m->getFinal() -> on ne bouge rien " << endl;
+					mapTemp[t] = temp;
+				}
+				else if (t >= m->getFinal() && t <= (m->getFinal() + m->getArrive() - m->getDepart())) {
+					// Avancement des Action qui ont été touchées par le déplacement
+					std::cout << "|- 1 - t >= m->getFinal() && t <= (m->getFinal() + m->getArrive() - m->getDepart()) " << endl;
+					mapTemp[t + (m->getDepart() - m->getFinal())] = temp;
+				}
+				else if (t > (m->getFinal() + m->getArrive() - m->getDepart())) {
+					if(t >= m->getDepart() && t <= m->getArrive()) {
+						// Recul des Action à déplacer
+						std::cout << "|- 1 - t >= m->getDepart() && t <= m->getArrive() " << endl;
+						mapTemp[t - (m->getDepart() - m->getFinal())] = temp;
+					}
+					else {
+						// Pas de mouvement
+						mapTemp[t] = temp;
+					}
 				}
 			}
 		}
@@ -683,25 +744,27 @@ void Solution::applyModification(Modification* m)
 			itMSolNext = itMSol;
 			itMSolNext++;
 			double t = (*itMSol).first;
+			double tNext = (*itMSolNext).first;
 
 			vector<Action*>* temp = (*itMSol).second;
-			vector<Action*>* modif = new vector<Action*>();
-			double tNext = (*itMSolNext).first;
 			vector<Action*>* tempNext = (*itMSolNext).second;
-
+			vector<Action*>* modif = new vector<Action*>();
 			if (itMSolNext != mapTemp.end())
 			{
-
 				if (temp != NULL)
 				{
-					if (temp->back()->getType() == Donnees::DEPLACEMENT)
+					if (temp->size() != 0)
 					{
-						if (temp->back()->getEnd() != tempNext->front()->getStart())
+						if (temp->back() != NULL)
 						{
-							temp->back()->setEnd(NULL);
-							modif->push_back(new Action(NULL, tempNext->front()->getStart()));
-							bAdd = true;
-
+							if (temp->back()->getType() == Donnees::DEPLACEMENT)
+							{
+								if (temp->back()->getEnd() != tempNext->front()->getStart())
+								{
+									temp->back()->setEnd(NULL);
+									modif->push_back(new Action(NULL, tempNext->front()->getStart()));
+								}
+							}
 						}
 					}
 				}
@@ -716,7 +779,7 @@ void Solution::applyModification(Modification* m)
 		}
 
 		sol = mapTempBis;
-		//s->computeDifference();
+		computeDifference();
 		std::cout << "#########################################" << endl;
 		std::cout << this << endl;
 
@@ -750,7 +813,8 @@ bool Solution::check()
 		{
 			for (itCommandes = ((*itClient)->getCommande())->begin(); itCommandes != ((*itClient)->getCommande())->end(); ++itCommandes)
 			{
-				commandesEffectuees[(*itCommandes)] = false;
+				if ((*itCommandes) != NULL)
+					commandesEffectuees[(*itCommandes)] = false;
 			}
 		}
 	}

@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <iostream>
+#include <fstream>
 
 #include "Commande.h"
 #include "Solution.h"
@@ -8,6 +9,7 @@
 #include "Tabou.h"
 using namespace Donnees;
 using namespace Calcul;
+
 
 float calculCout(double i)
 {
@@ -139,7 +141,7 @@ void jeuEssai2()
 	std::cout << "Fini"<<"\n";
 
 
-	Tabou* t = new Tabou(20);
+	Tabou* t = new Tabou(10);
 	s = t->execute(s);
 	std::cout << s << endl;
 	std::cout << "Coût total de la solution: " << s->getValeur() << endl;
@@ -153,6 +155,10 @@ void jeuEssai2()
 }
 int main(void)
 {
+    std::ofstream out("ag41.log");
+    std::streambuf *coutbuf = std::cout.rdbuf(); //save old buf
+    std::cout.rdbuf(out.rdbuf()); //redirect std::cout to out.txt!
 	jeuEssai2();
+    std::cout.rdbuf(coutbuf); //reset to standard output again
 	return 0;
 }

@@ -167,14 +167,16 @@ void Modification::setFinal(double final) {
 
 void Modification::toFlux()
 {
+	std::cout << "################" << endl;
 	if (t == Calcul::MOVE)
 	{
-		std::cout << "-> Depart:" << tDepart << endl << "<- Arrivée:" << tArrive << endl << "# Final:" << tFinal << endl;
+		std::cout << "MOVE" << endl << "-> Depart:" << tDepart << endl << "<- Arrivée:" << tArrive << endl << "# Final:" << tFinal << endl;
 	}
 	else if (t == Calcul::FUSION)
 	{
-			std::cout << "-> Depart:" << tDepart << endl << "<- Arrivée:" << tArrive << endl << "Action 1" << act1->toString() << endl << "Action 2" << act2->toString() << endl;
+			std::cout << "FUSION" << endl << "-> Depart:" << tDepart << endl << "<- Arrivée:" << tArrive << endl << "Action 1" << act1->toString() << endl << "Action 2" << act2->toString() << endl;
 	}
+	std::cout << "################" << endl;
 
 }
 

@@ -9,7 +9,7 @@
 #include <deque>
 #include <algorithm>
 #include <cmath>
-#define MAXTABULISTSIZE 15
+#define MAXTABULISTSIZE 100
 namespace Calcul {
 
 Tabou::Tabou(double i): it(i) {
@@ -69,7 +69,7 @@ Solution* Tabou::execute(Solution *solInitiale)
 						break;
 					}
 				}
-				if (abs(temp->getGain()) >= max && !b)
+				if (temp->getGain() >= max && !b)
 				{
 					max = temp->getGain();
 					bestCandidate = temp;
