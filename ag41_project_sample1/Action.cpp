@@ -15,9 +15,28 @@ Action::~Action() {
 }
 
 Action::Action(Client* s, Client* e,vector<Client*> p): start(s), end(e), path(p), t(DEPLACEMENT), comm((Commande*)0){
-
+	passeParFournisseur=false;
+	if (s == NULL)
+		passeParFournisseur=true;
+	else if (e == NULL)
+		passeParFournisseur=true;
+	else
+	{
+		vector<Client*>itPath = p;
+		Client* C;
+		while(!p.empty())
+		{
+			C = p.back();
+			if (C == NULL)
+			{
+				passeParFournisseur=true;
+				break;
+			}
+			p.pop_back();
+		}
+	}
 }
-Action::Action(Client* cli, Commande* co) : start(cli), path(NULL), comm(co), end((Client*)0), t(DEPOT) {
+Action::Action(Client* cli, Commande* co) : start(cli), path(NULL), comm(co), end((Client*)0), t(DEPOT), passeParFournisseur(false) {
 }
 Action::Action(Action* a)
 {
@@ -25,6 +44,7 @@ Action::Action(Action* a)
 	start = a->start;
 	end = a->end;
 	path = a->path;
+	passeParFournisseur = a->contientFournisseur();
 	if (a->comm != NULL)
 		comm = new Commande(a->comm);
 	else
@@ -61,9 +81,6 @@ vector<Client*>& Action::getPath() {
 	return path;
 }
 
-void Action::setPath(vector<Client*>& path) {
-	this->path = path;
-}
 
 string Action::toString()
 {
@@ -105,7 +122,7 @@ string Action::toString()
 	return s;
 }
 bool Action::operator==(Action * a)
-																						{
+																										{
 	Client* start = a->getStart();
 	Client* end = a->getEnd();
 	Commande* comm = a->getCommande();
@@ -159,9 +176,9 @@ bool Action::operator==(Action * a)
 	}
 	return b;
 
-}
+																										}
 bool Action::operator==(Action & a)
-{
+				{
 	bool b=true;
 	if (getType() == a.getType())
 	{
@@ -176,5 +193,10 @@ bool Action::operator==(Action & a)
 								b = true;
 	}
 	return b;
-	}
+				}
+bool Action::contientFournisseur()
+{
+	return passeParFournisseur;
 }
+}
+

@@ -14,6 +14,7 @@ namespace Donnees
 	enum TypeAction { DEPLACEMENT, DEPOT };
 	class Action {
 	private:
+		bool passeParFournisseur;
 		TypeAction t;
 		Client* start;
 		Client* end;
@@ -33,7 +34,7 @@ namespace Donnees
 		bool operator==(Action* a);
 		string toString();
 		vector<Client*>& getPath();
-		void setPath(vector<Client*>& path);
+		bool contientFournisseur();
 };
 }
 #endif /* ACTION_H_ */
