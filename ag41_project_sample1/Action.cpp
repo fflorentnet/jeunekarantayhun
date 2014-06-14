@@ -7,7 +7,7 @@
 
 #include "Action.h"
 #include <sstream>
-
+#include "Data.h"
 namespace Donnees
 {
 Action::~Action() {
@@ -33,6 +33,11 @@ Action::Action(Client* s, Client* e,vector<Client*> p): start(s), end(e), path(p
 				break;
 			}
 			p.pop_back();
+		}
+		if (path.size() == 1 && (Client*)path.back() == NULL)
+		{
+			path.insert(path.begin(),s);
+			path.push_back(e);
 		}
 	}
 }
@@ -80,6 +85,9 @@ void Action::setEnd(Client* c)
 vector<Client*>& Action::getPath() {
 	return path;
 }
+void Action::setPath(vector<Client*>& p) {
+	path = p;
+}
 
 
 string Action::toString()
@@ -91,7 +99,10 @@ string Action::toString()
 		string pathClient = "";
 		while(!tempPath.empty())
 		{
-			pathClient += tempPath.front()->getNom();
+			if (tempPath.front() != NULL)
+				pathClient += tempPath.front()->getNom();
+			else
+				pathClient += "Fournisseur";
 			tempPath.erase(tempPath.begin());
 			if (!tempPath.empty())
 				pathClient += " -> ";
@@ -122,7 +133,7 @@ string Action::toString()
 	return s;
 }
 bool Action::operator==(Action * a)
-																										{
+																												{
 	Client* start = a->getStart();
 	Client* end = a->getEnd();
 	Commande* comm = a->getCommande();
@@ -176,9 +187,33 @@ bool Action::operator==(Action * a)
 	}
 	return b;
 
-																										}
+																												}
+float Action::distance()
+{
+	float ttemp = 0;
+	vector<Client*> path = getPath();
+	Client* cA = getStart();
+	if (!path.empty())
+	{
+
+		cA = path.front();
+		Client* cB;
+		path.erase(path.begin());
+		while(!path.empty())
+		{
+			cB = path.front();
+			ttemp += Donnees::Data::getInstance().distanceClient(cA,cB);
+			cA=cB;
+			path.erase(path.begin());
+		}
+
+	}
+	if (cA != getEnd())
+		ttemp += Donnees::Data::getInstance().distanceClient(cA, getEnd());
+	return ttemp;
+}
 bool Action::operator==(Action & a)
-				{
+						{
 	bool b=true;
 	if (getType() == a.getType())
 	{
@@ -193,7 +228,7 @@ bool Action::operator==(Action & a)
 								b = true;
 	}
 	return b;
-				}
+						}
 bool Action::contientFournisseur()
 {
 	return passeParFournisseur;

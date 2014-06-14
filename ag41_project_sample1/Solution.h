@@ -21,7 +21,7 @@ namespace Calcul
 		Data* d;
 		map<double, vector<Action*>* > sol;
 	public:
-		Solution(Data* dat);
+		Solution();
 		Solution(Solution* s);
 		Solution(Solution& s);
 		virtual ~Solution();

@@ -10,7 +10,7 @@
 using namespace Donnees;
 using namespace Calcul;
 
-Data* d;
+
 float calculCout(double i)
 {
 	return 3 * (float)i / 2;
@@ -48,20 +48,20 @@ void jeuEssai1()
 
 	std::cout << "Affichage des clients:" << endl;
 	//std::cout << c1 << c2 << c3 << c4 << c5;
-	d = new Data();
-	Solution s(d);
+	/*Data &d = Donnees::Data::getInstance();
+	Solution s();
 
-	d->ajouterClient(c1);
-	d->ajouterClient(c2);
-	d->ajouterClient(c3);
-	d->ajouterClient(c4);
+	Donnees::Data::getInstance().ajouterClient(c1);
+	Donnees::Data::getInstance().ajouterClient(c2);
+	Donnees::Data::getInstance().ajouterClient(c3);
+	Donnees::Data::getInstance().ajouterClient(c4);
 
-	d->distanceClient(c1, 100);
-	d->distanceClient(c2, 100);
-	d->distanceClient(c3, 100);
-	d->distanceClient(c4, 100);
+	Donnees::Data::getInstance().distanceClient(c1, 100);
+	Donnees::Data::getInstance().distanceClient(c2, 100);
+	Donnees::Data::getInstance().distanceClient(c3, 100);
+	Donnees::Data::getInstance().distanceClient(c4, 100);
 
-	d->setKTransport(2);
+	Donnees::Data::getInstance().setKTransport(2);
 
 	std::cout << "Generation de la solution:" << endl;
 	s.generate();
@@ -69,7 +69,7 @@ void jeuEssai1()
 	std::cout << "Difference de sol: " << s.computeDifference() << endl;
 	std::cout << s << endl;
 	std::cout << "Coût total de la solution: " << s.getValeur() << endl;
-	std::cout << "Fini"<<"\n";
+	std::cout << "Fini"<<"\n";*/
 }
 void jeuEssai2()
 {
@@ -103,42 +103,44 @@ void jeuEssai2()
 
 	std::cout << "Affichage des clients:" << endl;
 	//std::cout << c1 << c2 << c3 << c4 << c5;
-	d = new Data();
-	d->setCapacite(5);
-	Solution* s = new Solution(d);
+	//d = new Data();
+	Donnees::Data::getInstance().setCapacite(5);
+	Solution* s = new Solution();
 
-	d->ajouterClient(c1);
-	d->ajouterClient(c2);
-	d->ajouterClient(c3);
-	d->ajouterClient(c4);
+	Donnees::Data::getInstance().ajouterClient(c1);
+	Donnees::Data::getInstance().ajouterClient(c2);
+	Donnees::Data::getInstance().ajouterClient(c3);
+	Donnees::Data::getInstance().ajouterClient(c4);
 
-	d->distanceClient(c1, 100);
-	d->distanceClient(c2, 100);
-	d->distanceClient(c3, 100);
-	d->distanceClient(c4, 100);
+	Donnees::Data::getInstance().distanceClient(c1, 100);
+	Donnees::Data::getInstance().distanceClient(c2, 100);
+	Donnees::Data::getInstance().distanceClient(c3, 100);
+	Donnees::Data::getInstance().distanceClient(c4, 100);
 
-	d->distanceClient(c1,c2, 10);
-	d->distanceClient(c2,c3, 140);
-	d->distanceClient(c3,c4, 10);
+	Donnees::Data::getInstance().distanceClient(c1,c2, 10);
+	Donnees::Data::getInstance().distanceClient(c2,c3, 140);
+	Donnees::Data::getInstance().distanceClient(c3,c4, 10);
 
-	d->distanceClient(c2,c1, 10);
-	d->distanceClient(c3,c2, 140);
-	d->distanceClient(c4,c3, 10);
+	Donnees::Data::getInstance().distanceClient(c2,c1, 10);
+	Donnees::Data::getInstance().distanceClient(c3,c2, 140);
+	Donnees::Data::getInstance().distanceClient(c4,c3, 10);
 
 
-	d->setKTransport(2);
+	Donnees::Data::getInstance().setKTransport(2);
 
 	std::cout << "reGeneration de la solution:" << endl;
 	s->generate();
 
 	std::cout << "Application d'un Floyd-Warshall:" << endl;
-	d->floydWarshall();
-	d->toString();
+	Donnees::Data::getInstance().floydWarshall();
+	Donnees::Data::getInstance().toString();
 	std::cout << "terminé" << endl;
 	std::cout << s << endl;
 
+
 	std::cout << "Difference de sol: " << s->computeDifference() << endl;
 	std::cout << s << endl;
+
 	std::cout << "Coût total de la solution: " << s->getValeur() << endl;
 	std::cout << "Fini"<<"\n";
 
@@ -147,7 +149,7 @@ void jeuEssai2()
 	s = t->execute(s);
 	std::cout << s << endl;
 	std::cout << "Coût total de la solution: " << s->getValeur() << endl;
-	std::cout << d->distanceClient(c1,c3) << endl;
+	std::cout << Donnees::Data::getInstance().distanceClient(c1,c3) << endl;
 	if (s->check())
 			std::cout << "La solution est valide" << endl;
 	else
@@ -157,10 +159,10 @@ void jeuEssai2()
 }
 int main(void)
 {
-    /*std::ofstream out("ag41.log");
+    std::ofstream out("ag41.log");
     std::streambuf *coutbuf = std::cout.rdbuf(); //save old buf
     std::cout.rdbuf(out.rdbuf()); //redirect std::cout to out.txt!
-	*/jeuEssai2();
-    //std::cout.rdbuf(coutbuf); //reset to standard output again
+	jeuEssai2();
+    std::cout.rdbuf(coutbuf); //reset to standard output again
 	return 0;
 }

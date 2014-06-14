@@ -23,9 +23,9 @@ private:
 	float gain;
 	Data* d;
 public:
-	Modification(Data* dd, Action* ac, double tDep, double tArr, float g);
-	Modification(Data* dd, Action* ac1, Action* ac2, float g, double t, double tNext);
-	Modification(Data* dd, double tD, double tA, double tF, float g);
+	Modification( Action* ac, double tDep, double tArr, float g);
+	Modification( Action* ac1, Action* ac2, float g, double t, double tNext);
+	Modification( double tD, double tA, double tF, float g);
 
 	virtual ~Modification();
 	bool operator==(Modification &m);

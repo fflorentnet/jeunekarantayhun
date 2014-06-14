@@ -26,10 +26,17 @@ namespace Donnees
 		double kTransport;
 		double capacite;
 		void Next();
-	public:
 		Data();
 		virtual ~Data();
 		Data(Data &d);
+
+	public:
+		static Data& getInstance()
+		        {
+		            static Data instance; // Guaranteed to be destroyed.
+		                                  // Instantiated on first use.
+		            return instance;
+		        }
 		vector<Client*> getListeClient();
 		void ajouterClient(Client* c);
 		double distanceClient(Client* c);
