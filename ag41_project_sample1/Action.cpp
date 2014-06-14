@@ -180,10 +180,10 @@ bool Action::operator==(Action * a)
 			{
 				if ((*getEnd()) == (*end))
 				{
-					b = true;}
+					b = true;
+				}
 			}
 		}
-
 	}
 	return b;
 
