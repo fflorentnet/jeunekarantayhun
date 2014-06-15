@@ -37,7 +37,7 @@ Solution* Tabou::execute(Solution *solInitiale)
 	Modification* temp;
 	Modification* rechercheTemp;
 	Solution* sCandidate;
-	int MAXTABULISTSIZE = 5;
+	int MAXTABULISTSIZE = 10;
 	double max;
 	bool b = false;
 	bool bSol = false;
@@ -52,7 +52,7 @@ Solution* Tabou::execute(Solution *solInitiale)
 		max = std::numeric_limits<double>::infinity();
 		max = - max;
 		candidateList = s->listeVoisins();
-		if (candidateList.size() >= 1)
+		if (candidateList.size() > 1)
 		{
 			for (itVModif= candidateList.begin(); itVModif != candidateList.end(); itVModif++)
 			{
@@ -68,9 +68,10 @@ Solution* Tabou::execute(Solution *solInitiale)
 						{
 							//std::cout << "Les modifications sont identiques" << endl;
 							b = true;
-							continue;
+							break;
 						}
 					}
+
 				}
 				if (temp->getGain() > max && !b)
 				{
@@ -79,6 +80,7 @@ Solution* Tabou::execute(Solution *solInitiale)
 					////std::cout << "bestCandidate found" << endl;
 					bestCandidate->toFlux();
 				}
+
 			}
 			bSol = true;
 		}
@@ -94,17 +96,17 @@ Solution* Tabou::execute(Solution *solInitiale)
 
 			if (bestCandidate != NULL)
 			{
-			//	sCandidate = new Solution(s);
+				//	sCandidate = new Solution(s);
 				bestCandidate->toFlux();
 
 				s->applyModification(bestCandidate);
 				//s = sCandidate;
-				tabuList.push_back(bestCandidate);
+				//tabuList.push_back(bestCandidate);
 				////std::cout << "La modification a été appliquée" << endl;
 				std::cout << endl << "sCandidate : " << s->getValeur() << " | sBest : " << sBest->getValeur() << endl;
 
 				/*//std::cout << "######################################" << endl;
-				*/
+				 */
 				std::cout << "sCandidate:" << endl << s << endl;
 
 				//std::cout << "######################################" << endl;
@@ -115,7 +117,7 @@ Solution* Tabou::execute(Solution *solInitiale)
 				if (s->getValeur() <= sBest->getValeur())
 				{
 					//std::cout << "bestSolution found" << endl;
-					//tabuList.push_back(bestCandidate);
+					tabuList.push_back(bestCandidate);
 					sBest = new Solution(s);
 					if (tabuList.size() >= MAXTABULISTSIZE)
 					{

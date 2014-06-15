@@ -222,18 +222,23 @@ string Modification::getHash()
 	sort (pInt.begin(), pInt.end(), compareInt);
 	if (t == Calcul::SWAP)
 	{
-		s += "S";
-		ss << tDepart << "/" << tArrive << "?" << pInt.front() << "#" << pInt.back();
+		std::cout  << "1-" << endl << act1->toString() << endl << "2-" << endl << act2->toString() << endl;
+
+		s += "S?";
+		ss  << pInt.front();
+		pInt.pop_back();
+		ss << "#" << pInt.front();
 		s += ss.str();
 	}
 	else if (t == Calcul::FUSION)
 	{
-		s += "F";
-		ss << tDepart << "/" << tArrive << "?" << "?" << pInt.front() << "#" << pInt.back();
+		s += "F?";
+		ss << pInt.front();
 		s += ss.str();
 	}
 //	ss << endl << gain;
 //	s += "#"+ss.str();
+	std::cout << s << endl;
 	return s;
 
 }

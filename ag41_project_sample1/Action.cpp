@@ -201,6 +201,11 @@ float Action::distance()
 			ttemp = Donnees::Data::getInstance().distanceClient(getStart()) + Donnees::Data::getInstance().distanceClient(getEnd());
 			cA = getEnd();
 		}
+		else if (path.size() == 2 && path.front() == getStart() && path.back() == getEnd())
+		{
+			ttemp =Donnees::Data::getInstance().distanceClient(getStart(),getEnd());
+			cA = getEnd();
+		}
 		else
 		{
 			cA = path.front();

@@ -624,7 +624,7 @@ vector<Modification*> Solution::detectMove()
 		}*/
 		std::cout << "Tf:" << Tf << "|Tf'" << TfPrime <<endl;
 		//if (Tf >= TfPrime)
-		vMod.push_back(new Modification(Ta,Tb,gain, sol[Ta]->back(), sol[Ta]->back()));
+		vMod.push_back(new Modification(Ta,Tb,gain, sol[Ta]->back(), sol[Tb]->back()));
 	}
 
 	return vMod;
