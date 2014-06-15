@@ -196,15 +196,23 @@ float Action::distance()
 	if (!path.empty())
 	{
 
-		cA = path.front();
-		Client* cB;
-		path.erase(path.begin());
-		while(!path.empty())
+		if (path.size() == 1 && path.front() == (Client*)NULL)
 		{
-			cB = path.front();
-			ttemp += Donnees::Data::getInstance().distanceClient(cA,cB);
-			cA=cB;
+			ttemp = Donnees::Data::getInstance().distanceClient(getStart()) + Donnees::Data::getInstance().distanceClient(getEnd());
+			cA = getEnd();
+		}
+		else
+		{
+			cA = path.front();
+			Client* cB;
 			path.erase(path.begin());
+			while(!path.empty())
+			{
+				cB = path.front();
+				ttemp += Donnees::Data::getInstance().distanceClient(cA,cB);
+				cA=cB;
+				path.erase(path.begin());
+			}
 		}
 
 	}

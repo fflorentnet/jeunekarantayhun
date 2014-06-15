@@ -34,7 +34,6 @@ namespace Calcul
 		double getValeur();
 		Data* getData();
 		double computeDifference();
-		Modification* deplacerAction(Action* ac, double tAct, double tDema);
 		vector<Modification*> detectMove();
 		vector<Modification*> detectMerge();
 		vector<Modification*> listeVoisins();

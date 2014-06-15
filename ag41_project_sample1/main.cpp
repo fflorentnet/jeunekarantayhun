@@ -46,8 +46,8 @@ void jeuEssai1()
 
 	c3->setKStockage(calculCout(3));
 
-	std::cout << "Affichage des clients:" << endl;
-	//std::cout << c1 << c2 << c3 << c4 << c5;
+	//std::cout << "Affichage des clients:" << endl;
+	////std::cout << c1 << c2 << c3 << c4 << c5;
 	/*Data &d = Donnees::Data::getInstance();
 	Solution s();
 
@@ -63,13 +63,13 @@ void jeuEssai1()
 
 	Donnees::Data::getInstance().setKTransport(2);
 
-	std::cout << "Generation de la solution:" << endl;
+	//std::cout << "Generation de la solution:" << endl;
 	s.generate();
-	std::cout << s << endl;
-	std::cout << "Difference de sol: " << s.computeDifference() << endl;
-	std::cout << s << endl;
-	std::cout << "Coût total de la solution: " << s.getValeur() << endl;
-	std::cout << "Fini"<<"\n";*/
+	//std::cout << s << endl;
+	//std::cout << "Difference de sol: " << s.computeDifference() << endl;
+	//std::cout << s << endl;
+	//std::cout << "Coût total de la solution: " << s.getValeur() << endl;
+	//std::cout << "Fini"<<"\n";*/
 }
 void jeuEssai2()
 {
@@ -101,10 +101,10 @@ void jeuEssai2()
 	c3->setKStockage(calculCout(3));
 	c4->setKStockage(calculCout(4));
 
-	std::cout << "Affichage des clients:" << endl;
-	//std::cout << c1 << c2 << c3 << c4 << c5;
+	//std::cout << "Affichage des clients:" << endl;
+	////std::cout << c1 << c2 << c3 << c4 << c5;
 	//d = new Data();
-	Donnees::Data::getInstance().setCapacite(4);
+	Donnees::Data::getInstance().setCapacite(5);
 	Solution* s = new Solution();
 
 	Donnees::Data::getInstance().ajouterClient(c1);
@@ -128,32 +128,28 @@ void jeuEssai2()
 
 	Donnees::Data::getInstance().setKTransport(2);
 
-	std::cout << "reGeneration de la solution:" << endl;
+	//std::cout << "reGeneration de la solution:" << endl;
 	s->generate();
 
-	std::cout << "Application d'un Floyd-Warshall:" << endl;
+	//std::cout << "Application d'un Floyd-Warshall:" << endl;
 	Donnees::Data::getInstance().floydWarshall();
 	Donnees::Data::getInstance().toString();
-	std::cout << "terminé" << endl;
-	std::cout << s << endl;
+	//std::cout << "terminé" << endl;
+	//std::cout << s << endl;
 
 
 	std::cout << "Difference de sol: " << s->computeDifference() << endl;
-	std::cout << s << endl;
+	//std::cout << s << endl;
 
 	std::cout << "Coût total de la solution: " << s->getValeur() << endl;
 	std::cout << "Fini"<<"\n";
 
 
-	Tabou* t = new Tabou(10);
+	Tabou* t = new Tabou(1000);
 	s = t->execute(s);
 	std::cout << s << endl;
 	std::cout << "Coût total de la solution: " << s->getValeur() << endl;
-	std::cout << Donnees::Data::getInstance().distanceClient(c1,c3) << endl;
-	if (s->check())
-			std::cout << "La solution est valide" << endl;
-	else
-			std::cout << "La solution est fausse" << endl;
+	//std::cout << Donnees::Data::getInstance().distanceClient(c1,c3) << endl;
 
 
 }
@@ -164,5 +160,6 @@ int main(void)
     std::cout.rdbuf(out.rdbuf()); //redirect std::cout to out.txt!
 	jeuEssai2();
     std::cout.rdbuf(coutbuf); //reset to standard output again
+    std::cout << "fini" <<endl;
 	return 0;
 }

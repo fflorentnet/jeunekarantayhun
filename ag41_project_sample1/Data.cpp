@@ -195,7 +195,7 @@ void Data::toString()
 	vector<Client*> vCli;
 	vector<Client*>::iterator k;
 
-	std::cout << "Chemin:" << endl;
+	//std::cout << "Chemin:" << endl;
 	for (i = listeClient.begin(); i != listeClient.end(); ++i)
 	{
 		I = (*i);

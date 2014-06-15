@@ -6,16 +6,17 @@
  */
 
 #include "Modification.h"
-
+#include <sstream>>
 namespace Calcul {
 
-Modification::Modification( Action* ac, double tDep, double tArr, float g):  gain(g), act1(ac), act2(NULL),  t(DEPLACEMENT), tDepart(tDep), tArrive(tArr), tFinal(-1) {
+/*Modification::Modification( Action* ac, double tDep, double tArr, double g):  gain(g), act1(ac), act2(NULL),  t(DEPLACEMENT), tDepart(tDep), tArrive(tArr) {
+}*/
+
+Modification::Modification( Action* ac1, Action* ac2, double g, double t, double tNext) :  gain(g), act1(ac1), act2(ac2), t(FUSION), tDepart(t),tArrive(tNext) {
 
 }
-Modification::Modification( Action* ac1, Action* ac2, float g, double t, double tNext) :  gain(g), act1(ac1), act2(ac2), t(FUSION), tDepart(t),tArrive(tNext), tFinal(-1) {
 
-}
-Modification::Modification( double tD, double tA, double tF, float g):   gain(g), act1(NULL), act2(NULL),  t(MOVE), tDepart(tD), tArrive(tA), tFinal(tF)
+Modification::Modification( double tD,  double tA, double g, Action* ac1, Action* ac2):   gain(g), act1(ac1), act2(ac2),  t(SWAP), tDepart(tD), tArrive(tA)
 {
 
 }
@@ -83,7 +84,7 @@ void Modification::setDepart(double depart) {
 bool Modification::operator==(Modification &m)
 {
 	bool b = false;
-	if (t == m.t && tDepart == m.tDepart && tFinal == m.tFinal && tArrive == m.tArrive)
+	if (t == m.t && tDepart == m.tDepart && tArrive == m.tArrive)
 		if (act1 == m.act1 && act2 == m.act2 && gain == m.gain)
 			b = true;
 	return b;
@@ -139,7 +140,7 @@ bool Modification::operator==(Modification* m)
 
 
 			}
-			else if (t == MOVE)
+			else if (t == SWAP)
 			{
 
 			}
@@ -157,32 +158,72 @@ gain(g), act1(NULL), act2(NULL),  t(MOVE), tDepart(tD), tArrive(tA), tFinal(tF)
 	}
 	return b;
 }
-double Modification::getFinal() {
+/*double Modification::getFinal() {
 	return tFinal;
 }
 
 void Modification::setFinal(double final) {
 	tFinal = final;
-}
+}*/
 
 void Modification::toFlux()
 {
-	std::cout << "################" << endl;
-	if (t == Calcul::MOVE)
+	//std::cout << "################" << endl;
+	if (t == Calcul::SWAP)
 	{
-		std::cout << "MOVE" << endl << "-> Depart:" << tDepart << endl << "<- Arrivée:" << tArrive << endl << "# Final:" << tFinal << endl;
+		//std::cout << "SWAP | gain: " << gain << endl << "-> Depart:" << tDepart << endl << "<- Arrivée:" << tArrive << endl;
 	}
 	else
 	{
-			std::cout << "FUSION" << endl;
-			std::cout << "-> Depart:" << tDepart << endl;
-			std::cout<< "<- Arrivée:" << tArrive << endl;
-			std::cout<< "Action 1" << act1->toString() << endl;
-			std::cout<< "Action 2" << act2->toString() << endl;
+			//std::cout << "FUSION" << endl;
+			//std::cout << "-> Depart:" << tDepart << endl;
+			//std::cout<< "<- Arrivée:" << tArrive << endl;
+			//std::cout<< "Action 1" << act1->toString() << endl;
+			//std::cout<< "Action 2" << act2->toString() << endl;
 			Action* bis = new Action(act1->getStart(), act2->getEnd(), Donnees::Data::getInstance().getPath(act1->getStart(), act2->getEnd()));
-			std::cout << "Action finale: " << bis->toString() << endl;
+			//std::cout << "Action finale: " << bis->toString() << endl;
 	}
-	std::cout << "################" << endl;
+	//std::cout << "################" << endl;
+}
+
+string Modification::getHash()
+{
+	string s = "";
+	std::ostringstream ss;
+
+	if (t == Calcul::SWAP)
+	{
+		s += "S";
+		ss << tDepart << "/" << tArrive << "?";
+		s += ss.str();
+		if (act1->getStart() == NULL)
+			s += "Fo";
+		else
+			s += act1->getStart()->getNom();
+		s += "#";
+		if (act2->getStart() == NULL)
+			s += "Fo";
+		else
+			s += act2->getStart()->getNom();
+	}
+	else if (t == Calcul::FUSION)
+	{
+		s += "F";
+		ss << tDepart << "/" << tArrive << "?";
+		s += ss.str();
+		if (act1->getStart() == NULL)
+			s += "Fo";
+		else
+			s += act1->getStart()->getNom();
+		s += "#";
+		if (act2->getStart() == NULL)
+			s += "Fo";
+		else
+			s += act2->getStart()->getNom();
+	}
+	ss << endl << gain;
+	s += "#"+ss.str();
+	return s;
 
 }
 

@@ -10,7 +10,7 @@
 #include <algorithm>
 #include <cmath>
 #include <limits>
-#define MAXTABULISTSIZE 100
+
 namespace Calcul {
 
 Tabou::Tabou(double i): it(i) {
@@ -29,7 +29,7 @@ Solution* Tabou::execute(Solution *solInitiale)
 	double i = 0;
 
 	vector<Modification *>::iterator itVModif;
-	deque<Modification *> tabuList(4);
+	deque<Modification *> tabuList(0);
 	deque<Modification *>::iterator itTabu;
 	vector<Modification *> candidateList;
 
@@ -37,44 +37,46 @@ Solution* Tabou::execute(Solution *solInitiale)
 	Modification* temp;
 	Modification* rechercheTemp;
 	Solution* sCandidate;
+	int MAXTABULISTSIZE = 50;
 	double max;
 	bool b = false;
 	bool bSol = false;
 	while(i != this->it)
 	{
 		bSol = false;
-		std::cout << "######################################" << endl;
-		std::cout << "sBest:" << endl << sBest << endl;
-		std::cout << "######################################" << endl;
-
-		std::cout << "Iteration " << i << endl;
+		//std::cout << "######################################" << endl;
+		//std::cout << "sBest:" << endl << sBest << endl;
+		//std::cout << "######################################" << endl;
+		bestCandidate = NULL;
+		//std::cout << "Iteration " << i << endl;
 		max = std::numeric_limits<double>::infinity();
 		max = - max;
-		candidateList = sBest->listeVoisins();
+		candidateList = s->listeVoisins();
 		if (candidateList.size() >= 1)
 		{
 			for (itVModif= candidateList.begin(); itVModif != candidateList.end(); itVModif++)
 			{
 				temp = (*itVModif);
 				b = false;
-				temp->toFlux();
+				//temp->toFlux();
 				for (itTabu = tabuList.begin(); itTabu != tabuList.end(); ++itTabu)
 				{
 					rechercheTemp = (*itTabu);
-					std::cout << "Comparaison des modifications" << endl;
-
-					if ((*temp) == rechercheTemp)
+					if (rechercheTemp != NULL)
 					{
-						std::cout << "Les modifications sont identiques" << endl;
-						b = true;
-						break;
+						if (temp->getHash() == rechercheTemp->getHash())
+						{
+							//std::cout << "Les modifications sont identiques" << endl;
+							b = true;
+							continue;
+						}
 					}
 				}
-				if (temp->getGain() >= max && !b)
+				if (temp->getGain() > max && !b)
 				{
 					max = temp->getGain();
 					bestCandidate = temp;
-					std::cout << "bestCandidate found" << endl;
+					////std::cout << "bestCandidate found" << endl;
 					bestCandidate->toFlux();
 				}
 			}
@@ -87,30 +89,35 @@ Solution* Tabou::execute(Solution *solInitiale)
 		}
 		if (bSol)
 		{
-			std::cout << "On applique la meilleure modification possible" << endl;
-			std::cout << "Best candidat:" << endl;
-			//bestCandidate->toFlux();
-			sCandidate = new Solution(sBest);
+			////std::cout << "On applique la meilleure modification possible" << endl;
+			////std::cout << "Best candidat:" << endl;
+
 			if (bestCandidate != NULL)
 			{
-				sCandidate->applyModification(bestCandidate);
-				std::cout << "La modification a été appliquée" << endl;
-				std::cout << endl << "sCandidate : " << sCandidate->getValeur() << " | sBest : " << sBest->getValeur() << endl;
+			//	sCandidate = new Solution(s);
+				bestCandidate->toFlux();
 
-				std::cout << "######################################" << endl;
-				std::cout << "sCandidate:" << endl << sCandidate << endl;
+				s->applyModification(bestCandidate);
+				//s = sCandidate;
+				tabuList.push_back(bestCandidate);
+				////std::cout << "La modification a été appliquée" << endl;
+				std::cout << endl << "sCandidate : " << s->getValeur() << " | sBest : " << sBest->getValeur() << endl;
 
-				std::cout << "######################################" << endl;
-				std::cout << "sBest:" << endl << sBest << endl;
-				std::cout << "######################################" << endl;
+				/*//std::cout << "######################################" << endl;
+				*/
+				std::cout << "sCandidate:" << endl << s << endl;
+
+				//std::cout << "######################################" << endl;
+				//std::cout << "sBest:" << endl << sBest << endl;
+				//std::cout << "######################################" << endl;*/
 
 
-				if (sCandidate->getValeur() <= sBest->getValeur())
+				if (s->getValeur() <= sBest->getValeur())
 				{
-					std::cout << "bestSolution found" << endl;
-					tabuList.push_back(bestCandidate);
-					sBest = sCandidate;
-					if (tabuList.size() > MAXTABULISTSIZE)
+					//std::cout << "bestSolution found" << endl;
+					//tabuList.push_back(bestCandidate);
+					sBest = new Solution(s);
+					if (tabuList.size() >= MAXTABULISTSIZE)
 					{
 						tabuList.pop_front();
 					}
@@ -118,11 +125,14 @@ Solution* Tabou::execute(Solution *solInitiale)
 			}
 			else
 			{
+				std::cout << "Nombre d'iteration: " << i << endl;
 				return sBest;
 			}
 		}
 		i++;
 	}
+
+	std::cout << "Nombre d'iteration: " << i << endl;
 	std::cout << "Fin de l'algorithme tabou" << endl;
 	return sBest;
 

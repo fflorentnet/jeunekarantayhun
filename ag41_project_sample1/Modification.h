@@ -11,7 +11,7 @@
 #include "Data.h"
 using namespace Donnees;
 namespace Calcul {
-enum TypeModification { DEPLACEMENT, FUSION, MOVE };
+enum TypeModification { DEPLACEMENT, FUSION, SWAP };
 class Modification {
 private:
 	TypeModification t;
@@ -19,21 +19,21 @@ private:
 	Action* act2;
 	double tDepart;
 	double tArrive;
-	double tFinal;
-	float gain;
+	//double tFinal;
+	double gain;
 	Data* d;
 public:
-	Modification( Action* ac, double tDep, double tArr, float g);
-	Modification( Action* ac1, Action* ac2, float g, double t, double tNext);
-	Modification( double tD, double tA, double tF, float g);
+	//Modification( Action* ac, double tDep, double tArr, double g);
+	Modification( Action* ac1, Action* ac2, double g, double t, double tNext);
+	Modification( double tD, double tA, double g, Action* ac1, Action* ac2);
 
 	virtual ~Modification();
 	bool operator==(Modification &m);
 	bool operator==(Modification* m);
-	 Action*& getAct1() ;
+	Action*& getAct1() ;
 
 	void setAct1( Action*& act1);
-	 Action*& getAct2() ;
+	Action*& getAct2() ;
 	void setAct2( Action*& act2);
 	double getGain() ;
 	void setGain(double gain);
@@ -43,10 +43,8 @@ public:
 	void setArrive(double arrive);
 	double getDepart() ;
 	void setDepart(double depart);
-	double getFinal();
-	void setFinal(double final);
 	void toFlux();
-
+	string getHash();
 };
 
 } /* namespace Calcul */
