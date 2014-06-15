@@ -6,7 +6,10 @@
  */
 
 #include "Modification.h"
-#include <sstream>>
+#include <sstream>
+#include <string>
+#include <algorithm>
+
 namespace Calcul {
 
 /*Modification::Modification( Action* ac, double tDep, double tArr, double g):  gain(g), act1(ac), act2(NULL),  t(DEPLACEMENT), tDepart(tDep), tArrive(tArr) {
@@ -24,7 +27,7 @@ Modification::~Modification() {
 	// TODO Auto-generated destructor stub
 }
 
- Action*& Modification::getAct1() {
+Action*& Modification::getAct1() {
 	return act1;
 }
 
@@ -32,7 +35,7 @@ void Modification::setAct1(Action*& act1) {
 	this->act1 = act1;
 }
 
- Action*& Modification::getAct2() {
+Action*& Modification::getAct2() {
 	return act2;
 }
 
@@ -82,15 +85,15 @@ void Modification::setDepart(double depart) {
 	float gain;
  */
 bool Modification::operator==(Modification &m)
-{
+		{
 	bool b = false;
 	if (t == m.t && tDepart == m.tDepart && tArrive == m.tArrive)
 		if (act1 == m.act1 && act2 == m.act2 && gain == m.gain)
 			b = true;
 	return b;
-}
+		}
 bool Modification::operator==(Modification* m)
-{
+		{
 	bool b = false;
 	if (m != NULL)
 	{
@@ -157,7 +160,7 @@ gain(g), act1(NULL), act2(NULL),  t(MOVE), tDepart(tD), tArrive(tA), tFinal(tF)
 				b = true;*/
 	}
 	return b;
-}
+		}
 /*double Modification::getFinal() {
 	return tFinal;
 }
@@ -175,54 +178,62 @@ void Modification::toFlux()
 	}
 	else
 	{
-			//std::cout << "FUSION" << endl;
-			//std::cout << "-> Depart:" << tDepart << endl;
-			//std::cout<< "<- Arrivée:" << tArrive << endl;
-			//std::cout<< "Action 1" << act1->toString() << endl;
-			//std::cout<< "Action 2" << act2->toString() << endl;
-			Action* bis = new Action(act1->getStart(), act2->getEnd(), Donnees::Data::getInstance().getPath(act1->getStart(), act2->getEnd()));
-			//std::cout << "Action finale: " << bis->toString() << endl;
+		//std::cout << "FUSION" << endl;
+		//std::cout << "-> Depart:" << tDepart << endl;
+		//std::cout<< "<- Arrivée:" << tArrive << endl;
+		//std::cout<< "Action 1" << act1->toString() << endl;
+		//std::cout<< "Action 2" << act2->toString() << endl;
+		Action* bis = new Action(act1->getStart(), act2->getEnd(), Donnees::Data::getInstance().getPath(act1->getStart(), act2->getEnd()));
+		//std::cout << "Action finale: " << bis->toString() << endl;
 	}
 	//std::cout << "################" << endl;
 }
+
+bool compareInt (int i,int j) { return (i<j); }
 
 string Modification::getHash()
 {
 	string s = "";
 	std::ostringstream ss;
+	string cclientA;
+	string cclientB;
+	int clientA;
+	int clientB;
 
+	if (act1->getStart() == NULL)
+		cclientA = "0";
+	else
+		cclientA = act1->getStart()->getNom();
+	if (act2->getStart() == NULL)
+		cclientB = "0";
+	else
+		cclientB = act2->getStart()->getNom();
+
+
+	cclientA.erase(remove_if(cclientA.begin(), cclientA.end(), ::isalpha), cclientA.end());
+	clientA = atoi (cclientA.c_str());
+
+	cclientB.erase(remove_if(cclientB.begin(), cclientB.end(), ::isalpha), cclientB.end());
+	clientB = atoi (cclientB.c_str());
+
+	vector<int> pInt(0);
+	pInt.push_back(clientA);
+	pInt.push_back(clientB);
+	sort (pInt.begin(), pInt.end(), compareInt);
 	if (t == Calcul::SWAP)
 	{
 		s += "S";
-		ss << tDepart << "/" << tArrive << "?";
+		ss << tDepart << "/" << tArrive << "?" << pInt.front() << "#" << pInt.back();
 		s += ss.str();
-		if (act1->getStart() == NULL)
-			s += "Fo";
-		else
-			s += act1->getStart()->getNom();
-		s += "#";
-		if (act2->getStart() == NULL)
-			s += "Fo";
-		else
-			s += act2->getStart()->getNom();
 	}
 	else if (t == Calcul::FUSION)
 	{
 		s += "F";
-		ss << tDepart << "/" << tArrive << "?";
+		ss << tDepart << "/" << tArrive << "?" << "?" << pInt.front() << "#" << pInt.back();
 		s += ss.str();
-		if (act1->getStart() == NULL)
-			s += "Fo";
-		else
-			s += act1->getStart()->getNom();
-		s += "#";
-		if (act2->getStart() == NULL)
-			s += "Fo";
-		else
-			s += act2->getStart()->getNom();
 	}
-	ss << endl << gain;
-	s += "#"+ss.str();
+//	ss << endl << gain;
+//	s += "#"+ss.str();
 	return s;
 
 }

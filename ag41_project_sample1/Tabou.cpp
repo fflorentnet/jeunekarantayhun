@@ -37,7 +37,7 @@ Solution* Tabou::execute(Solution *solInitiale)
 	Modification* temp;
 	Modification* rechercheTemp;
 	Solution* sCandidate;
-	int MAXTABULISTSIZE = 50;
+	int MAXTABULISTSIZE = 5;
 	double max;
 	bool b = false;
 	bool bSol = false;
