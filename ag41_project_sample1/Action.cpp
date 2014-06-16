@@ -14,16 +14,17 @@ Action::~Action() {
 
 }
 
-Action::Action(Client* s, Client* e): start(s), end(e), t(DEPLACEMENT), comm((Commande*)0){
+Action::Action(Client* s, Client* e,vector<Client*> p): start(s), end(e), path(p), t(DEPLACEMENT), comm((Commande*)0){
 
 }
-Action::Action(Client* cli, Commande* co) : start(cli), comm(co), end((Client*)0), t(DEPOT) {
+Action::Action(Client* cli, Commande* co) : start(cli), path(NULL), comm(co), end((Client*)0), t(DEPOT) {
 }
 Action::Action(Action* a)
 {
 	t = a->t;
 	start = a->start;
 	end = a->end;
+	path = a->path;
 	if (a->comm != NULL)
 		comm = new Commande(a->comm);
 	else
@@ -55,11 +56,29 @@ void Action::setEnd(Client* c)
 {
 	end = c;
 }
+
+vector<Client*>& Action::getPath() {
+	return path;
+}
+
+void Action::setPath(vector<Client*>& path) {
+	this->path = path;
+}
+
 string Action::toString()
 {
 	string s = "";
 	if (getType() == DEPLACEMENT)
 	{
+		vector<Client*> tempPath = path;
+		string pathClient = "";
+		while(!tempPath.empty())
+		{
+			pathClient += tempPath.front()->getNom();
+			tempPath.erase(tempPath.begin());
+			if (!tempPath.empty())
+				pathClient += " -> ";
+		}
 		if (getStart() != NULL)
 			s = " DEPLACEMENT de " + getStart()->getNom();
 		else
@@ -68,6 +87,14 @@ string Action::toString()
 			s += " vers " + getEnd()->getNom();
 		else
 			s += " vers le Fournisseur";
+		if (pathClient != "")
+		{
+			s += " (Chemin : ";
+			s += pathClient + " ";
+			s += ")";
+		}
+		else
+			s += " (Chemin direct)";
 	}
 	else if (getType() == DEPOT)
 	{

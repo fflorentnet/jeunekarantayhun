@@ -5,9 +5,6 @@
  *      Author: florent
  */
 
-/**
- * Conseil de Papa Caminada : Hill Climbing (Heuristique d'exploration maximale, recherche aléatoire)
- */
 #include "Solution.h"
 #include <algorithm>
 #include <limits>
@@ -102,18 +99,20 @@ double Solution::computeDifference()
 			}
 		}
 	}
+	min = min + d->distanceClient((*sol.begin()).second->front()->getEnd());
 	map<double, vector<Action*>* > tempSol;
 	for (itMap = sol.begin() ; itMap != sol.end() ; itMap++)
 	{
 		vTemp = (*itMap).second;
 		date = (*itMap).first;
 		//vector<Action* >* veActions = new vector();
+		tempSol[date-min] = vTemp;
 		for (itAction = vTemp->begin(); itAction != vTemp->end(); itAction++)
 		{
 			if ((*itAction)->getType() == Donnees::DEPOT)
 				(*itAction)->getCommande()->setDate((*itAction)->getCommande()->getDate() - min);
 		}
-		tempSol[date-min] = vTemp;
+
 	}
 	sol = tempSol;
 	return min;
@@ -222,6 +221,7 @@ double Solution::generate() {
 
 	vector<Commande*>::iterator itComm;
 
+	vector<Client*> pathNull(0);
 	vector<Client*>::iterator itC;
 	for (itC = listeAscClient.begin(); itC != listeAscClient.end(); itC++) {
 		Client* c = (Client*) (*itC);
@@ -248,21 +248,23 @@ double Solution::generate() {
 	Client* cCurrent;
 	Commande* commTemp;
 	Commande* commLast = (Commande*) cLast->premiereCommande();
-	double temp = commLast->getDate();
+	double temp = commLast->getDate()-d->distanceClient(cLast);
 	t.push_back(temp);
 
 	if (sol[temp] == NULL)
 		sol[temp] = new vector<Action*>();
-	sol[temp]->push_back(new Action((Client*)0, cLast));
+	sol[temp]->push_back(new Action((Client*)0, cLast,pathNull));
+
+	if (sol[temp+d->distanceClient(cLast)] == NULL)
+		sol[temp+d->distanceClient(cLast)] = new vector<Action*>();
 
 	for (itComm = cLast->getCommande()->begin();itComm != cLast->getCommande()->end(); itComm++) {
 		commTemp = (Commande*) (*itComm);
-		sol[temp]->push_back(new Action(cLast, commTemp));
+		sol[temp+d->distanceClient(cLast)]->push_back(new Action(cLast, commTemp));
 
 	}
 
-	sol[temp+d->distanceClient(cLast)] = new vector<Action*>();
-	sol[temp+d->distanceClient(cLast)]->push_back(new Action(cLast, (Client*)0));
+	sol[temp+d->distanceClient(cLast)]->push_back(new Action(cLast, (Client*)0,pathNull));
 
 	listeAscClient.pop_back();
 
@@ -271,44 +273,47 @@ double Solution::generate() {
 	/*
 	 * On parcourt la liste des clients par ordre de commande : Du dernier à l'avant dernier
 	 */
+
 	while (!listeAscClient.empty()) {
 		std::cout << "Iteration " << endl;
 		cCurrent = (Client*) listeAscClient.back();
 		commTemp = cCurrent->derniereCommande();
 		if (commTemp != NULL) {
 
-			double ttemp = t.back();
-			if (commTemp->getDate()+d->distanceClient(cCurrent) > ttemp) {
+			double tempsDernierClientVisite = t.back();
+			std::cout << "\___ tempsDernierClientVisite " << tempsDernierClientVisite  <<endl;
+			//Si on a le temps de visiter le client, puis d'aller au fournisseur
+			if (commTemp->getDate()+d->distanceClient(cCurrent) >= tempsDernierClientVisite) {
 
-				temps = ttemp - 2*d->distanceClient(cCurrent);
+				temps = tempsDernierClientVisite - 2*d->distanceClient(cCurrent);
 
 				if (sol[temps] == NULL)
 					sol[temps] = new vector<Action*>();
 
-				sol[temps]->push_back(new Action((Client*)0, cCurrent));
+				sol[temps]->push_back(new Action((Client*)0, cCurrent, pathNull));
 				t.push_back(temps);
-
-				for (itComm = cCurrent->getCommande()->begin(); itComm != cCurrent->getCommande()->end(); itComm++) {
-					commTemp = (Commande*) (*itComm);
-					sol[temps]->push_back(new Action(cCurrent, commTemp));
-				}
-				double retour = ttemp - d->distanceClient(cCurrent);
+				double retour = temps+d->distanceClient(cCurrent);
 
 				if (sol[retour] == NULL)
 					sol[retour] = new vector<Action*>();
 
-				sol[retour]->insert(sol[retour]->begin(), new Action(cCurrent,(Client*)0));
+				for (itComm = cCurrent->getCommande()->begin(); itComm != cCurrent->getCommande()->end(); itComm++) {
+					commTemp = (Commande*) (*itComm);
+					sol[retour]->push_back(new Action(cCurrent, commTemp));
+				}
+
+				sol[retour]->push_back(new Action(cCurrent,(Client*)0, pathNull));
 				//sol[retour]->push_back(new Action(cCurrent,(Client*)0));
 				t.push_back(temps);
 
 			}
 			else {
-				temps = cCurrent->premiereCommande()->getDate() ;
+				temps = cCurrent->premiereCommande()->getDate();
 
 				if (sol[temps] == NULL)
 					sol[temps] = new vector<Action*>();
 
-				sol[temps]->push_back(new Action((Client*)0, cCurrent));
+				sol[temps]->push_back(new Action((Client*)0, cCurrent,pathNull));
 
 				for (itComm = cCurrent->getCommande()->begin();	itComm != cCurrent->getCommande()->end(); itComm++) {
 					commTemp = cCurrent->premiereCommande();
@@ -320,6 +325,54 @@ double Solution::generate() {
 		}
 		listeAscClient.pop_back();
 	}
+	map<double, vector<Action*>* >::iterator itMap;
+	map<double, vector<Action*>* >::iterator itMapNext;
+	vector<Action*> *itVec;
+	vector<Action*> *itVecNext;
+	Action* A;
+	Action* B;
+	pathNull.push_back((Client*)NULL);
+
+	/*for (itMap = sol.begin(); itMap != sol.end(); ++itMap)
+	{
+		itVec = (*itMap).second;
+		itMapNext = itMap;
+		++itMapNext;
+
+		std::cout << "test0" << endl;
+		if (itMapNext != sol.end())
+		{
+			itVecNext = (*itMapNext).second;
+			if (itVec != NULL && itVecNext != NULL)
+			{
+				A = itVec->back();
+				B = itVecNext->front();
+
+				std::cout << "test2" << endl;
+				std::cout << A << endl;
+				if (A != NULL && B != NULL)
+				{
+					std::cout << "super" << endl;
+					std::cout << A->toString() << endl;
+					if (A->getType() == B->getType() && A->getType() == Donnees::DEPLACEMENT)
+					{
+						std::cout << "test4" << endl;
+						itVecNext->erase(itVecNext->begin());
+						A->setEnd(B->getEnd());
+						A->setPath(pathNull);
+
+						std::cout << "test5" << endl;
+					}
+					std::cout << "test3" << endl;
+				}
+
+				std::cout << "test3" << endl;
+			}
+		}
+		std::cout << "test1" << endl;
+	}*/
+
+
 	std::cout << "Fin du calcul" << endl;
 	return 0;
 }
@@ -335,7 +388,7 @@ Modification* Solution::deplacerAction(Action* ac, double tAct, double tDema)
 		if (sol[tDema] == NULL)
 			sol[tDema] = new vector<Action*>();
 		sol[tDema]->push_back(ac);
-		m = new Modification(ac, tAct, tDema, 0);
+		m = new Modification(d,ac, tAct, tDema, 0);
 	}
 	return m;
 }
@@ -420,7 +473,7 @@ vector<Modification*> Solution::detectMerge()
 										if (nbrProduitTheorique <= d->getCapacite())
 										{
 											double gain = (d->distanceClient(A->getStart(),A->getEnd()) + d->distanceClient(B->getStart(),B->getEnd())) - d->distanceClient(A->getStart(),B->getEnd());
-											L.push_back(new Modification(A,B,gain,Ta,Tb));
+											L.push_back(new Modification(d,A,B,gain,Ta,Tb));
 											//std::cout << "gain:" << gain << endl;
 											nbrProduitTheorique = 0;
 										}
@@ -509,7 +562,7 @@ vector<Modification*> Solution::detectMove()
 							}
 						}
 					}
-					vMod.push_back(new Modification(tLastDepart, tLastArrivee, temp, gain));
+					vMod.push_back(new Modification(d,tLastDepart, tLastArrivee, temp, gain));
 					std::cout << "|----> detectMove : NEW MODIFICATION" << endl;
 					std::cout << "|----> tLastDepart : " << tLastDepart << endl;
 					std::cout << "|----> tLastArrivee : " << tLastArrivee << endl;
@@ -529,16 +582,16 @@ vector<Modification*> Solution::listeVoisins()
 
 	vector<Modification*> mTotal;
 	vector<Modification*> merge = detectMerge();
-	vector<Modification*> move = detectMove();
+	//vector<Modification*> move = detectMove();
 	vector<Modification *>::iterator itVModif;
 
 	for (itVModif = merge.begin(); itVModif != merge.end(); itVModif++)
 		mTotal.push_back((*itVModif));
-	for (itVModif = move.begin(); itVModif != move.end(); itVModif++)
+	/*for (itVModif = move.begin(); itVModif != move.end(); itVModif++)
 	{
 		mTotal.push_back((*itVModif));
-		//(*itVModif)->toFlux();
-	}
+		(*itVModif)->toFlux();
+	}*/
 	return mTotal;
 
 	//return detectMerge();
@@ -563,25 +616,30 @@ void Solution::applyModification(Modification* m)
 		map<double, vector<Action*>* > mapTemp;
 		vector<Action*>::iterator itAction;
 		//double delay = - d->distanceClient(acA->getStart(), acA->getEnd());
-		double delay = 0;
+		double delay = - 2 * (m->getArrive()-m->getDepart()) + d->distanceClient(acA->getStart(), acB->getEnd());
 
 
 		(sol[m->getDepart()])->pop_back();
+		(sol[m->getDepart()])->push_back(new Action(acA->getStart(), acB->getEnd(), d->getPath(acA->getStart(), acB->getEnd())));
 
 
-		(sol[m->getArrive()])->erase(sol[m->getArrive()]->begin());
+		if ((sol[m->getArrive()])->front()->getType() == Donnees::DEPLACEMENT)
+			(sol[m->getArrive()])->erase(sol[m->getArrive()]->begin());
 		if (sol[m->getArrive()]->size() == 0)
 			sol.erase(m->getArrive());
+
 		for (itMSol = sol.begin(); itMSol != sol.end(); itMSol++)
 		{
 			if ((*itMSol).first <= m->getDepart())
 			{
 				mapTemp[(*itMSol).first]=(*itMSol).second;
 			}
-
 		}
 		//std::cout << "XxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxX" << endl;
-		for (itClients = pathClients.begin(); itClients != pathClients.end(); ++itClients)
+		mapTemp[m->getDepart()] = sol[m->getDepart()];
+
+		/*
+		 for (itClients = pathClients.begin(); itClients != pathClients.end(); ++itClients)
 		{
 			if ((*itClients) != NULL)
 			{
@@ -603,13 +661,14 @@ void Solution::applyModification(Modification* m)
 				}
 			}
 		}
+		 */
+
 		//std::cout << "XxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxX" << endl;
 
-		delay = delay - (m->getArrive()-m->getDepart());
 		for (itMSol = sol.begin(); itMSol != sol.end(); itMSol++)
 		{
 			double temp = (*itMSol).first;
-			if (temp >= m->getArrive())
+			if (temp > m->getArrive())
 			{
 				mapTemp[temp+delay] = (*itMSol).second;
 			}
@@ -633,6 +692,7 @@ void Solution::applyModification(Modification* m)
 				}
 			}
 		}
+		std::cout << "|____ Min:" << min << endl;
 		if (min != 0 && min != std::numeric_limits<double>::infinity())
 		{
 			std::cout << "Minimum à soustraire:" << min << endl;
@@ -739,6 +799,9 @@ void Solution::applyModification(Modification* m)
 		map<double, vector<Action*>* > mapTempBis;
 		double decal = 0;
 		bool bAdd = false;
+
+		vector<Client*> pathNull(0);
+
 		for (itMSol = mapTemp.begin(); itMSol != mapTemp.end(); itMSol++)
 		{
 			itMSolNext = itMSol;
@@ -762,7 +825,7 @@ void Solution::applyModification(Modification* m)
 								if (temp->back()->getEnd() != tempNext->front()->getStart())
 								{
 									temp->back()->setEnd(NULL);
-									modif->push_back(new Action(NULL, tempNext->front()->getStart()));
+									modif->push_back(new Action(NULL, tempNext->front()->getStart(),pathNull));
 								}
 							}
 						}

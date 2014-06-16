@@ -18,8 +18,9 @@ namespace Donnees
 		Client* start;
 		Client* end;
 		Commande* comm;
+		vector<Client*> path;
 	public:
-		Action(Client* s, Client* e);
+		Action(Client* s, Client* e, vector<Client*> p);
 		Action(Client* cli, Commande* co);
 		Action(Action* a);
 		TypeAction getType();
@@ -31,6 +32,8 @@ namespace Donnees
 		bool operator==(Action& a);
 		bool operator==(Action* a);
 		string toString();
-	};
+		vector<Client*>& getPath();
+		void setPath(vector<Client*>& path);
+};
 }
 #endif /* ACTION_H_ */

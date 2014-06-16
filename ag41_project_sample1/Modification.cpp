@@ -9,13 +9,13 @@
 
 namespace Calcul {
 
-Modification::Modification(Action* ac, double tDep, double tArr, float g): gain(g), act1(ac), act2(NULL),  t(DEPLACEMENT), tDepart(tDep), tArrive(tArr), tFinal(-1) {
+Modification::Modification(Data* dd, Action* ac, double tDep, double tArr, float g): d(dd), gain(g), act1(ac), act2(NULL),  t(DEPLACEMENT), tDepart(tDep), tArrive(tArr), tFinal(-1) {
 
 }
-Modification::Modification(Action* ac1, Action* ac2, float g, double t, double tNext) : gain(g), act1(ac1), act2(ac2), t(FUSION), tDepart(t),tArrive(tNext), tFinal(-1) {
+Modification::Modification(Data* dd, Action* ac1, Action* ac2, float g, double t, double tNext) : d(dd), gain(g), act1(ac1), act2(ac2), t(FUSION), tDepart(t),tArrive(tNext), tFinal(-1) {
 
 }
-Modification::Modification(double tD, double tA, double tF, float g):  gain(g), act1(NULL), act2(NULL),  t(MOVE), tDepart(tD), tArrive(tA), tFinal(tF)
+Modification::Modification(Data* dd, double tD, double tA, double tF, float g): d(dd),  gain(g), act1(NULL), act2(NULL),  t(MOVE), tDepart(tD), tArrive(tA), tFinal(tF)
 {
 
 }
@@ -175,6 +175,8 @@ void Modification::toFlux()
 	else if (t == Calcul::FUSION)
 	{
 			std::cout << "FUSION" << endl << "-> Depart:" << tDepart << endl << "<- Arrivée:" << tArrive << endl << "Action 1" << act1->toString() << endl << "Action 2" << act2->toString() << endl;
+			Action* bis = new Action(act1->getStart(), act2->getEnd(), d->getPath(act1->getStart(), act2->getEnd()));
+			std::cout << "Action finale: " << bis->toString() << endl;
 	}
 	std::cout << "################" << endl;
 

@@ -10,7 +10,7 @@
 using namespace Donnees;
 using namespace Calcul;
 
-
+Data* d;
 float calculCout(double i)
 {
 	return 3 * (float)i / 2;
@@ -48,7 +48,7 @@ void jeuEssai1()
 
 	std::cout << "Affichage des clients:" << endl;
 	//std::cout << c1 << c2 << c3 << c4 << c5;
-	Data* d = new Data();
+	d = new Data();
 	Solution s(d);
 
 	d->ajouterClient(c1);
@@ -103,7 +103,7 @@ void jeuEssai2()
 
 	std::cout << "Affichage des clients:" << endl;
 	//std::cout << c1 << c2 << c3 << c4 << c5;
-	Data* d = new Data();
+	d = new Data();
 	d->setCapacite(5);
 	Solution* s = new Solution(d);
 
@@ -135,6 +135,8 @@ void jeuEssai2()
 	d->floydWarshall();
 	d->toString();
 	std::cout << "terminé" << endl;
+	std::cout << s << endl;
+
 	std::cout << "Difference de sol: " << s->computeDifference() << endl;
 	std::cout << s << endl;
 	std::cout << "Coût total de la solution: " << s->getValeur() << endl;
@@ -155,10 +157,10 @@ void jeuEssai2()
 }
 int main(void)
 {
-    std::ofstream out("ag41.log");
+    /*std::ofstream out("ag41.log");
     std::streambuf *coutbuf = std::cout.rdbuf(); //save old buf
     std::cout.rdbuf(out.rdbuf()); //redirect std::cout to out.txt!
-	jeuEssai2();
-    std::cout.rdbuf(coutbuf); //reset to standard output again
+	*/jeuEssai2();
+    //std::cout.rdbuf(coutbuf); //reset to standard output again
 	return 0;
 }

@@ -8,6 +8,7 @@
 #ifndef MODIFICATION_H_
 #define MODIFICATION_H_
 #include "Action.h"
+#include "Data.h"
 using namespace Donnees;
 namespace Calcul {
 enum TypeModification { DEPLACEMENT, FUSION, MOVE };
@@ -20,10 +21,11 @@ private:
 	double tArrive;
 	double tFinal;
 	float gain;
+	Data* d;
 public:
-	Modification(Action* ac, double tDep, double tArr, float g);
-	Modification(Action* ac1, Action* ac2, float g, double t, double tNext);
-	Modification(double tD, double tA, double tF, float g);
+	Modification(Data* dd, Action* ac, double tDep, double tArr, float g);
+	Modification(Data* dd, Action* ac1, Action* ac2, float g, double t, double tNext);
+	Modification(Data* dd, double tD, double tA, double tF, float g);
 
 	virtual ~Modification();
 	bool operator==(Modification &m);
