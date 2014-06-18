@@ -136,9 +136,9 @@ int main(void)
 	std::ofstream out("ag41.log");
     std::streambuf *coutbuf = std::cout.rdbuf(); //save old buf
     std::cout.rdbuf(out.rdbuf()); //redirect std::cout to out.txt!
-    std::cout.precision(15);
+    std::cout.precision(20);
 
-    string file = "./instances/instance15n2cl.txt";
+    string file = "./instances/instance10n2cl.txt";
 	//jeuEssai2();
     Parser* p = new Parser();
 
@@ -148,11 +148,8 @@ int main(void)
     Solution *s = new Solution();
     s->generate();
 
-	//std::cout << "Application d'un Floyd-Warshall:" << endl;
 	Donnees::Data::getInstance().floydWarshall();
 	Donnees::Data::getInstance().toString();
-	//std::cout << "terminé" << endl;
-	//std::cout << s << endl;
 
 
 	std::cout << "Difference de sol: " << s->computeDifference() << endl;
@@ -160,7 +157,6 @@ int main(void)
 
 	std::cout << "Coût total de la solution: " << s->getValeur() << endl;
 	std::cout << "Fini"<<"\n";
-
 
 	Tabou* t = new Tabou(50);
 	s = t->execute(s);

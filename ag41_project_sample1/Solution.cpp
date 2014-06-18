@@ -212,7 +212,7 @@ double Solution::generate() {
 	vector<Client*> listeAscClient = Donnees::Data::getInstance().getListeClient();
 	vector<double> t;
 	vector<Commande*>::iterator itComm;
-	vector<Client*> pathNull(0);
+	vector<Client*> pathNull(1);
 
 	vector<Client*>::iterator itC;
 	for (itC = listeAscClient.begin(); itC != listeAscClient.end(); itC++) {
@@ -241,11 +241,11 @@ double Solution::generate() {
 	t.push_back(temp);
 
 	if (sol[temp] == NULL)
-		sol[temp] = new vector<Action*>(0);
+		sol[temp] = new vector<Action*>(1);
 	sol[temp]->push_back(new Action((Client*)0, cLast,pathNull));
 
 	if (sol[temp+Donnees::Data::getInstance().distanceClient(cLast)] == NULL)
-		sol[temp+Donnees::Data::getInstance().distanceClient(cLast)] = new vector<Action*>(0);
+		sol[temp+Donnees::Data::getInstance().distanceClient(cLast)] = new vector<Action*>(1);
 
 	for (itComm = cLast->getCommande()->begin();itComm != cLast->getCommande()->end(); itComm++) {
 		commTemp = (Commande*) (*itComm);
@@ -256,7 +256,7 @@ double Solution::generate() {
 	sol[temp+Donnees::Data::getInstance().distanceClient(cLast)]->push_back(new Action(cLast, (Client*)0,pathNull));
 
 	listeAscClient.pop_back();
-	double temps=0;
+double temps=0;
 	/*
 	 * On parcourt la liste des clients par ordre de commande : Du dernier à l'avant dernier
 	 */
@@ -274,13 +274,13 @@ double Solution::generate() {
 				temps = tempsDernierClientVisite - 2*Donnees::Data::getInstance().distanceClient(cCurrent);
 
 				if (sol[temps] == NULL)
-					sol[temps] = new vector<Action*>(0);
+					sol[temps] = new vector<Action*>(1);
 				sol[temps]->push_back(new Action((Client*)0, cCurrent, pathNull));
 				t.push_back(temps);
 				double retour = temps+Donnees::Data::getInstance().distanceClient(cCurrent);
 
 				if (sol[retour] == NULL)
-					sol[retour] = new vector<Action*>(0);
+					sol[retour] = new vector<Action*>(1);
 
 				for (itComm = cCurrent->getCommande()->begin(); itComm != cCurrent->getCommande()->end(); itComm++) {
 					commTemp = (Commande*) (*itComm);
@@ -295,7 +295,7 @@ double Solution::generate() {
 				temps = cCurrent->premiereCommande()->getDate();
 
 				if (sol[temps] == NULL)
-					sol[temps] = new vector<Action*>(0);
+					sol[temps] = new vector<Action*>(1);
 
 				sol[temps]->push_back(new Action((Client*)0, cCurrent,pathNull));
 
@@ -490,9 +490,6 @@ vector<Modification*> Solution::detectFusion()
 
 		L.pop_back();
 	}
-	La->~vector();
-	Lb->~vector();
-
 	return tempListe;
 
 }
@@ -614,8 +611,8 @@ vector<Modification*> Solution::detectMove()
 	vector<Modification*> vMod;
 	map<double, vector<Action*>*>::iterator itSol;
 
-	vector<double> datesDepot(0);
-	vector<double> datesMouvement(0);
+	vector<double> datesDepot(sol.size()-1);
+	vector<double> datesMouvement(sol.size()-1);
 
 	double temps;
 
@@ -950,7 +947,7 @@ void Solution::applyModification(Modification* m)
 		vector<Action*>::iterator itvActions;
 		vector<Action*>* vActions;
 
-		vector<Client*> pathNull(0);
+		vector<Client*> pathNull(1);
 		pathNull.push_back((Client*)NULL);
 		// Action(Client* s, Client* e, vector<Client*> p);
 		Action* actionDeplacementSplit = new Action(m->getAct1()->getStart(),m->getAct1()->getStart(), pathNull);
