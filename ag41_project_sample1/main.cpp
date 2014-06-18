@@ -7,6 +7,7 @@
 #include "Client.h"
 #include "Produit.h"
 #include "Tabou.h"
+#include "Parser.h"
 using namespace Donnees;
 using namespace Calcul;
 
@@ -128,8 +129,21 @@ void jeuEssai2()
 
 	Donnees::Data::getInstance().setKTransport(2);
 
+
+}
+int main(void)
+{
+	std::ofstream out("ag41.log");
+    std::streambuf *coutbuf = std::cout.rdbuf(); //save old buf
+    std::cout.rdbuf(out.rdbuf()); //redirect std::cout to out.txt!
+
+	//jeuEssai2();
+    Parser* p = new Parser();
+
+    p->parseFile("./instances/instance10n3cl.txt");
 	//std::cout << "reGeneration de la solution:" << endl;
-	s->generate();
+    Solution *s = new Solution();
+    s->generate();
 
 	//std::cout << "Application d'un Floyd-Warshall:" << endl;
 	Donnees::Data::getInstance().floydWarshall();
@@ -145,20 +159,13 @@ void jeuEssai2()
 	std::cout << "Fini"<<"\n";
 
 
-	Tabou* t = new Tabou(10);
+	Tabou* t = new Tabou(500);
 	s = t->execute(s);
 	std::cout << s << endl;
 	std::cout << "Coût total de la solution: " << s->getValeur() << endl;
 	//std::cout << Donnees::Data::getInstance().distanceClient(c1,c3) << endl;
 
 
-}
-int main(void)
-{
-	std::ofstream out("ag41.log");
-    std::streambuf *coutbuf = std::cout.rdbuf(); //save old buf
-    std::cout.rdbuf(out.rdbuf()); //redirect std::cout to out.txt!
-	jeuEssai2();
     std::cout.rdbuf(coutbuf); //reset to standard output again
     std::cout << "fini" <<endl;
 	return 0;

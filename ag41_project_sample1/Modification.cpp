@@ -181,8 +181,7 @@ void Modification::toFlux()
 		std::cout << "FUSION | gain: " << gain << endl;
 		std::cout << "-> Depart:" << tDepart << endl;
 		std::cout<< "<- Arrivée:" << tArrive << endl;
-		std::cout<< "Action 1" << act1->toString() << endl;
-		std::cout<< "Action 2" << act2->toString() << endl;
+		std::cout<< "Action " << act1->toString() << endl;
 		Action* bis = new Action(act1->getStart(), act2->getEnd(), Donnees::Data::getInstance().getPath(act1->getStart(), act2->getEnd()));
 		std::cout << "Action finale: " << bis->toString() << endl;
 	}
@@ -222,10 +221,8 @@ string Modification::getHash()
 	if (t == Calcul::SWAP)
 	{
 		sort (pInt.begin(), pInt.end(), compareInt);
-	//	std::cout  << "1-" << endl << act1->toString() << endl << "2-" << endl << act2->toString() << endl;
 		s += "S?";
 		ss  << pInt.front();
-		//pInt.pop_back();
 		ss << "#" << pInt.back();
 		s += ss.str();
 	}
@@ -235,9 +232,6 @@ string Modification::getHash()
 		ss << pInt.front() << "#" << pInt.back() << ";" << tDepart;
 		s += ss.str();
 	}
-//	ss << endl << gain;
-//	s += "#"+ss.str();
-	std::cout << s << endl;
 	return s;
 
 }
