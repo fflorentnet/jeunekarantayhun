@@ -11,7 +11,7 @@
 #include "Data.h"
 using namespace Donnees;
 namespace Calcul {
-enum TypeModification { DEPLACEMENT, FUSION, SWAP };
+enum TypeModification { SPLIT, JONCTION, SWAP, FUSION };
 class Modification {
 private:
 	TypeModification t;
@@ -24,9 +24,10 @@ private:
 	Data* d;
 public:
 	//Modification( Action* ac, double tDep, double tArr, double g);
-	Modification( Action* ac1, Action* ac2, double g, double t, double tNext);
-	Modification( double tD, double tA, double g, Action* ac1, Action* ac2);
-
+	Modification(Action* ac1, Action* ac2, double g, double t, double tNext);
+	Modification(double tD, double tA, double g, Action* ac1, Action* ac2);
+	Modification(double temps, double g, Action* depot, Action* deplacement);
+	Modification(double tempsDepart, double tempsArrive, Action* ac1, Action* ac2, double g);
 	virtual ~Modification();
 	bool operator==(Modification &m);
 	bool operator==(Modification* m);

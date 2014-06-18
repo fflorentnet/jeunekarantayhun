@@ -35,7 +35,9 @@ namespace Calcul
 		Data* getData();
 		double computeDifference();
 		vector<Modification*> detectMove();
-		vector<Modification*> detectMerge();
+		vector<Modification*> detectFusion();
+		vector<Modification*> detectJonction();
+		vector<Modification*> detectSplit();
 		vector<Modification*> listeVoisins();
 		bool check();
 		void applyModification(Modification* m);

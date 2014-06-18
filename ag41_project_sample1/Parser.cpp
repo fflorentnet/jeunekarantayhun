@@ -49,6 +49,7 @@ void Parser::parseFile(string path) {
 				}
 
 				if (fields.at(0) == "TRANSPORTER_CAPACITY") {
+					Data::getInstance().setCapacite(atof(fields.at(1).c_str()));
 					// A implementer
 				}
 
@@ -113,8 +114,6 @@ void Parser::parseFile(string path) {
 				}
 			}
 		}
-		cout << endl;
-
 		//cout << "Cout transport : " << Data::getInstance().getKTransport();
 	}
 

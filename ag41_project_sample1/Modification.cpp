@@ -12,17 +12,12 @@
 
 namespace Calcul {
 
-/*Modification::Modification( Action* ac, double tDep, double tArr, double g):  gain(g), act1(ac), act2(NULL),  t(DEPLACEMENT), tDepart(tDep), tArrive(tArr) {
-}*/
 
-Modification::Modification( Action* ac1, Action* ac2, double g, double t, double tNext) :  gain(g), act1(ac1), act2(ac2), t(FUSION), tDepart(t),tArrive(tNext) {
+Modification::Modification( Action* ac1, Action* ac2, double g, double t, double tNext) : gain(g), act1(ac1), act2(ac2), t(JONCTION), tDepart(t),tArrive(tNext) {}
+Modification::Modification( double tD,  double tA, double g, Action* ac1, Action* ac2): gain(g), act1(ac1), act2(ac2),  t(SWAP), tDepart(tD), tArrive(tA){}
+Modification::Modification(double temps, double g, Action* depot, Action* deplacement): gain(g), act1(depot), act2(deplacement),  t(SPLIT), tDepart(temps), tArrive(-1){}
+Modification::Modification(double tempsDepart, double tempsArrive, Action* ac1, Action* ac2, double g): gain(g), act1(ac1), act2(ac2),  t(FUSION), tDepart(tempsDepart), tArrive(tempsArrive){}
 
-}
-
-Modification::Modification( double tD,  double tA, double g, Action* ac1, Action* ac2):   gain(g), act1(ac1), act2(ac2),  t(SWAP), tDepart(tD), tArrive(tA)
-{
-
-}
 Modification::~Modification() {
 	// TODO Auto-generated destructor stub
 }
@@ -99,21 +94,21 @@ bool Modification::operator==(Modification* m)
 	{
 		if (t == m->t && gain == m->gain)
 		{
-			if (t == DEPLACEMENT)
+			if (t == SPLIT)
 			{
 				//gain(g), act1(ac), act2(NULL),  t(DEPLACEMENT), tDepart(tDep), tArrive(tArr), tFinal(-1) {
-				if (tDepart == m->tDepart && tArrive == m->tArrive)
+				if (tDepart == m->tDepart)
 				{
-					if ((*act1) == m->act1)
+					if ((*act1) == m->act1 && (*act2) == m->act2)
 					{
 						b = true;
 					}
 				}
 
 			}
-			else if (t == FUSION)
+			else if (t == JONCTION)
 			{
-				//gain(g), act1(ac1), act2(ac2), t(FUSION), tDepart(t),tArrive(tNext), tFinal(-1) {
+				//gain(g), act1(ac1), act2(ac2), t(JONCTION), tDepart(t),tArrive(tNext), tFinal(-1) {
 				if (act1 == NULL || act2 == NULL)
 				{
 
@@ -148,43 +143,48 @@ bool Modification::operator==(Modification* m)
 
 			}
 		}
-		/*
-		 *
-gain(g), act1(ac1), act2(ac2), t(FUSION), tDepart(t),tArrive(tNext), tFinal(-1) {
-gain(g), act1(NULL), act2(NULL),  t(MOVE), tDepart(tD), tArrive(tA), tFinal(tF)
-
-		 */
-
-		/*if (t == m->t && tDepart == m->tDepart && tFinal == m->tFinal && tArrive == m->tArrive)
-			if (act1 == (m->act1) && act2 == (m->act2) && gain == m->gain)
-				b = true;*/
 	}
 	return b;
 		}
-/*double Modification::getFinal() {
-	return tFinal;
-}
 
-void Modification::setFinal(double final) {
-	tFinal = final;
-}*/
 
 void Modification::toFlux()
 {
 	std::cout << "################" << endl;
 	if (t == Calcul::SWAP)
 	{
-		std::cout << "SWAP | gain: " << gain << endl << "-> Depart:" << tDepart << endl << "<- Arrivée:" << tArrive << endl;
+		std::cout << "SWAP | gain: " << gain << " |  hash:" << getHash() << endl << "-> Depart:" << tDepart << endl << "<- Arrivée:" << tArrive << endl;
 	}
-	else
+	else 	if (t == Calcul::SWAP)
 	{
-		std::cout << "FUSION | gain: " << gain << endl;
+		std::cout << "FUSION | gain: " << gain << " |  hash:" << getHash() << endl << "-> Depart:" << tDepart << endl << "<- Arrivée:" << tArrive << endl;
+	}
+
+	else if (t == Calcul::JONCTION)
+	{
+		std::cout << "JONCTION | gain: " << gain << " |  hash:" << getHash() << endl;
 		std::cout << "-> Depart:" << tDepart << endl;
 		std::cout<< "<- Arrivée:" << tArrive << endl;
 		std::cout<< "Action " << act1->toString() << endl;
 		Action* bis = new Action(act1->getStart(), act2->getEnd(), Donnees::Data::getInstance().getPath(act1->getStart(), act2->getEnd()));
 		std::cout << "Action finale: " << bis->toString() << endl;
 	}
+	else if (t == Calcul::FUSION)
+	{
+		std::cout << "FUSION | gain: " << gain << " |  hash:" << getHash() << endl;
+		std::cout << "-> Depart:" << tDepart << endl;
+		std::cout<< "<- Arrivée:" << tArrive << endl;
+		std::cout<< "Action " << act1->toString() << endl;
+		Action* bis = new Action(act1->getStart(), act2->getEnd(), Donnees::Data::getInstance().getPath(act1->getStart(), act2->getEnd()));
+		std::cout << "Action finale: " << bis->toString() << endl;
+	}
+	else if (t == Calcul::SPLIT)
+		{
+			std::cout << "SPLIT | gain: " << gain << " |  hash:" << getHash() << endl;
+			std::cout << "-> Temps:" << tDepart << endl;
+			std::cout<< "Depot SPLIT:" << act1->toString() << endl;
+			std::cout << "Deplacement SPLIT: " << act2->toString() << endl;
+		}
 	std::cout << "################" << endl;
 }
 
@@ -222,15 +222,27 @@ string Modification::getHash()
 	{
 		sort (pInt.begin(), pInt.end(), compareInt);
 		s += "S?";
-		ss  << pInt.front();
-		ss << "#" << pInt.back();
+		ss <<  pInt.front();
+		ss << "#" << pInt.back() << "|" << tDepart << ";" << tArrive;
 		s += ss.str();
 	}
 	else if (t == Calcul::FUSION)
 	{
 		s += "F?";
-		ss << pInt.front() << "#" << pInt.back() << ";" << tDepart;
+		ss <<  pInt.front();
+		ss << "#" << pInt.back() << "|" << tDepart << ";" << tArrive;
 		s += ss.str();
+	}
+	else if (t == Calcul::JONCTION)
+	{
+		s += "J?";
+		ss << pInt.front() << "#" << pInt.back() << "|" << tDepart << ";" << tArrive;
+		s += ss.str();
+	}
+	else if (t == Calcul::SPLIT)
+	{
+		s += "SP?";
+		ss << act1->getCommande()->getProduit() << "#" << act1->getStart() << tDepart << ";" << tArrive;
 	}
 	return s;
 

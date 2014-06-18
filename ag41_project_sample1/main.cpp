@@ -136,11 +136,14 @@ int main(void)
 	std::ofstream out("ag41.log");
     std::streambuf *coutbuf = std::cout.rdbuf(); //save old buf
     std::cout.rdbuf(out.rdbuf()); //redirect std::cout to out.txt!
+    std::cout.precision(15);
 
+    string file = "./instances/instance15n2cl.txt";
 	//jeuEssai2();
     Parser* p = new Parser();
 
-    p->parseFile("./instances/instance10n3cl.txt");
+    p->parseFile(file);
+    std::cout << "Fichier traité: " << file << endl;
 	//std::cout << "reGeneration de la solution:" << endl;
     Solution *s = new Solution();
     s->generate();
@@ -159,7 +162,7 @@ int main(void)
 	std::cout << "Fini"<<"\n";
 
 
-	Tabou* t = new Tabou(500);
+	Tabou* t = new Tabou(50);
 	s = t->execute(s);
 	std::cout << s << endl;
 	std::cout << "Coût total de la solution: " << s->getValeur() << endl;
