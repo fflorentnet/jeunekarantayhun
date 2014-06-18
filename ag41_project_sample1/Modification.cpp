@@ -171,22 +171,22 @@ void Modification::setFinal(double final) {
 
 void Modification::toFlux()
 {
-	//std::cout << "################" << endl;
+	std::cout << "################" << endl;
 	if (t == Calcul::SWAP)
 	{
-		//std::cout << "SWAP | gain: " << gain << endl << "-> Depart:" << tDepart << endl << "<- Arrivée:" << tArrive << endl;
+		std::cout << "SWAP | gain: " << gain << endl << "-> Depart:" << tDepart << endl << "<- Arrivée:" << tArrive << endl;
 	}
 	else
 	{
-		//std::cout << "FUSION" << endl;
-		//std::cout << "-> Depart:" << tDepart << endl;
-		//std::cout<< "<- Arrivée:" << tArrive << endl;
-		//std::cout<< "Action 1" << act1->toString() << endl;
-		//std::cout<< "Action 2" << act2->toString() << endl;
+		std::cout << "FUSION | gain: " << gain << endl;
+		std::cout << "-> Depart:" << tDepart << endl;
+		std::cout<< "<- Arrivée:" << tArrive << endl;
+		std::cout<< "Action 1" << act1->toString() << endl;
+		std::cout<< "Action 2" << act2->toString() << endl;
 		Action* bis = new Action(act1->getStart(), act2->getEnd(), Donnees::Data::getInstance().getPath(act1->getStart(), act2->getEnd()));
-		//std::cout << "Action finale: " << bis->toString() << endl;
+		std::cout << "Action finale: " << bis->toString() << endl;
 	}
-	//std::cout << "################" << endl;
+	std::cout << "################" << endl;
 }
 
 bool compareInt (int i,int j) { return (i<j); }
@@ -201,13 +201,13 @@ string Modification::getHash()
 	int clientB;
 
 	if (act1->getStart() == NULL)
-		cclientA = "0";
+		cclientA = "Fournisseur 0";
 	else
 		cclientA = act1->getStart()->getNom();
-	if (act2->getStart() == NULL)
-		cclientB = "0";
+	if (act2->getEnd() == NULL)
+		cclientB = "Fournisseur 0";
 	else
-		cclientB = act2->getStart()->getNom();
+		cclientB = act2->getEnd()->getNom();
 
 
 	cclientA.erase(remove_if(cclientA.begin(), cclientA.end(), ::isalpha), cclientA.end());
@@ -219,21 +219,20 @@ string Modification::getHash()
 	vector<int> pInt(0);
 	pInt.push_back(clientA);
 	pInt.push_back(clientB);
-	sort (pInt.begin(), pInt.end(), compareInt);
 	if (t == Calcul::SWAP)
 	{
-		std::cout  << "1-" << endl << act1->toString() << endl << "2-" << endl << act2->toString() << endl;
-
+		sort (pInt.begin(), pInt.end(), compareInt);
+	//	std::cout  << "1-" << endl << act1->toString() << endl << "2-" << endl << act2->toString() << endl;
 		s += "S?";
 		ss  << pInt.front();
-		pInt.pop_back();
-		ss << "#" << pInt.front();
+		//pInt.pop_back();
+		ss << "#" << pInt.back();
 		s += ss.str();
 	}
 	else if (t == Calcul::FUSION)
 	{
 		s += "F?";
-		ss << pInt.front();
+		ss << pInt.front() << "#" << pInt.back() << ";" << tDepart;
 		s += ss.str();
 	}
 //	ss << endl << gain;

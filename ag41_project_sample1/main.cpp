@@ -145,7 +145,7 @@ void jeuEssai2()
 	std::cout << "Fini"<<"\n";
 
 
-	Tabou* t = new Tabou(500);
+	Tabou* t = new Tabou(10);
 	s = t->execute(s);
 	std::cout << s << endl;
 	std::cout << "Coût total de la solution: " << s->getValeur() << endl;
