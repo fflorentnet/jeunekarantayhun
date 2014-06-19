@@ -15,9 +15,9 @@ Parser::~Parser() {
 }
 
 void Parser::parseFile(string path) {
-	vector<Client*> vectClient;
-	vector<Produit*> vectProduit;
-	vector<Commande*> vectCommande;
+	vector<Client*> vectClient(0);
+	vector<Produit*> vectProduit(0);
+	vector<Commande*> vectCommande(0);
 
 	ifstream file(path.c_str(), ios::in);
 
@@ -38,7 +38,12 @@ void Parser::parseFile(string path) {
 			// Recuperation des donnees
 			if (!fields.empty()) {
 
+				if (fields.at(0) == "NBR_CUSTOMER") {
+					vectClient.reserve(atoi(fields.at(1).c_str()));
+				}
+
 				if (fields.at(0) == "NBR_PRODUCT") {
+					vectProduit.reserve(atoi(fields.at(1).c_str()));
 					for (double i = 0; i < atoi(fields.at(1).c_str()); i++) {
 						ostringstream oss;
 						oss << i;
@@ -58,8 +63,8 @@ void Parser::parseFile(string path) {
 				}
 
 				if (fields.at(0) == "CUSTOMER") {
-					Client* c = new Client("Client " + fields.at(1));
-					vectClient.push_back(c);
+
+					vectClient.push_back( new Client("Client " + fields.at(1)));
 
 					getline(file, line);
 					line.erase(std::remove(line.begin(), line.end(), ' '),
@@ -67,9 +72,9 @@ void Parser::parseFile(string path) {
 					fields = split(line, ":");
 
 					if (fields.at(0) == "CUSTOMER_HOLDING_COSTS")
-						c->setKStockage(atof(fields.at(1).c_str()));
+						vectClient.back()->setKStockage(atof(fields.at(1).c_str()));
 
-					Data::getInstance().ajouterClient(c);
+					Data::getInstance().ajouterClient(vectClient.back());
 
 					getline(file, line);
 					line.erase(std::remove(line.begin(), line.end(), ' '),
@@ -78,7 +83,7 @@ void Parser::parseFile(string path) {
 
 					if (fields.at(0)
 							== "TRANSPORTER_DELIVERY_TIME_SUPPLIER_CUSTOMER")
-						Data::getInstance().distanceClient(c, atof(fields.at(1).c_str()));
+						Data::getInstance().distanceClient(vectClient.back(), atof(fields.at(1).c_str()));
 				}
 
 				if (fields.at(0) == "JOB_CUSTOMER") {
@@ -97,8 +102,7 @@ void Parser::parseFile(string path) {
 
 						double numClient = atoi(fields.at(i).c_str()) - 1;
 						vectClient.at(numClient)->addCommande(co);
-						vectClient.at(numClient)->setKStockage(
-								3 * (double) numClient / 2);
+						//vectClient.at(numClient)->setKStockage(3 * (double) numClient / 2);
 					}
 				}
 
@@ -118,7 +122,6 @@ void Parser::parseFile(string path) {
 	}
 
 	file.close();
-
 }
 
 vector<string> Parser::split(string str, string separator) {

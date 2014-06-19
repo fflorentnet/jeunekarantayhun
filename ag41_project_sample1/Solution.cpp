@@ -203,8 +203,8 @@ double Solution::getValeur() {
 			}
 		}
 	}
-	//std::cout << "Coût de deplacement: " << tempDep << endl;
-	//std::cout << "Coût de stockage: " << tempStock << endl;
+	/*std::cout << "Coût de deplacement: " << tempDep << endl;
+	std::cout << "Coût de stockage: " << tempStock << endl;*/
 
 	return (tempDep+tempStock);
 }
@@ -233,27 +233,50 @@ double Solution::generate() {
 
 	sort(listeAscClient.begin(), listeAscClient.end(), compareClient);
 
+	vector<Client*> pathFournisseur(0);
+	pathFournisseur.push_back((Client*)NULL);
+
 	Client* cLast = (Client*) listeAscClient.back();
 	Client* cCurrent;
 	Commande* commTemp;
 	Commande* commLast = (Commande*) cLast->premiereCommande();
-	double temp = commLast->getDate()-Donnees::Data::getInstance().distanceClient(cLast);
-	t.push_back(temp);
 
-	if (sol[temp] == NULL)
-		sol[temp] = new vector<Action*>(0);
-	sol[temp]->push_back(new Action((Client*)0, cLast,pathNull));
+	double temp = commLast->getDate();
 
-	if (sol[temp+Donnees::Data::getInstance().distanceClient(cLast)] == NULL)
-		sol[temp+Donnees::Data::getInstance().distanceClient(cLast)] = new vector<Action*>(0);
+	double cpt = 0;
+	double tempsTemp = temp;
+	vector<double> meh(0);
+	double kapa = Donnees::Data::getInstance().getCapacite();
 
 	for (itComm = cLast->getCommande()->begin();itComm != cLast->getCommande()->end(); itComm++) {
+		if (cpt >= kapa)
+		{
+			temp -= 2 * Donnees::Data::getInstance().distanceClient(cLast);
+			std::cout << "Temp: " << temp << endl;
+			cpt=0;
+			meh.push_back(temp);
+		}
+		if (sol[temp] == NULL)
+			sol[temp] = new vector<Action*>(0);
 		commTemp = (Commande*) (*itComm);
-		sol[temp+Donnees::Data::getInstance().distanceClient(cLast)]->push_back(new Action(cLast, commTemp));
-
+		sol[temp]->push_back(new Action(cLast, commTemp));
+		cpt++;
 	}
 
-	sol[temp+Donnees::Data::getInstance().distanceClient(cLast)]->push_back(new Action(cLast, (Client*)0,pathNull));
+	while(!meh.empty())
+	{
+		if (sol[meh.back()] == NULL)
+			sol[meh.back()] = new vector<Action*>(0);
+		std::cout << "meeh | " << meh.back() << endl;
+		sol[meh.back()]->push_back(new Action(cLast,cLast, pathFournisseur));
+		meh.pop_back();
+	}
+	//sol[temp+Donnees::Data::getInstance().distanceClient(cLast)]->push_back(new Action(cLast, (Client*)0,pathNull));
+	t.push_back(temp);
+
+	if (sol[tempsTemp] == NULL)
+		sol[tempsTemp] = new vector<Action*>(0);
+	sol[tempsTemp]->push_back(new Action(cLast,(Client*)0,pathNull));
 
 	listeAscClient.pop_back();
 	double temps=0;
@@ -268,47 +291,51 @@ double Solution::generate() {
 		if (commTemp != NULL) {
 
 			double tempsDernierClientVisite = t.back();
-			//Si on a le temps de visiter le client, puis d'aller au fournisseur
-			if (commTemp->getDate()+Donnees::Data::getInstance().distanceClient(cCurrent) >= tempsDernierClientVisite) {
 
-				temps = tempsDernierClientVisite - 2*Donnees::Data::getInstance().distanceClient(cCurrent);
+			temps = tempsDernierClientVisite - (Donnees::Data::getInstance().distanceClient(cCurrent) + Donnees::Data::getInstance().distanceClient(cLast));
 
-				if (sol[temps] == NULL)
-					sol[temps] = new vector<Action*>(0);
-				sol[temps]->push_back(new Action((Client*)0, cCurrent, pathNull));
-				t.push_back(temps);
-				double retour = temps+Donnees::Data::getInstance().distanceClient(cCurrent);
+			if (sol[temps] == NULL)
+				sol[temps] = new vector<Action*>(0);
+			sol[temps]->push_back(new Action((Client*)0, cCurrent, pathNull));
+			t.push_back(temps);
+			double retour = temps;
 
-				if (sol[retour] == NULL)
-					sol[retour] = new vector<Action*>(0);
+			if (sol[retour] == NULL)
+				sol[retour] = new vector<Action*>(0);
+			double retourTemp = retour;
+			double cpt = 0;
+			vector<double> meh(0);
+			//meh.push_back(retour);
+			double kapa = Donnees::Data::getInstance().getCapacite();
+			for (itComm = cCurrent->getCommande()->begin(); itComm != cCurrent->getCommande()->end(); itComm++) {
+				if (cpt >= kapa)
+				{
+					if (retour == retourTemp)
+						meh.push_back(retour);
 
-				for (itComm = cCurrent->getCommande()->begin(); itComm != cCurrent->getCommande()->end(); itComm++) {
-					commTemp = (Commande*) (*itComm);
-					sol[retour]->push_back(new Action(cCurrent, commTemp));
+					retour -= 2 * Donnees::Data::getInstance().distanceClient(cCurrent);
+					cpt=0;
 				}
-
-				sol[retour]->push_back(new Action(cCurrent,(Client*)0, pathNull));
-				t.push_back(temps);
-
+				commTemp = (Commande*) (*itComm);
+				sol[retour]->push_back(new Action(cCurrent, commTemp));
+				cpt++;
 			}
-			else {
-				temps = cCurrent->premiereCommande()->getDate();
-
-				if (sol[temps] == NULL)
-					sol[temps] = new vector<Action*>(0);
-
-				sol[temps]->push_back(new Action((Client*)0, cCurrent,pathNull));
-
-				for (itComm = cCurrent->getCommande()->begin();	itComm != cCurrent->getCommande()->end(); itComm++) {
-					commTemp = cCurrent->premiereCommande();
-					sol[temps]->push_back(new Action(cCurrent, commTemp));
-				}
-
-				t.push_back(temps);
+			while(!meh.empty())
+			{
+				if (sol[meh.back()] == NULL)
+					sol[meh.back()] = new vector<Action*>(0);
+				sol[meh.back()]->push_back(new Action(cCurrent, cCurrent, pathFournisseur));
+				meh.pop_back();
 			}
+			if (sol[retourTemp] == NULL)
+				sol[retourTemp] = new vector<Action*>(0);
+
+			sol[retourTemp]->push_back(new Action(cCurrent,cLast, pathFournisseur));
+			t.push_back(retour);
 		}
 		listeAscClient.pop_back();
 	}
+	std::cout << this	 << endl;
 	map<double, vector<Action*>* >::iterator itMap;
 	map<double, vector<Action*>* >::iterator itMapNext;
 	vector<Action*> *itVec;
@@ -490,8 +517,6 @@ vector<Modification*> Solution::detectFusion()
 
 		L.pop_back();
 	}
-	La->~vector();
-	Lb->~vector();
 
 	return tempListe;
 

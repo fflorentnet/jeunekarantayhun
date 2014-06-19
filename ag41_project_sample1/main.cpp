@@ -138,12 +138,12 @@ int main(void)
     std::cout.rdbuf(out.rdbuf()); //redirect std::cout to out.txt!
     std::cout.precision(15);
 
-    string file = "./instances/instance15n2cl.txt";
+    string file = "./instances/instance20n2cl.txt";
 	//jeuEssai2();
     Parser* p = new Parser();
 
-    p->parseFile(file);
     std::cout << "Fichier traité: " << file << endl;
+    p->parseFile(file);
 	//std::cout << "reGeneration de la solution:" << endl;
     Solution *s = new Solution();
     s->generate();
