@@ -267,7 +267,6 @@ double Solution::generate() {
 	{
 		if (sol[meh.back()] == NULL)
 			sol[meh.back()] = new vector<Action*>(0);
-		std::cout << "meeh | " << meh.back() << endl;
 		sol[meh.back()]->push_back(new Action(cLast,cLast, pathFournisseur));
 		meh.pop_back();
 	}

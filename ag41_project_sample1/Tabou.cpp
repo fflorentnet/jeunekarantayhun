@@ -37,7 +37,7 @@ Solution* Tabou::execute(Solution *solInitiale)
 	Modification* temp;
 	Modification* rechercheTemp;
 
-	int MAXTABULISTSIZE = 50;
+	int MAXTABULISTSIZE = 10;
 	double max;
 	bool b = false;
 	bool bSol = false;
@@ -94,10 +94,11 @@ Solution* Tabou::execute(Solution *solInitiale)
 		}
 		if (bSol)
 		{
-			tabuList.push_back(bestCandidate);
 
 			if (bestCandidate != NULL)
 			{
+				tabuList.push_back(bestCandidate);
+
 				std::cout << "On applique la meilleure modification possible" << endl;
 				std::cout << "Best candidat:" << endl;
 				bestCandidate->toFlux();
@@ -119,8 +120,22 @@ Solution* Tabou::execute(Solution *solInitiale)
 			}
 			else
 			{
+				if (tabuList.empty())
+				{
+					std::cout << "Nombre d'iteration: " << i << endl;
+					std::cout << "Fin de l'algorithme tabou" << endl;
+					return sBest;
+				}
 				tabuList.pop_front();
+
 			}
+		}
+		else
+		{
+			std::cout << "Nombre d'iteration: " << i << endl;
+			std::cout << "Fin de l'algorithme tabou" << endl;
+			return sBest;
+
 		}
 		i++;
 	}

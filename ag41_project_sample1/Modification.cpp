@@ -215,7 +215,7 @@ string Modification::getHash()
 	cclientB.erase(remove_if(cclientB.begin(), cclientB.end(), ::isalpha), cclientB.end());
 	clientB = atoi (cclientB.c_str());
 
-	vector<int> pInt(0);
+	vector<int> pInt(2);
 	pInt.push_back(clientA);
 	pInt.push_back(clientB);
 	if (t == Calcul::SWAP)
