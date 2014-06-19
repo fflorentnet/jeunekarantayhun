@@ -12,9 +12,10 @@ namespace Calcul {
 
 class Tabou {
 private:
-	double it;
+	int it;
+	int nbTabou;
 public:
-	Tabou(double i);
+	Tabou(int i, int j);
 	virtual ~Tabou();
 	Solution* execute(Solution *solInitiale);
 };

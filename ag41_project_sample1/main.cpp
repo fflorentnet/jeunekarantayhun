@@ -131,45 +131,50 @@ void jeuEssai2()
 
 
 }
-int main(void)
+int main(int argc, char** argv)
 {
-	std::ofstream out("ag41.log");
-    std::streambuf *coutbuf = std::cout.rdbuf(); //save old buf
-    std::cout.rdbuf(out.rdbuf()); //redirect std::cout to out.txt!
-    std::cout.precision(15);
+	if(argc!=4) {
+		std::cout << "Nombre d'argument incorrect : fichier nbIterationTabou tailleListeTabou" << endl;
+	}
+	else {
+		std::ofstream out("ag41.log");
+		std::streambuf *coutbuf = std::cout.rdbuf(); //save old buf
+		std::cout.rdbuf(out.rdbuf()); //redirect std::cout to out.txt!
+		std::cout.precision(15);
 
-    string file = "./instances/instance20n2cl.txt";
-	//jeuEssai2();
-    Parser* p = new Parser();
+		string file = argv[1];
+		//jeuEssai2();
+		Parser* p = new Parser();
 
-    std::cout << "Fichier traité: " << file << endl;
-    p->parseFile(file);
-	//std::cout << "reGeneration de la solution:" << endl;
-    Solution *s = new Solution();
-    s->generate();
+		std::cout << "Fichier traité: " << file << endl;
+		p->parseFile(file);
+		//std::cout << "reGeneration de la solution:" << endl;
+		Solution *s = new Solution();
+		s->generate();
 
-	//std::cout << "Application d'un Floyd-Warshall:" << endl;
-	Donnees::Data::getInstance().floydWarshall();
-	Donnees::Data::getInstance().toString();
-	//std::cout << "terminé" << endl;
-	//std::cout << s << endl;
-
-
-	std::cout << "Difference de sol: " << s->computeDifference() << endl;
-	//std::cout << s << endl;
-
-	std::cout << "Coût total de la solution: " << s->getValeur() << endl;
-	std::cout << "Fini"<<"\n";
+		//std::cout << "Application d'un Floyd-Warshall:" << endl;
+		Donnees::Data::getInstance().floydWarshall();
+		Donnees::Data::getInstance().toString();
+		//std::cout << "terminé" << endl;
+		//std::cout << s << endl;
 
 
-	Tabou* t = new Tabou(50);
-	s = t->execute(s);
-	std::cout << s << endl;
-	std::cout << "Coût total de la solution: " << s->getValeur() << endl;
-	//std::cout << Donnees::Data::getInstance().distanceClient(c1,c3) << endl;
+		std::cout << "Difference de sol: " << s->computeDifference() << endl;
+		//std::cout << s << endl;
+
+		std::cout << "Coût total de la solution: " << s->getValeur() << endl;
+		std::cout << "Fini"<<"\n";
 
 
-    std::cout.rdbuf(coutbuf); //reset to standard output again
-    std::cout << "fini" <<endl;
+		Tabou* t = new Tabou(atoi(argv[2]), atoi(argv[3]));
+		s = t->execute(s);
+		std::cout << s << endl;
+		std::cout << "Coût total de la solution: " << s->getValeur() << endl;
+		//std::cout << Donnees::Data::getInstance().distanceClient(c1,c3) << endl;
+
+
+		std::cout.rdbuf(coutbuf); //reset to standard output again
+		std::cout << "fini" <<endl;
+	}
 	return 0;
 }

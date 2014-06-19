@@ -13,7 +13,7 @@
 
 namespace Calcul {
 
-Tabou::Tabou(double i): it(i) {
+Tabou::Tabou(int i, int j): it(i), nbTabou(j) {
 	// TODO Auto-generated constructor stub
 
 }
@@ -37,7 +37,7 @@ Solution* Tabou::execute(Solution *solInitiale)
 	Modification* temp;
 	Modification* rechercheTemp;
 
-	int MAXTABULISTSIZE = 10;
+	int MAXTABULISTSIZE = nbTabou;
 	double max;
 	bool b = false;
 	bool bSol = false;
