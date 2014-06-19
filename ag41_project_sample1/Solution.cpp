@@ -293,10 +293,6 @@ double Solution::generate() {
 			double tempsDernierClientVisite = t.back();
 
 			temps = tempsDernierClientVisite - (Donnees::Data::getInstance().distanceClient(cCurrent) + Donnees::Data::getInstance().distanceClient(cLast));
-
-			if (sol[temps] == NULL)
-				sol[temps] = new vector<Action*>(0);
-			sol[temps]->push_back(new Action((Client*)0, cCurrent, pathNull));
 			t.push_back(temps);
 			double retour = temps;
 
@@ -305,21 +301,25 @@ double Solution::generate() {
 			double retourTemp = retour;
 			double cpt = 0;
 			vector<double> meh(0);
-			//meh.push_back(retour);
+
 			double kapa = Donnees::Data::getInstance().getCapacite();
 			for (itComm = cCurrent->getCommande()->begin(); itComm != cCurrent->getCommande()->end(); itComm++) {
 				if (cpt >= kapa)
 				{
-					if (retour == retourTemp)
-						meh.push_back(retour);
 
 					retour -= 2 * Donnees::Data::getInstance().distanceClient(cCurrent);
+					if (retour != retourTemp)
+						meh.push_back(retour);
 					cpt=0;
 				}
+				if (sol[retour] == NULL)
+					sol[retour] = new vector<Action*>(0);
+
 				commTemp = (Commande*) (*itComm);
 				sol[retour]->push_back(new Action(cCurrent, commTemp));
 				cpt++;
 			}
+
 			while(!meh.empty())
 			{
 				if (sol[meh.back()] == NULL)
@@ -327,11 +327,16 @@ double Solution::generate() {
 				sol[meh.back()]->push_back(new Action(cCurrent, cCurrent, pathFournisseur));
 				meh.pop_back();
 			}
+			temps = retourTemp - 2 * Donnees::Data::getInstance().distanceClient(cCurrent);
+				if (sol[temps] == NULL)
+					sol[temps] = new vector<Action*>(0);
+			sol[temps]->insert(sol[temps]->begin(),new Action((Client*)0, cCurrent, pathNull));
+
 			if (sol[retourTemp] == NULL)
 				sol[retourTemp] = new vector<Action*>(0);
 
 			sol[retourTemp]->push_back(new Action(cCurrent,cLast, pathFournisseur));
-			t.push_back(retour);
+			t.push_back(retourTemp);
 		}
 		listeAscClient.pop_back();
 	}

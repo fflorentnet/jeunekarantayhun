@@ -15,9 +15,9 @@ Parser::~Parser() {
 }
 
 void Parser::parseFile(string path) {
-	vector<Client*> vectClient(0);
-	vector<Produit*> vectProduit(0);
-	vector<Commande*> vectCommande(0);
+	vector<Client*> vectClient;
+	vector<Produit*> vectProduit;
+	vector<Commande*> vectCommande;
 
 	ifstream file(path.c_str(), ios::in);
 
@@ -31,19 +31,14 @@ void Parser::parseFile(string path) {
 			line.erase(std::remove(line.begin(), line.end(), ' '), line.end()); // remove space
 			fields = split(line, ":");
 
-			// Affichage
+			// Affichage du fichier
 			//for(double i=0; i < fields.size(); i++)
 			//	cout << fields.at(i) << endl;
 
 			// Recuperation des donnees
 			if (!fields.empty()) {
 
-				if (fields.at(0) == "NBR_CUSTOMER") {
-					vectClient.reserve(atoi(fields.at(1).c_str()));
-				}
-
 				if (fields.at(0) == "NBR_PRODUCT") {
-					vectProduit.reserve(atoi(fields.at(1).c_str()));
 					for (double i = 0; i < atoi(fields.at(1).c_str()); i++) {
 						ostringstream oss;
 						oss << i;
@@ -55,7 +50,6 @@ void Parser::parseFile(string path) {
 
 				if (fields.at(0) == "TRANSPORTER_CAPACITY") {
 					Data::getInstance().setCapacite(atof(fields.at(1).c_str()));
-					// A implementer
 				}
 
 				if (fields.at(0) == "TRANSPORTER_DELIVERY_COST_ETA") {
@@ -63,8 +57,8 @@ void Parser::parseFile(string path) {
 				}
 
 				if (fields.at(0) == "CUSTOMER") {
-
-					vectClient.push_back( new Client("Client " + fields.at(1)));
+					Client* c = new Client("Client " + fields.at(1));
+					vectClient.push_back(c);
 
 					getline(file, line);
 					line.erase(std::remove(line.begin(), line.end(), ' '),
@@ -72,9 +66,9 @@ void Parser::parseFile(string path) {
 					fields = split(line, ":");
 
 					if (fields.at(0) == "CUSTOMER_HOLDING_COSTS")
-						vectClient.back()->setKStockage(atof(fields.at(1).c_str()));
+						c->setKStockage(atof(fields.at(1).c_str()));
 
-					Data::getInstance().ajouterClient(vectClient.back());
+					Data::getInstance().ajouterClient(c);
 
 					getline(file, line);
 					line.erase(std::remove(line.begin(), line.end(), ' '),
@@ -83,7 +77,7 @@ void Parser::parseFile(string path) {
 
 					if (fields.at(0)
 							== "TRANSPORTER_DELIVERY_TIME_SUPPLIER_CUSTOMER")
-						Data::getInstance().distanceClient(vectClient.back(), atof(fields.at(1).c_str()));
+						Data::getInstance().distanceClient(c, atof(fields.at(1).c_str()));
 				}
 
 				if (fields.at(0) == "JOB_CUSTOMER") {
@@ -96,13 +90,14 @@ void Parser::parseFile(string path) {
 					fields2 = split(fields2.at(1), ";");
 
 					for (double i = 0; i < fields.size(); i++) {
-						Commande* co = new Commande(vectProduit.at(i),
-								atof(fields2.at(i).c_str()));
-						vectCommande.push_back(co);
+						if(i<vectProduit.size()) {
+							Commande* co = new Commande(vectProduit.at(i),
+									atof(fields2.at(i).c_str()));
+							vectCommande.push_back(co);
 
-						double numClient = atoi(fields.at(i).c_str()) - 1;
-						vectClient.at(numClient)->addCommande(co);
-						//vectClient.at(numClient)->setKStockage(3 * (double) numClient / 2);
+							double numClient = atoi(fields.at(i).c_str()) - 1;
+							vectClient.at(numClient)->addCommande(co);
+						}
 					}
 				}
 
@@ -118,10 +113,49 @@ void Parser::parseFile(string path) {
 				}
 			}
 		}
-		//cout << "Cout transport : " << Data::getInstance().getKTransport();
+
+		/*
+		// Vérification
+		// produit
+		for(int i=0; i < vectProduit.size(); i++)
+			cout << vectProduit.at(i)->getNom() << endl;
+
+		// transporteur
+		cout << "TRANSPORTER_CAPACITY : " << Data::getInstance().getCapacite() << endl;
+		cout << "TRANSPORTER_DELIVERY_COST_ETA : " << Data::getInstance().getKTransport() << endl;
+
+		// client
+		for(int i=0; i < vectClient.size(); i++) {
+			cout << vectClient.at(i)->getNom() << " - " <<
+			vectClient.at(i)->getKStockage() << " - " <<
+			Data::getInstance().getDistanceFournisseurClient(vectClient.at(i)) << endl;
+
+			for(int j=0; j < vectClient.at(i)->getCommande()->size(); j++) {
+				cout << "Commande : " << vectClient.at(i)->getCommande()->at(j)->getProduit()->getNom() << " - " <<
+				vectClient.at(i)->getCommande()->at(j)->getDate() << endl;
+			}
+		}
+		cout << endl;
+
+		// commande
+		for(int i=0; i < vectCommande.size(); i++)
+			cout << "Commande : " << vectCommande.at(i)->getProduit()->getNom() << " - " <<
+			vectCommande.at(i)->getDate() << endl;
+		cout << endl;
+
+		// distance entre client
+		for(int i=0; i < vectClient.size()-1; i++) {
+			cout << "Distance client" << i << " , client" << i+1 << " : " <<
+			Data::getInstance().distanceClient(vectClient.at(i),vectClient.at(i+1)) << endl;
+		}
+		cout << "Distance client" << 0 << " , client" << vectClient.size()-1 << " : " <<
+			Data::getInstance().distanceClient(vectClient.at(0),vectClient.at(vectClient.size()-1)) << endl;
+		cout << endl;
+		*/
 	}
 
 	file.close();
+
 }
 
 vector<string> Parser::split(string str, string separator) {

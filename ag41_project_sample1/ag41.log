@@ -1,4 +1,40 @@
-Fichier traité: ./instances/instance15n2cl.txt
+Fichier traité: ./instances/instance20n2cl.txt
+Temp: 9800
+meeh | 9800
+meh
+meh back9400
+temps9400
+retourTemp9600
+------------> 	9400	 <------------ 
+9400:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+9400:  DEPOT de Produit 11 chez Client 1; (avant 10152.3)
+9400:  DEPOT de Produit 18 chez Client 1; (avant 10292.7)
+9400:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Client 1; -> Fournisseur -> Client 1; ) (distance :200)
+------------> 	9600	 <------------ 
+9600:  DEPOT de Produit 2 chez Client 1; (avant 10025.9)
+9600:  DEPOT de Produit 3 chez Client 1; (avant 10039)
+9600:  DEPOT de Produit 4 chez Client 1; (avant 10049)
+9600:  DEPOT de Produit 5 chez Client 1; (avant 10074.3)
+9600:  DEPOT de Produit 9 chez Client 1; (avant 10131.7)
+9600:  DEPOT de Produit 10 chez Client 1; (avant 10147.6)
+9600:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Client 1; -> Fournisseur -> Client 2; ) (distance :200)
+------------> 	9800	 <------------ 
+9800:  DEPOT de Produit 13 chez Client 2; (avant 10177.8)
+9800:  DEPOT de Produit 14 chez Client 2; (avant 10204.6)
+9800:  DEPOT de Produit 15 chez Client 2; (avant 10216.8)
+9800:  DEPOT de Produit 16 chez Client 2; (avant 10255)
+9800:  DEPOT de Produit 17 chez Client 2; (avant 10271.9)
+9800:  DEPOT de Produit 19 chez Client 2; (avant 10293.8)
+9800:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Client 2; -> Fournisseur -> Client 2; ) (distance :200)
+------------> 	10000	 <------------ 
+10000:  DEPOT de Produit 0 chez Client 2; (avant 10000)
+10000:  DEPOT de Produit 1 chez Client 2; (avant 10024.4)
+10000:  DEPOT de Produit 6 chez Client 2; (avant 10095)
+10000:  DEPOT de Produit 7 chez Client 2; (avant 10114.3)
+10000:  DEPOT de Produit 8 chez Client 2; (avant 10120.4)
+10000:  DEPOT de Produit 12 chez Client 2; (avant 10153.1)
+10000:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
 	Client 1;	Client 2;	
 Client 1;	inf		80		
 Client 2;	80		inf		
@@ -7,32 +43,2157 @@ Client 1;	100
 Client 2;	100
 Debut -> Client 1; -> Client 2; -> Fin
 Debut -> Client 2; -> Client 1; -> Fin
-Difference de sol: 9700
-Coût total de la solution: 3004.71830664384
+Difference de sol: 9300
+Coût total de la solution: 6234.11758904678
 Fini
 ######################################
 Solution courante:
-------------> 	0	 <------------ 
-0:  DEPLACEMENT depuis le Fournisseur vers Client 2; (Chemin direct) (distance :100)
 ------------> 	100	 <------------ 
-100:  DEPOT de Produit 2 chez Client 2; (avant 330.003)
-100:  DEPOT de Produit 6 chez Client 2; (avant 380.147)
-100:  DEPOT de Produit 8 chez Client 2; (avant 385.691)
-100:  DEPOT de Produit 11 chez Client 2; (avant 443.84)
-100:  DEPOT de Produit 12 chez Client 2; (avant 464.123)
-100:  DEPOT de Produit 13 chez Client 2; (avant 466.008)
-100:  DEPLACEMENT de Client 2; vers Client 1; (Chemin : Client 2; -> Fournisseur -> Client 1; ) (distance :200)
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPOT de Produit 11 chez Client 1; (avant 852.336)
+100:  DEPOT de Produit 18 chez Client 1; (avant 992.747)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Client 1; -> Fournisseur -> Client 1; ) (distance :200)
 ------------> 	300	 <------------ 
-300:  DEPOT de Produit 0 chez Client 1; (avant 300)
-300:  DEPOT de Produit 1 chez Client 1; (avant 319.045)
-300:  DEPOT de Produit 3 chez Client 1; (avant 343.444)
-300:  DEPOT de Produit 4 chez Client 1; (avant 348.581)
-300:  DEPOT de Produit 5 chez Client 1; (avant 360.184)
-300:  DEPOT de Produit 7 chez Client 1; (avant 382.96)
-300:  DEPOT de Produit 9 chez Client 1; (avant 399.868)
-300:  DEPOT de Produit 10 chez Client 1; (avant 420.868)
-300:  DEPOT de Produit 14 chez Client 1; (avant 479.323)
-300:  DEPLACEMENT de Client 1; vers le Fournisseur (Chemin direct) (distance :100)
+300:  DEPOT de Produit 2 chez Client 1; (avant 725.866)
+300:  DEPOT de Produit 3 chez Client 1; (avant 738.969)
+300:  DEPOT de Produit 4 chez Client 1; (avant 748.967)
+300:  DEPOT de Produit 5 chez Client 1; (avant 774.316)
+300:  DEPOT de Produit 9 chez Client 1; (avant 831.731)
+300:  DEPOT de Produit 10 chez Client 1; (avant 847.577)
+300:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Client 1; -> Fournisseur -> Client 2; ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 13 chez Client 2; (avant 877.774)
+500:  DEPOT de Produit 14 chez Client 2; (avant 904.602)
+500:  DEPOT de Produit 15 chez Client 2; (avant 916.792)
+500:  DEPOT de Produit 16 chez Client 2; (avant 955.02)
+500:  DEPOT de Produit 17 chez Client 2; (avant 971.924)
+500:  DEPOT de Produit 19 chez Client 2; (avant 993.821)
+500:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Client 2; -> Fournisseur -> Client 2; ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 0 chez Client 2; (avant 700)
+700:  DEPOT de Produit 1 chez Client 2; (avant 724.36)
+700:  DEPOT de Produit 6 chez Client 2; (avant 795.014)
+700:  DEPOT de Produit 7 chez Client 2; (avant 814.314)
+700:  DEPOT de Produit 8 chez Client 2; (avant 820.444)
+700:  DEPOT de Produit 12 chez Client 2; (avant 853.074)
+700:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
 
 ######################################
 Iteration 0
+On applique la meilleure modification possible
+Best candidat:
+################
+SWAP | gain: 0 |  hash:S?1#2|300;500
+-> Depart:300
+<- Arrivée:500
+################
+
+sCandidate : 6298.10257916671 | sBest : 6298.10257916671
+bestSolution found
+La modification a été appliquée et retenue.
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPOT de Produit 11 chez Client 1; (avant 852.336)
+100:  DEPOT de Produit 18 chez Client 1; (avant 992.747)
+100:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 13 chez Client 2; (avant 877.774)
+300:  DEPOT de Produit 14 chez Client 2; (avant 904.602)
+300:  DEPOT de Produit 15 chez Client 2; (avant 916.792)
+300:  DEPOT de Produit 16 chez Client 2; (avant 955.02)
+300:  DEPOT de Produit 17 chez Client 2; (avant 971.924)
+300:  DEPOT de Produit 19 chez Client 2; (avant 993.821)
+300:  DEPLACEMENT de Client 2; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 2 chez Client 1; (avant 725.866)
+500:  DEPOT de Produit 3 chez Client 1; (avant 738.969)
+500:  DEPOT de Produit 4 chez Client 1; (avant 748.967)
+500:  DEPOT de Produit 5 chez Client 1; (avant 774.316)
+500:  DEPOT de Produit 9 chez Client 1; (avant 831.731)
+500:  DEPOT de Produit 10 chez Client 1; (avant 847.577)
+500:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 0 chez Client 2; (avant 700)
+700:  DEPOT de Produit 1 chez Client 2; (avant 724.36)
+700:  DEPOT de Produit 6 chez Client 2; (avant 795.014)
+700:  DEPOT de Produit 7 chez Client 2; (avant 814.314)
+700:  DEPOT de Produit 8 chez Client 2; (avant 820.444)
+700:  DEPOT de Produit 12 chez Client 2; (avant 853.074)
+700:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 1
+On applique la meilleure modification possible
+Best candidat:
+################
+SWAP | gain: 63.984990119935 |  hash:S?2#2|300;500
+-> Depart:300
+<- Arrivée:500
+################
+
+sCandidate : 6234.11758904678 | sBest : 6298.10257916671
+bestSolution found
+La modification a été appliquée et retenue.
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPOT de Produit 11 chez Client 1; (avant 852.336)
+100:  DEPOT de Produit 18 chez Client 1; (avant 992.747)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 725.866)
+300:  DEPOT de Produit 3 chez Client 1; (avant 738.969)
+300:  DEPOT de Produit 4 chez Client 1; (avant 748.967)
+300:  DEPOT de Produit 5 chez Client 1; (avant 774.316)
+300:  DEPOT de Produit 9 chez Client 1; (avant 831.731)
+300:  DEPOT de Produit 10 chez Client 1; (avant 847.577)
+300:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 13 chez Client 2; (avant 877.774)
+500:  DEPOT de Produit 14 chez Client 2; (avant 904.602)
+500:  DEPOT de Produit 15 chez Client 2; (avant 916.792)
+500:  DEPOT de Produit 16 chez Client 2; (avant 955.02)
+500:  DEPOT de Produit 17 chez Client 2; (avant 971.924)
+500:  DEPOT de Produit 19 chez Client 2; (avant 993.821)
+500:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 0 chez Client 2; (avant 700)
+700:  DEPOT de Produit 1 chez Client 2; (avant 724.36)
+700:  DEPOT de Produit 6 chez Client 2; (avant 795.014)
+700:  DEPOT de Produit 7 chez Client 2; (avant 814.314)
+700:  DEPOT de Produit 8 chez Client 2; (avant 820.444)
+700:  DEPOT de Produit 12 chez Client 2; (avant 853.074)
+700:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 2
+On applique la meilleure modification possible
+Best candidat:
+################
+SWAP | gain: 0 |  hash:S?0#2|500;700
+-> Depart:500
+<- Arrivée:700
+################
+
+sCandidate : 6234.11758904678 | sBest : 6234.11758904678
+bestSolution found
+La modification a été appliquée et retenue.
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPOT de Produit 11 chez Client 1; (avant 852.336)
+100:  DEPOT de Produit 18 chez Client 1; (avant 992.747)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 725.866)
+300:  DEPOT de Produit 3 chez Client 1; (avant 738.969)
+300:  DEPOT de Produit 4 chez Client 1; (avant 748.967)
+300:  DEPOT de Produit 5 chez Client 1; (avant 774.316)
+300:  DEPOT de Produit 9 chez Client 1; (avant 831.731)
+300:  DEPOT de Produit 10 chez Client 1; (avant 847.577)
+300:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 0 chez Client 2; (avant 700)
+500:  DEPOT de Produit 1 chez Client 2; (avant 724.36)
+500:  DEPOT de Produit 6 chez Client 2; (avant 795.014)
+500:  DEPOT de Produit 7 chez Client 2; (avant 814.314)
+500:  DEPOT de Produit 8 chez Client 2; (avant 820.444)
+500:  DEPOT de Produit 12 chez Client 2; (avant 853.074)
+500:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 13 chez Client 2; (avant 877.774)
+700:  DEPOT de Produit 14 chez Client 2; (avant 904.602)
+700:  DEPOT de Produit 15 chez Client 2; (avant 916.792)
+700:  DEPOT de Produit 16 chez Client 2; (avant 955.02)
+700:  DEPOT de Produit 17 chez Client 2; (avant 971.924)
+700:  DEPOT de Produit 19 chez Client 2; (avant 993.821)
+700:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 3
+On applique la meilleure modification possible
+Best candidat:
+################
+SPLIT | gain: -248.367476463318 |  hash:SP?
+-> Temps:100
+Depot SPLIT: DEPOT de Produit 18 chez Client 1; (avant 992.747)
+Deplacement SPLIT:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur )
+################
+
+sCandidate : 6482.4850655101 | sBest : 6234.11758904678
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPOT de Produit 11 chez Client 1; (avant 1052.34)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Client 1; -> Fournisseur -> Client 1; ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 18 chez Client 1; (avant 1192.75)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 2 chez Client 1; (avant 925.866)
+500:  DEPOT de Produit 3 chez Client 1; (avant 938.969)
+500:  DEPOT de Produit 4 chez Client 1; (avant 948.967)
+500:  DEPOT de Produit 5 chez Client 1; (avant 974.316)
+500:  DEPOT de Produit 9 chez Client 1; (avant 1031.73)
+500:  DEPOT de Produit 10 chez Client 1; (avant 1047.58)
+500:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 0 chez Client 2; (avant 900)
+700:  DEPOT de Produit 1 chez Client 2; (avant 924.36)
+700:  DEPOT de Produit 6 chez Client 2; (avant 995.014)
+700:  DEPOT de Produit 7 chez Client 2; (avant 1014.31)
+700:  DEPOT de Produit 8 chez Client 2; (avant 1020.44)
+700:  DEPOT de Produit 12 chez Client 2; (avant 1053.07)
+700:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 13 chez Client 2; (avant 1077.77)
+900:  DEPOT de Produit 14 chez Client 2; (avant 1104.6)
+900:  DEPOT de Produit 15 chez Client 2; (avant 1116.79)
+900:  DEPOT de Produit 16 chez Client 2; (avant 1155.02)
+900:  DEPOT de Produit 17 chez Client 2; (avant 1171.92)
+900:  DEPOT de Produit 19 chez Client 2; (avant 1193.82)
+900:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 4
+On applique la meilleure modification possible
+Best candidat:
+################
+SWAP | gain: 0 |  hash:S?0#2|700;900
+-> Depart:700
+<- Arrivée:900
+################
+
+sCandidate : 6482.4850655101 | sBest : 6234.11758904678
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPOT de Produit 11 chez Client 1; (avant 1052.34)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Client 1; -> Fournisseur -> Client 1; ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 18 chez Client 1; (avant 1192.75)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 2 chez Client 1; (avant 925.866)
+500:  DEPOT de Produit 3 chez Client 1; (avant 938.969)
+500:  DEPOT de Produit 4 chez Client 1; (avant 948.967)
+500:  DEPOT de Produit 5 chez Client 1; (avant 974.316)
+500:  DEPOT de Produit 9 chez Client 1; (avant 1031.73)
+500:  DEPOT de Produit 10 chez Client 1; (avant 1047.58)
+500:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 13 chez Client 2; (avant 1077.77)
+700:  DEPOT de Produit 14 chez Client 2; (avant 1104.6)
+700:  DEPOT de Produit 15 chez Client 2; (avant 1116.79)
+700:  DEPOT de Produit 16 chez Client 2; (avant 1155.02)
+700:  DEPOT de Produit 17 chez Client 2; (avant 1171.92)
+700:  DEPOT de Produit 19 chez Client 2; (avant 1193.82)
+700:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 0 chez Client 2; (avant 900)
+900:  DEPOT de Produit 1 chez Client 2; (avant 924.36)
+900:  DEPOT de Produit 6 chez Client 2; (avant 995.014)
+900:  DEPOT de Produit 7 chez Client 2; (avant 1014.31)
+900:  DEPOT de Produit 8 chez Client 2; (avant 1020.44)
+900:  DEPOT de Produit 12 chez Client 2; (avant 1053.07)
+900:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 5
+On applique la meilleure modification possible
+Best candidat:
+################
+SWAP | gain: -63.984990119935 |  hash:S?1#2|500;700
+-> Depart:500
+<- Arrivée:700
+################
+
+sCandidate : 6546.47005563003 | sBest : 6234.11758904678
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPOT de Produit 11 chez Client 1; (avant 1052.34)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Client 1; -> Fournisseur -> Client 1; ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 18 chez Client 1; (avant 1192.75)
+300:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 13 chez Client 2; (avant 1077.77)
+500:  DEPOT de Produit 14 chez Client 2; (avant 1104.6)
+500:  DEPOT de Produit 15 chez Client 2; (avant 1116.79)
+500:  DEPOT de Produit 16 chez Client 2; (avant 1155.02)
+500:  DEPOT de Produit 17 chez Client 2; (avant 1171.92)
+500:  DEPOT de Produit 19 chez Client 2; (avant 1193.82)
+500:  DEPLACEMENT de Client 2; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 2 chez Client 1; (avant 925.866)
+700:  DEPOT de Produit 3 chez Client 1; (avant 938.969)
+700:  DEPOT de Produit 4 chez Client 1; (avant 948.967)
+700:  DEPOT de Produit 5 chez Client 1; (avant 974.316)
+700:  DEPOT de Produit 9 chez Client 1; (avant 1031.73)
+700:  DEPOT de Produit 10 chez Client 1; (avant 1047.58)
+700:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 0 chez Client 2; (avant 900)
+900:  DEPOT de Produit 1 chez Client 2; (avant 924.36)
+900:  DEPOT de Produit 6 chez Client 2; (avant 995.014)
+900:  DEPOT de Produit 7 chez Client 2; (avant 1014.31)
+900:  DEPOT de Produit 8 chez Client 2; (avant 1020.44)
+900:  DEPOT de Produit 12 chez Client 2; (avant 1053.07)
+900:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 6
+On applique la meilleure modification possible
+Best candidat:
+################
+SWAP | gain: 63.984990119935 |  hash:S?2#2|500;700
+-> Depart:500
+<- Arrivée:700
+################
+
+sCandidate : 6482.4850655101 | sBest : 6234.11758904678
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPOT de Produit 11 chez Client 1; (avant 1052.34)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Client 1; -> Fournisseur -> Client 1; ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 18 chez Client 1; (avant 1192.75)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 2 chez Client 1; (avant 925.866)
+500:  DEPOT de Produit 3 chez Client 1; (avant 938.969)
+500:  DEPOT de Produit 4 chez Client 1; (avant 948.967)
+500:  DEPOT de Produit 5 chez Client 1; (avant 974.316)
+500:  DEPOT de Produit 9 chez Client 1; (avant 1031.73)
+500:  DEPOT de Produit 10 chez Client 1; (avant 1047.58)
+500:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 13 chez Client 2; (avant 1077.77)
+700:  DEPOT de Produit 14 chez Client 2; (avant 1104.6)
+700:  DEPOT de Produit 15 chez Client 2; (avant 1116.79)
+700:  DEPOT de Produit 16 chez Client 2; (avant 1155.02)
+700:  DEPOT de Produit 17 chez Client 2; (avant 1171.92)
+700:  DEPOT de Produit 19 chez Client 2; (avant 1193.82)
+700:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 0 chez Client 2; (avant 900)
+900:  DEPOT de Produit 1 chez Client 2; (avant 924.36)
+900:  DEPOT de Produit 6 chez Client 2; (avant 995.014)
+900:  DEPOT de Produit 7 chez Client 2; (avant 1014.31)
+900:  DEPOT de Produit 8 chez Client 2; (avant 1020.44)
+900:  DEPOT de Produit 12 chez Client 2; (avant 1053.07)
+900:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 7
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPOT de Produit 11 chez Client 1; (avant 1052.34)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Client 1; -> Fournisseur -> Client 1; ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 18 chez Client 1; (avant 1192.75)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 2 chez Client 1; (avant 925.866)
+500:  DEPOT de Produit 3 chez Client 1; (avant 938.969)
+500:  DEPOT de Produit 4 chez Client 1; (avant 948.967)
+500:  DEPOT de Produit 5 chez Client 1; (avant 974.316)
+500:  DEPOT de Produit 9 chez Client 1; (avant 1031.73)
+500:  DEPOT de Produit 10 chez Client 1; (avant 1047.58)
+500:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 13 chez Client 2; (avant 1077.77)
+700:  DEPOT de Produit 14 chez Client 2; (avant 1104.6)
+700:  DEPOT de Produit 15 chez Client 2; (avant 1116.79)
+700:  DEPOT de Produit 16 chez Client 2; (avant 1155.02)
+700:  DEPOT de Produit 17 chez Client 2; (avant 1171.92)
+700:  DEPOT de Produit 19 chez Client 2; (avant 1193.82)
+700:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 0 chez Client 2; (avant 900)
+900:  DEPOT de Produit 1 chez Client 2; (avant 924.36)
+900:  DEPOT de Produit 6 chez Client 2; (avant 995.014)
+900:  DEPOT de Produit 7 chez Client 2; (avant 1014.31)
+900:  DEPOT de Produit 8 chez Client 2; (avant 1020.44)
+900:  DEPOT de Produit 12 chez Client 2; (avant 1053.07)
+900:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 8
+On applique la meilleure modification possible
+Best candidat:
+################
+SWAP | gain: -741.837382316588 |  hash:S?1#2|300;500
+-> Depart:300
+<- Arrivée:500
+################
+
+sCandidate : 7224.32244782669 | sBest : 6234.11758904678
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPOT de Produit 11 chez Client 1; (avant 1052.34)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 925.866)
+300:  DEPOT de Produit 3 chez Client 1; (avant 938.969)
+300:  DEPOT de Produit 4 chez Client 1; (avant 948.967)
+300:  DEPOT de Produit 5 chez Client 1; (avant 974.316)
+300:  DEPOT de Produit 9 chez Client 1; (avant 1031.73)
+300:  DEPOT de Produit 10 chez Client 1; (avant 1047.58)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 18 chez Client 1; (avant 1192.75)
+500:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 13 chez Client 2; (avant 1077.77)
+700:  DEPOT de Produit 14 chez Client 2; (avant 1104.6)
+700:  DEPOT de Produit 15 chez Client 2; (avant 1116.79)
+700:  DEPOT de Produit 16 chez Client 2; (avant 1155.02)
+700:  DEPOT de Produit 17 chez Client 2; (avant 1171.92)
+700:  DEPOT de Produit 19 chez Client 2; (avant 1193.82)
+700:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 0 chez Client 2; (avant 900)
+900:  DEPOT de Produit 1 chez Client 2; (avant 924.36)
+900:  DEPOT de Produit 6 chez Client 2; (avant 995.014)
+900:  DEPOT de Produit 7 chez Client 2; (avant 1014.31)
+900:  DEPOT de Produit 8 chez Client 2; (avant 1020.44)
+900:  DEPOT de Produit 12 chez Client 2; (avant 1053.07)
+900:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 9
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPOT de Produit 11 chez Client 1; (avant 1052.34)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 925.866)
+300:  DEPOT de Produit 3 chez Client 1; (avant 938.969)
+300:  DEPOT de Produit 4 chez Client 1; (avant 948.967)
+300:  DEPOT de Produit 5 chez Client 1; (avant 974.316)
+300:  DEPOT de Produit 9 chez Client 1; (avant 1031.73)
+300:  DEPOT de Produit 10 chez Client 1; (avant 1047.58)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 18 chez Client 1; (avant 1192.75)
+500:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 13 chez Client 2; (avant 1077.77)
+700:  DEPOT de Produit 14 chez Client 2; (avant 1104.6)
+700:  DEPOT de Produit 15 chez Client 2; (avant 1116.79)
+700:  DEPOT de Produit 16 chez Client 2; (avant 1155.02)
+700:  DEPOT de Produit 17 chez Client 2; (avant 1171.92)
+700:  DEPOT de Produit 19 chez Client 2; (avant 1193.82)
+700:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 0 chez Client 2; (avant 900)
+900:  DEPOT de Produit 1 chez Client 2; (avant 924.36)
+900:  DEPOT de Produit 6 chez Client 2; (avant 995.014)
+900:  DEPOT de Produit 7 chez Client 2; (avant 1014.31)
+900:  DEPOT de Produit 8 chez Client 2; (avant 1020.44)
+900:  DEPOT de Produit 12 chez Client 2; (avant 1053.07)
+900:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 10
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPOT de Produit 11 chez Client 1; (avant 1052.34)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 925.866)
+300:  DEPOT de Produit 3 chez Client 1; (avant 938.969)
+300:  DEPOT de Produit 4 chez Client 1; (avant 948.967)
+300:  DEPOT de Produit 5 chez Client 1; (avant 974.316)
+300:  DEPOT de Produit 9 chez Client 1; (avant 1031.73)
+300:  DEPOT de Produit 10 chez Client 1; (avant 1047.58)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 18 chez Client 1; (avant 1192.75)
+500:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 13 chez Client 2; (avant 1077.77)
+700:  DEPOT de Produit 14 chez Client 2; (avant 1104.6)
+700:  DEPOT de Produit 15 chez Client 2; (avant 1116.79)
+700:  DEPOT de Produit 16 chez Client 2; (avant 1155.02)
+700:  DEPOT de Produit 17 chez Client 2; (avant 1171.92)
+700:  DEPOT de Produit 19 chez Client 2; (avant 1193.82)
+700:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 0 chez Client 2; (avant 900)
+900:  DEPOT de Produit 1 chez Client 2; (avant 924.36)
+900:  DEPOT de Produit 6 chez Client 2; (avant 995.014)
+900:  DEPOT de Produit 7 chez Client 2; (avant 1014.31)
+900:  DEPOT de Produit 8 chez Client 2; (avant 1020.44)
+900:  DEPOT de Produit 12 chez Client 2; (avant 1053.07)
+900:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 11
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPOT de Produit 11 chez Client 1; (avant 1052.34)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 925.866)
+300:  DEPOT de Produit 3 chez Client 1; (avant 938.969)
+300:  DEPOT de Produit 4 chez Client 1; (avant 948.967)
+300:  DEPOT de Produit 5 chez Client 1; (avant 974.316)
+300:  DEPOT de Produit 9 chez Client 1; (avant 1031.73)
+300:  DEPOT de Produit 10 chez Client 1; (avant 1047.58)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 18 chez Client 1; (avant 1192.75)
+500:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 13 chez Client 2; (avant 1077.77)
+700:  DEPOT de Produit 14 chez Client 2; (avant 1104.6)
+700:  DEPOT de Produit 15 chez Client 2; (avant 1116.79)
+700:  DEPOT de Produit 16 chez Client 2; (avant 1155.02)
+700:  DEPOT de Produit 17 chez Client 2; (avant 1171.92)
+700:  DEPOT de Produit 19 chez Client 2; (avant 1193.82)
+700:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 0 chez Client 2; (avant 900)
+900:  DEPOT de Produit 1 chez Client 2; (avant 924.36)
+900:  DEPOT de Produit 6 chez Client 2; (avant 995.014)
+900:  DEPOT de Produit 7 chez Client 2; (avant 1014.31)
+900:  DEPOT de Produit 8 chez Client 2; (avant 1020.44)
+900:  DEPOT de Produit 12 chez Client 2; (avant 1053.07)
+900:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 12
+On applique la meilleure modification possible
+Best candidat:
+################
+SPLIT | gain: -100 |  hash:SP?
+-> Temps:100
+Depot SPLIT: DEPOT de Produit 11 chez Client 1; (avant 1052.34)
+Deplacement SPLIT:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur )
+################
+
+sCandidate : 7324.32244782669 | sBest : 6234.11758904678
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Client 1; -> Fournisseur -> Client 1; ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 11 chez Client 1; (avant 1252.34)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 2 chez Client 1; (avant 1125.87)
+500:  DEPOT de Produit 3 chez Client 1; (avant 1138.97)
+500:  DEPOT de Produit 4 chez Client 1; (avant 1148.97)
+500:  DEPOT de Produit 5 chez Client 1; (avant 1174.32)
+500:  DEPOT de Produit 9 chez Client 1; (avant 1231.73)
+500:  DEPOT de Produit 10 chez Client 1; (avant 1247.58)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 18 chez Client 1; (avant 1392.75)
+700:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 13 chez Client 2; (avant 1277.77)
+900:  DEPOT de Produit 14 chez Client 2; (avant 1304.6)
+900:  DEPOT de Produit 15 chez Client 2; (avant 1316.79)
+900:  DEPOT de Produit 16 chez Client 2; (avant 1355.02)
+900:  DEPOT de Produit 17 chez Client 2; (avant 1371.92)
+900:  DEPOT de Produit 19 chez Client 2; (avant 1393.82)
+900:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 0 chez Client 2; (avant 1100)
+1100:  DEPOT de Produit 1 chez Client 2; (avant 1124.36)
+1100:  DEPOT de Produit 6 chez Client 2; (avant 1195.01)
+1100:  DEPOT de Produit 7 chez Client 2; (avant 1214.31)
+1100:  DEPOT de Produit 8 chez Client 2; (avant 1220.44)
+1100:  DEPOT de Produit 12 chez Client 2; (avant 1253.07)
+1100:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 13
+On applique la meilleure modification possible
+Best candidat:
+################
+SWAP | gain: 0 |  hash:S?0#2|900;1100
+-> Depart:900
+<- Arrivée:1100
+################
+
+sCandidate : 7324.32244782669 | sBest : 6234.11758904678
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Client 1; -> Fournisseur -> Client 1; ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 11 chez Client 1; (avant 1252.34)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 2 chez Client 1; (avant 1125.87)
+500:  DEPOT de Produit 3 chez Client 1; (avant 1138.97)
+500:  DEPOT de Produit 4 chez Client 1; (avant 1148.97)
+500:  DEPOT de Produit 5 chez Client 1; (avant 1174.32)
+500:  DEPOT de Produit 9 chez Client 1; (avant 1231.73)
+500:  DEPOT de Produit 10 chez Client 1; (avant 1247.58)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 18 chez Client 1; (avant 1392.75)
+700:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 0 chez Client 2; (avant 1100)
+900:  DEPOT de Produit 1 chez Client 2; (avant 1124.36)
+900:  DEPOT de Produit 6 chez Client 2; (avant 1195.01)
+900:  DEPOT de Produit 7 chez Client 2; (avant 1214.31)
+900:  DEPOT de Produit 8 chez Client 2; (avant 1220.44)
+900:  DEPOT de Produit 12 chez Client 2; (avant 1253.07)
+900:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1277.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1304.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1316.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1355.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1371.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1393.82)
+1100:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 14
+On applique la meilleure modification possible
+Best candidat:
+################
+SWAP | gain: -741.837382316589 |  hash:S?1#1|300;500
+-> Depart:300
+<- Arrivée:500
+################
+
+sCandidate : 8066.15983014328 | sBest : 6234.11758904678
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 1125.87)
+300:  DEPOT de Produit 3 chez Client 1; (avant 1138.97)
+300:  DEPOT de Produit 4 chez Client 1; (avant 1148.97)
+300:  DEPOT de Produit 5 chez Client 1; (avant 1174.32)
+300:  DEPOT de Produit 9 chez Client 1; (avant 1231.73)
+300:  DEPOT de Produit 10 chez Client 1; (avant 1247.58)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 11 chez Client 1; (avant 1252.34)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 18 chez Client 1; (avant 1392.75)
+700:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 0 chez Client 2; (avant 1100)
+900:  DEPOT de Produit 1 chez Client 2; (avant 1124.36)
+900:  DEPOT de Produit 6 chez Client 2; (avant 1195.01)
+900:  DEPOT de Produit 7 chez Client 2; (avant 1214.31)
+900:  DEPOT de Produit 8 chez Client 2; (avant 1220.44)
+900:  DEPOT de Produit 12 chez Client 2; (avant 1253.07)
+900:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1277.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1304.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1316.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1355.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1371.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1393.82)
+1100:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 15
+On applique la meilleure modification possible
+Best candidat:
+################
+SWAP | gain: -805.822372436523 |  hash:S?1#2|700;900
+-> Depart:700
+<- Arrivée:900
+################
+
+sCandidate : 8871.9822025798 | sBest : 6234.11758904678
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 1125.87)
+300:  DEPOT de Produit 3 chez Client 1; (avant 1138.97)
+300:  DEPOT de Produit 4 chez Client 1; (avant 1148.97)
+300:  DEPOT de Produit 5 chez Client 1; (avant 1174.32)
+300:  DEPOT de Produit 9 chez Client 1; (avant 1231.73)
+300:  DEPOT de Produit 10 chez Client 1; (avant 1247.58)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 11 chez Client 1; (avant 1252.34)
+500:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 0 chez Client 2; (avant 1100)
+700:  DEPOT de Produit 1 chez Client 2; (avant 1124.36)
+700:  DEPOT de Produit 6 chez Client 2; (avant 1195.01)
+700:  DEPOT de Produit 7 chez Client 2; (avant 1214.31)
+700:  DEPOT de Produit 8 chez Client 2; (avant 1220.44)
+700:  DEPOT de Produit 12 chez Client 2; (avant 1253.07)
+700:  DEPLACEMENT de Client 2; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 18 chez Client 1; (avant 1392.75)
+900:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1277.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1304.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1316.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1355.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1371.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1393.82)
+1100:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 16
+On applique la meilleure modification possible
+Best candidat:
+################
+SWAP | gain: 805.822372436523 |  hash:S?2#2|700;900
+-> Depart:700
+<- Arrivée:900
+################
+
+sCandidate : 8066.15983014328 | sBest : 6234.11758904678
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 1125.87)
+300:  DEPOT de Produit 3 chez Client 1; (avant 1138.97)
+300:  DEPOT de Produit 4 chez Client 1; (avant 1148.97)
+300:  DEPOT de Produit 5 chez Client 1; (avant 1174.32)
+300:  DEPOT de Produit 9 chez Client 1; (avant 1231.73)
+300:  DEPOT de Produit 10 chez Client 1; (avant 1247.58)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 11 chez Client 1; (avant 1252.34)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 18 chez Client 1; (avant 1392.75)
+700:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 0 chez Client 2; (avant 1100)
+900:  DEPOT de Produit 1 chez Client 2; (avant 1124.36)
+900:  DEPOT de Produit 6 chez Client 2; (avant 1195.01)
+900:  DEPOT de Produit 7 chez Client 2; (avant 1214.31)
+900:  DEPOT de Produit 8 chez Client 2; (avant 1220.44)
+900:  DEPOT de Produit 12 chez Client 2; (avant 1253.07)
+900:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1277.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1304.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1316.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1355.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1371.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1393.82)
+1100:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 17
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 1125.87)
+300:  DEPOT de Produit 3 chez Client 1; (avant 1138.97)
+300:  DEPOT de Produit 4 chez Client 1; (avant 1148.97)
+300:  DEPOT de Produit 5 chez Client 1; (avant 1174.32)
+300:  DEPOT de Produit 9 chez Client 1; (avant 1231.73)
+300:  DEPOT de Produit 10 chez Client 1; (avant 1247.58)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 11 chez Client 1; (avant 1252.34)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 18 chez Client 1; (avant 1392.75)
+700:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 0 chez Client 2; (avant 1100)
+900:  DEPOT de Produit 1 chez Client 2; (avant 1124.36)
+900:  DEPOT de Produit 6 chez Client 2; (avant 1195.01)
+900:  DEPOT de Produit 7 chez Client 2; (avant 1214.31)
+900:  DEPOT de Produit 8 chez Client 2; (avant 1220.44)
+900:  DEPOT de Produit 12 chez Client 2; (avant 1253.07)
+900:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1277.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1304.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1316.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1355.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1371.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1393.82)
+1100:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 18
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 1125.87)
+300:  DEPOT de Produit 3 chez Client 1; (avant 1138.97)
+300:  DEPOT de Produit 4 chez Client 1; (avant 1148.97)
+300:  DEPOT de Produit 5 chez Client 1; (avant 1174.32)
+300:  DEPOT de Produit 9 chez Client 1; (avant 1231.73)
+300:  DEPOT de Produit 10 chez Client 1; (avant 1247.58)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 11 chez Client 1; (avant 1252.34)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 18 chez Client 1; (avant 1392.75)
+700:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 0 chez Client 2; (avant 1100)
+900:  DEPOT de Produit 1 chez Client 2; (avant 1124.36)
+900:  DEPOT de Produit 6 chez Client 2; (avant 1195.01)
+900:  DEPOT de Produit 7 chez Client 2; (avant 1214.31)
+900:  DEPOT de Produit 8 chez Client 2; (avant 1220.44)
+900:  DEPOT de Produit 12 chez Client 2; (avant 1253.07)
+900:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1277.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1304.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1316.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1355.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1371.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1393.82)
+1100:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 19
+On applique la meilleure modification possible
+Best candidat:
+################
+SWAP | gain: 0 |  hash:S?1#2|500;700
+-> Depart:500
+<- Arrivée:700
+################
+
+sCandidate : 8066.15983014328 | sBest : 6234.11758904678
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 1125.87)
+300:  DEPOT de Produit 3 chez Client 1; (avant 1138.97)
+300:  DEPOT de Produit 4 chez Client 1; (avant 1148.97)
+300:  DEPOT de Produit 5 chez Client 1; (avant 1174.32)
+300:  DEPOT de Produit 9 chez Client 1; (avant 1231.73)
+300:  DEPOT de Produit 10 chez Client 1; (avant 1247.58)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 18 chez Client 1; (avant 1392.75)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 11 chez Client 1; (avant 1252.34)
+700:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 0 chez Client 2; (avant 1100)
+900:  DEPOT de Produit 1 chez Client 2; (avant 1124.36)
+900:  DEPOT de Produit 6 chez Client 2; (avant 1195.01)
+900:  DEPOT de Produit 7 chez Client 2; (avant 1214.31)
+900:  DEPOT de Produit 8 chez Client 2; (avant 1220.44)
+900:  DEPOT de Produit 12 chez Client 2; (avant 1253.07)
+900:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1277.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1304.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1316.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1355.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1371.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1393.82)
+1100:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 20
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 1125.87)
+300:  DEPOT de Produit 3 chez Client 1; (avant 1138.97)
+300:  DEPOT de Produit 4 chez Client 1; (avant 1148.97)
+300:  DEPOT de Produit 5 chez Client 1; (avant 1174.32)
+300:  DEPOT de Produit 9 chez Client 1; (avant 1231.73)
+300:  DEPOT de Produit 10 chez Client 1; (avant 1247.58)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 18 chez Client 1; (avant 1392.75)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 11 chez Client 1; (avant 1252.34)
+700:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 0 chez Client 2; (avant 1100)
+900:  DEPOT de Produit 1 chez Client 2; (avant 1124.36)
+900:  DEPOT de Produit 6 chez Client 2; (avant 1195.01)
+900:  DEPOT de Produit 7 chez Client 2; (avant 1214.31)
+900:  DEPOT de Produit 8 chez Client 2; (avant 1220.44)
+900:  DEPOT de Produit 12 chez Client 2; (avant 1253.07)
+900:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1277.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1304.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1316.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1355.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1371.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1393.82)
+1100:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 21
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 1125.87)
+300:  DEPOT de Produit 3 chez Client 1; (avant 1138.97)
+300:  DEPOT de Produit 4 chez Client 1; (avant 1148.97)
+300:  DEPOT de Produit 5 chez Client 1; (avant 1174.32)
+300:  DEPOT de Produit 9 chez Client 1; (avant 1231.73)
+300:  DEPOT de Produit 10 chez Client 1; (avant 1247.58)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 18 chez Client 1; (avant 1392.75)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 11 chez Client 1; (avant 1252.34)
+700:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 0 chez Client 2; (avant 1100)
+900:  DEPOT de Produit 1 chez Client 2; (avant 1124.36)
+900:  DEPOT de Produit 6 chez Client 2; (avant 1195.01)
+900:  DEPOT de Produit 7 chez Client 2; (avant 1214.31)
+900:  DEPOT de Produit 8 chez Client 2; (avant 1220.44)
+900:  DEPOT de Produit 12 chez Client 2; (avant 1253.07)
+900:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1277.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1304.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1316.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1355.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1371.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1393.82)
+1100:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 22
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 1125.87)
+300:  DEPOT de Produit 3 chez Client 1; (avant 1138.97)
+300:  DEPOT de Produit 4 chez Client 1; (avant 1148.97)
+300:  DEPOT de Produit 5 chez Client 1; (avant 1174.32)
+300:  DEPOT de Produit 9 chez Client 1; (avant 1231.73)
+300:  DEPOT de Produit 10 chez Client 1; (avant 1247.58)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 18 chez Client 1; (avant 1392.75)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 11 chez Client 1; (avant 1252.34)
+700:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 0 chez Client 2; (avant 1100)
+900:  DEPOT de Produit 1 chez Client 2; (avant 1124.36)
+900:  DEPOT de Produit 6 chez Client 2; (avant 1195.01)
+900:  DEPOT de Produit 7 chez Client 2; (avant 1214.31)
+900:  DEPOT de Produit 8 chez Client 2; (avant 1220.44)
+900:  DEPOT de Produit 12 chez Client 2; (avant 1253.07)
+900:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1277.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1304.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1316.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1355.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1371.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1393.82)
+1100:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 23
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 1125.87)
+300:  DEPOT de Produit 3 chez Client 1; (avant 1138.97)
+300:  DEPOT de Produit 4 chez Client 1; (avant 1148.97)
+300:  DEPOT de Produit 5 chez Client 1; (avant 1174.32)
+300:  DEPOT de Produit 9 chez Client 1; (avant 1231.73)
+300:  DEPOT de Produit 10 chez Client 1; (avant 1247.58)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 18 chez Client 1; (avant 1392.75)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 11 chez Client 1; (avant 1252.34)
+700:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 0 chez Client 2; (avant 1100)
+900:  DEPOT de Produit 1 chez Client 2; (avant 1124.36)
+900:  DEPOT de Produit 6 chez Client 2; (avant 1195.01)
+900:  DEPOT de Produit 7 chez Client 2; (avant 1214.31)
+900:  DEPOT de Produit 8 chez Client 2; (avant 1220.44)
+900:  DEPOT de Produit 12 chez Client 2; (avant 1253.07)
+900:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1277.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1304.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1316.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1355.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1371.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1393.82)
+1100:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 24
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 1125.87)
+300:  DEPOT de Produit 3 chez Client 1; (avant 1138.97)
+300:  DEPOT de Produit 4 chez Client 1; (avant 1148.97)
+300:  DEPOT de Produit 5 chez Client 1; (avant 1174.32)
+300:  DEPOT de Produit 9 chez Client 1; (avant 1231.73)
+300:  DEPOT de Produit 10 chez Client 1; (avant 1247.58)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 18 chez Client 1; (avant 1392.75)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 11 chez Client 1; (avant 1252.34)
+700:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 0 chez Client 2; (avant 1100)
+900:  DEPOT de Produit 1 chez Client 2; (avant 1124.36)
+900:  DEPOT de Produit 6 chez Client 2; (avant 1195.01)
+900:  DEPOT de Produit 7 chez Client 2; (avant 1214.31)
+900:  DEPOT de Produit 8 chez Client 2; (avant 1220.44)
+900:  DEPOT de Produit 12 chez Client 2; (avant 1253.07)
+900:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1277.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1304.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1316.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1355.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1371.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1393.82)
+1100:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 25
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 1125.87)
+300:  DEPOT de Produit 3 chez Client 1; (avant 1138.97)
+300:  DEPOT de Produit 4 chez Client 1; (avant 1148.97)
+300:  DEPOT de Produit 5 chez Client 1; (avant 1174.32)
+300:  DEPOT de Produit 9 chez Client 1; (avant 1231.73)
+300:  DEPOT de Produit 10 chez Client 1; (avant 1247.58)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 18 chez Client 1; (avant 1392.75)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 11 chez Client 1; (avant 1252.34)
+700:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 0 chez Client 2; (avant 1100)
+900:  DEPOT de Produit 1 chez Client 2; (avant 1124.36)
+900:  DEPOT de Produit 6 chez Client 2; (avant 1195.01)
+900:  DEPOT de Produit 7 chez Client 2; (avant 1214.31)
+900:  DEPOT de Produit 8 chez Client 2; (avant 1220.44)
+900:  DEPOT de Produit 12 chez Client 2; (avant 1253.07)
+900:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1277.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1304.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1316.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1355.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1371.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1393.82)
+1100:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 26
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 1125.87)
+300:  DEPOT de Produit 3 chez Client 1; (avant 1138.97)
+300:  DEPOT de Produit 4 chez Client 1; (avant 1148.97)
+300:  DEPOT de Produit 5 chez Client 1; (avant 1174.32)
+300:  DEPOT de Produit 9 chez Client 1; (avant 1231.73)
+300:  DEPOT de Produit 10 chez Client 1; (avant 1247.58)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 18 chez Client 1; (avant 1392.75)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 11 chez Client 1; (avant 1252.34)
+700:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 0 chez Client 2; (avant 1100)
+900:  DEPOT de Produit 1 chez Client 2; (avant 1124.36)
+900:  DEPOT de Produit 6 chez Client 2; (avant 1195.01)
+900:  DEPOT de Produit 7 chez Client 2; (avant 1214.31)
+900:  DEPOT de Produit 8 chez Client 2; (avant 1220.44)
+900:  DEPOT de Produit 12 chez Client 2; (avant 1253.07)
+900:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1277.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1304.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1316.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1355.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1371.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1393.82)
+1100:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 27
+On applique la meilleure modification possible
+Best candidat:
+################
+SPLIT | gain: -841.837382316589 |  hash:SP?
+-> Temps:300
+Depot SPLIT: DEPOT de Produit 10 chez Client 1; (avant 1247.58)
+Deplacement SPLIT:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur )
+################
+
+sCandidate : 8907.99721245986 | sBest : 6234.11758904678
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 1325.87)
+300:  DEPOT de Produit 3 chez Client 1; (avant 1338.97)
+300:  DEPOT de Produit 4 chez Client 1; (avant 1348.97)
+300:  DEPOT de Produit 5 chez Client 1; (avant 1374.32)
+300:  DEPOT de Produit 9 chez Client 1; (avant 1431.73)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Client 1; -> Fournisseur -> Client 1; ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 10 chez Client 1; (avant 1447.58)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 18 chez Client 1; (avant 1592.75)
+700:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 11 chez Client 1; (avant 1452.34)
+900:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 0 chez Client 2; (avant 1300)
+1100:  DEPOT de Produit 1 chez Client 2; (avant 1324.36)
+1100:  DEPOT de Produit 6 chez Client 2; (avant 1395.01)
+1100:  DEPOT de Produit 7 chez Client 2; (avant 1414.31)
+1100:  DEPOT de Produit 8 chez Client 2; (avant 1420.44)
+1100:  DEPOT de Produit 12 chez Client 2; (avant 1453.07)
+1100:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1300	 <------------ 
+1300:  DEPOT de Produit 13 chez Client 2; (avant 1477.77)
+1300:  DEPOT de Produit 14 chez Client 2; (avant 1504.6)
+1300:  DEPOT de Produit 15 chez Client 2; (avant 1516.79)
+1300:  DEPOT de Produit 16 chez Client 2; (avant 1555.02)
+1300:  DEPOT de Produit 17 chez Client 2; (avant 1571.92)
+1300:  DEPOT de Produit 19 chez Client 2; (avant 1593.82)
+1300:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 28
+On applique la meilleure modification possible
+Best candidat:
+################
+SWAP | gain: 0 |  hash:S?1#1|500;700
+-> Depart:500
+<- Arrivée:700
+################
+
+sCandidate : 8907.99721245986 | sBest : 6234.11758904678
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 1325.87)
+300:  DEPOT de Produit 3 chez Client 1; (avant 1338.97)
+300:  DEPOT de Produit 4 chez Client 1; (avant 1348.97)
+300:  DEPOT de Produit 5 chez Client 1; (avant 1374.32)
+300:  DEPOT de Produit 9 chez Client 1; (avant 1431.73)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 18 chez Client 1; (avant 1592.75)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 10 chez Client 1; (avant 1447.58)
+700:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 11 chez Client 1; (avant 1452.34)
+900:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 0 chez Client 2; (avant 1300)
+1100:  DEPOT de Produit 1 chez Client 2; (avant 1324.36)
+1100:  DEPOT de Produit 6 chez Client 2; (avant 1395.01)
+1100:  DEPOT de Produit 7 chez Client 2; (avant 1414.31)
+1100:  DEPOT de Produit 8 chez Client 2; (avant 1420.44)
+1100:  DEPOT de Produit 12 chez Client 2; (avant 1453.07)
+1100:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1300	 <------------ 
+1300:  DEPOT de Produit 13 chez Client 2; (avant 1477.77)
+1300:  DEPOT de Produit 14 chez Client 2; (avant 1504.6)
+1300:  DEPOT de Produit 15 chez Client 2; (avant 1516.79)
+1300:  DEPOT de Produit 16 chez Client 2; (avant 1555.02)
+1300:  DEPOT de Produit 17 chez Client 2; (avant 1571.92)
+1300:  DEPOT de Produit 19 chez Client 2; (avant 1593.82)
+1300:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 29
+On applique la meilleure modification possible
+Best candidat:
+################
+SWAP | gain: 0 |  hash:S?0#2|1100;1300
+-> Depart:1100
+<- Arrivée:1300
+################
+
+sCandidate : 8907.99721245986 | sBest : 6234.11758904678
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 1325.87)
+300:  DEPOT de Produit 3 chez Client 1; (avant 1338.97)
+300:  DEPOT de Produit 4 chez Client 1; (avant 1348.97)
+300:  DEPOT de Produit 5 chez Client 1; (avant 1374.32)
+300:  DEPOT de Produit 9 chez Client 1; (avant 1431.73)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 18 chez Client 1; (avant 1592.75)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 10 chez Client 1; (avant 1447.58)
+700:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 11 chez Client 1; (avant 1452.34)
+900:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1477.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1504.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1516.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1555.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1571.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1593.82)
+1100:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1300	 <------------ 
+1300:  DEPOT de Produit 0 chez Client 2; (avant 1300)
+1300:  DEPOT de Produit 1 chez Client 2; (avant 1324.36)
+1300:  DEPOT de Produit 6 chez Client 2; (avant 1395.01)
+1300:  DEPOT de Produit 7 chez Client 2; (avant 1414.31)
+1300:  DEPOT de Produit 8 chez Client 2; (avant 1420.44)
+1300:  DEPOT de Produit 12 chez Client 2; (avant 1453.07)
+1300:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 30
+On applique la meilleure modification possible
+Best candidat:
+################
+SWAP | gain: -805.822372436523 |  hash:S?1#2|900;1100
+-> Depart:900
+<- Arrivée:1100
+################
+
+sCandidate : 9713.81958489639 | sBest : 6234.11758904678
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 1325.87)
+300:  DEPOT de Produit 3 chez Client 1; (avant 1338.97)
+300:  DEPOT de Produit 4 chez Client 1; (avant 1348.97)
+300:  DEPOT de Produit 5 chez Client 1; (avant 1374.32)
+300:  DEPOT de Produit 9 chez Client 1; (avant 1431.73)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 18 chez Client 1; (avant 1592.75)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 10 chez Client 1; (avant 1447.58)
+700:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 13 chez Client 2; (avant 1477.77)
+900:  DEPOT de Produit 14 chez Client 2; (avant 1504.6)
+900:  DEPOT de Produit 15 chez Client 2; (avant 1516.79)
+900:  DEPOT de Produit 16 chez Client 2; (avant 1555.02)
+900:  DEPOT de Produit 17 chez Client 2; (avant 1571.92)
+900:  DEPOT de Produit 19 chez Client 2; (avant 1593.82)
+900:  DEPLACEMENT de Client 2; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 11 chez Client 1; (avant 1452.34)
+1100:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1300	 <------------ 
+1300:  DEPOT de Produit 0 chez Client 2; (avant 1300)
+1300:  DEPOT de Produit 1 chez Client 2; (avant 1324.36)
+1300:  DEPOT de Produit 6 chez Client 2; (avant 1395.01)
+1300:  DEPOT de Produit 7 chez Client 2; (avant 1414.31)
+1300:  DEPOT de Produit 8 chez Client 2; (avant 1420.44)
+1300:  DEPOT de Produit 12 chez Client 2; (avant 1453.07)
+1300:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 31
+On applique la meilleure modification possible
+Best candidat:
+################
+SWAP | gain: 805.822372436523 |  hash:S?2#2|900;1100
+-> Depart:900
+<- Arrivée:1100
+################
+
+sCandidate : 8907.99721245986 | sBest : 6234.11758904678
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 1325.87)
+300:  DEPOT de Produit 3 chez Client 1; (avant 1338.97)
+300:  DEPOT de Produit 4 chez Client 1; (avant 1348.97)
+300:  DEPOT de Produit 5 chez Client 1; (avant 1374.32)
+300:  DEPOT de Produit 9 chez Client 1; (avant 1431.73)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 18 chez Client 1; (avant 1592.75)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 10 chez Client 1; (avant 1447.58)
+700:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 11 chez Client 1; (avant 1452.34)
+900:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1477.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1504.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1516.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1555.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1571.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1593.82)
+1100:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1300	 <------------ 
+1300:  DEPOT de Produit 0 chez Client 2; (avant 1300)
+1300:  DEPOT de Produit 1 chez Client 2; (avant 1324.36)
+1300:  DEPOT de Produit 6 chez Client 2; (avant 1395.01)
+1300:  DEPOT de Produit 7 chez Client 2; (avant 1414.31)
+1300:  DEPOT de Produit 8 chez Client 2; (avant 1420.44)
+1300:  DEPOT de Produit 12 chez Client 2; (avant 1453.07)
+1300:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 32
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 1325.87)
+300:  DEPOT de Produit 3 chez Client 1; (avant 1338.97)
+300:  DEPOT de Produit 4 chez Client 1; (avant 1348.97)
+300:  DEPOT de Produit 5 chez Client 1; (avant 1374.32)
+300:  DEPOT de Produit 9 chez Client 1; (avant 1431.73)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 18 chez Client 1; (avant 1592.75)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 10 chez Client 1; (avant 1447.58)
+700:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 11 chez Client 1; (avant 1452.34)
+900:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1477.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1504.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1516.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1555.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1571.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1593.82)
+1100:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1300	 <------------ 
+1300:  DEPOT de Produit 0 chez Client 2; (avant 1300)
+1300:  DEPOT de Produit 1 chez Client 2; (avant 1324.36)
+1300:  DEPOT de Produit 6 chez Client 2; (avant 1395.01)
+1300:  DEPOT de Produit 7 chez Client 2; (avant 1414.31)
+1300:  DEPOT de Produit 8 chez Client 2; (avant 1420.44)
+1300:  DEPOT de Produit 12 chez Client 2; (avant 1453.07)
+1300:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 33
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 1325.87)
+300:  DEPOT de Produit 3 chez Client 1; (avant 1338.97)
+300:  DEPOT de Produit 4 chez Client 1; (avant 1348.97)
+300:  DEPOT de Produit 5 chez Client 1; (avant 1374.32)
+300:  DEPOT de Produit 9 chez Client 1; (avant 1431.73)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 18 chez Client 1; (avant 1592.75)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 10 chez Client 1; (avant 1447.58)
+700:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 11 chez Client 1; (avant 1452.34)
+900:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1477.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1504.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1516.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1555.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1571.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1593.82)
+1100:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1300	 <------------ 
+1300:  DEPOT de Produit 0 chez Client 2; (avant 1300)
+1300:  DEPOT de Produit 1 chez Client 2; (avant 1324.36)
+1300:  DEPOT de Produit 6 chez Client 2; (avant 1395.01)
+1300:  DEPOT de Produit 7 chez Client 2; (avant 1414.31)
+1300:  DEPOT de Produit 8 chez Client 2; (avant 1420.44)
+1300:  DEPOT de Produit 12 chez Client 2; (avant 1453.07)
+1300:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 34
+On applique la meilleure modification possible
+Best candidat:
+################
+SWAP | gain: 593.469905853271 |  hash:S?1#1|300;500
+-> Depart:300
+<- Arrivée:500
+################
+
+sCandidate : 8314.52730660659 | sBest : 6234.11758904678
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 18 chez Client 1; (avant 1592.75)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 2 chez Client 1; (avant 1325.87)
+500:  DEPOT de Produit 3 chez Client 1; (avant 1338.97)
+500:  DEPOT de Produit 4 chez Client 1; (avant 1348.97)
+500:  DEPOT de Produit 5 chez Client 1; (avant 1374.32)
+500:  DEPOT de Produit 9 chez Client 1; (avant 1431.73)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 10 chez Client 1; (avant 1447.58)
+700:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 11 chez Client 1; (avant 1452.34)
+900:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1477.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1504.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1516.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1555.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1571.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1593.82)
+1100:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1300	 <------------ 
+1300:  DEPOT de Produit 0 chez Client 2; (avant 1300)
+1300:  DEPOT de Produit 1 chez Client 2; (avant 1324.36)
+1300:  DEPOT de Produit 6 chez Client 2; (avant 1395.01)
+1300:  DEPOT de Produit 7 chez Client 2; (avant 1414.31)
+1300:  DEPOT de Produit 8 chez Client 2; (avant 1420.44)
+1300:  DEPOT de Produit 12 chez Client 2; (avant 1453.07)
+1300:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 35
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 18 chez Client 1; (avant 1592.75)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 2 chez Client 1; (avant 1325.87)
+500:  DEPOT de Produit 3 chez Client 1; (avant 1338.97)
+500:  DEPOT de Produit 4 chez Client 1; (avant 1348.97)
+500:  DEPOT de Produit 5 chez Client 1; (avant 1374.32)
+500:  DEPOT de Produit 9 chez Client 1; (avant 1431.73)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 10 chez Client 1; (avant 1447.58)
+700:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 11 chez Client 1; (avant 1452.34)
+900:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1477.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1504.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1516.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1555.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1571.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1593.82)
+1100:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1300	 <------------ 
+1300:  DEPOT de Produit 0 chez Client 2; (avant 1300)
+1300:  DEPOT de Produit 1 chez Client 2; (avant 1324.36)
+1300:  DEPOT de Produit 6 chez Client 2; (avant 1395.01)
+1300:  DEPOT de Produit 7 chez Client 2; (avant 1414.31)
+1300:  DEPOT de Produit 8 chez Client 2; (avant 1420.44)
+1300:  DEPOT de Produit 12 chez Client 2; (avant 1453.07)
+1300:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 36
+On applique la meilleure modification possible
+Best candidat:
+################
+SWAP | gain: -9.09494701772928e-13 |  hash:S?1#2|700;900
+-> Depart:700
+<- Arrivée:900
+################
+
+sCandidate : 8314.52730660659 | sBest : 6234.11758904678
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 18 chez Client 1; (avant 1592.75)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 2 chez Client 1; (avant 1325.87)
+500:  DEPOT de Produit 3 chez Client 1; (avant 1338.97)
+500:  DEPOT de Produit 4 chez Client 1; (avant 1348.97)
+500:  DEPOT de Produit 5 chez Client 1; (avant 1374.32)
+500:  DEPOT de Produit 9 chez Client 1; (avant 1431.73)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 11 chez Client 1; (avant 1452.34)
+700:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 10 chez Client 1; (avant 1447.58)
+900:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1477.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1504.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1516.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1555.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1571.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1593.82)
+1100:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1300	 <------------ 
+1300:  DEPOT de Produit 0 chez Client 2; (avant 1300)
+1300:  DEPOT de Produit 1 chez Client 2; (avant 1324.36)
+1300:  DEPOT de Produit 6 chez Client 2; (avant 1395.01)
+1300:  DEPOT de Produit 7 chez Client 2; (avant 1414.31)
+1300:  DEPOT de Produit 8 chez Client 2; (avant 1420.44)
+1300:  DEPOT de Produit 12 chez Client 2; (avant 1453.07)
+1300:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 37
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 18 chez Client 1; (avant 1592.75)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 2 chez Client 1; (avant 1325.87)
+500:  DEPOT de Produit 3 chez Client 1; (avant 1338.97)
+500:  DEPOT de Produit 4 chez Client 1; (avant 1348.97)
+500:  DEPOT de Produit 5 chez Client 1; (avant 1374.32)
+500:  DEPOT de Produit 9 chez Client 1; (avant 1431.73)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 11 chez Client 1; (avant 1452.34)
+700:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 10 chez Client 1; (avant 1447.58)
+900:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1477.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1504.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1516.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1555.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1571.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1593.82)
+1100:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1300	 <------------ 
+1300:  DEPOT de Produit 0 chez Client 2; (avant 1300)
+1300:  DEPOT de Produit 1 chez Client 2; (avant 1324.36)
+1300:  DEPOT de Produit 6 chez Client 2; (avant 1395.01)
+1300:  DEPOT de Produit 7 chez Client 2; (avant 1414.31)
+1300:  DEPOT de Produit 8 chez Client 2; (avant 1420.44)
+1300:  DEPOT de Produit 12 chez Client 2; (avant 1453.07)
+1300:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 38
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 18 chez Client 1; (avant 1592.75)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 2 chez Client 1; (avant 1325.87)
+500:  DEPOT de Produit 3 chez Client 1; (avant 1338.97)
+500:  DEPOT de Produit 4 chez Client 1; (avant 1348.97)
+500:  DEPOT de Produit 5 chez Client 1; (avant 1374.32)
+500:  DEPOT de Produit 9 chez Client 1; (avant 1431.73)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 11 chez Client 1; (avant 1452.34)
+700:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 10 chez Client 1; (avant 1447.58)
+900:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1477.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1504.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1516.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1555.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1571.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1593.82)
+1100:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1300	 <------------ 
+1300:  DEPOT de Produit 0 chez Client 2; (avant 1300)
+1300:  DEPOT de Produit 1 chez Client 2; (avant 1324.36)
+1300:  DEPOT de Produit 6 chez Client 2; (avant 1395.01)
+1300:  DEPOT de Produit 7 chez Client 2; (avant 1414.31)
+1300:  DEPOT de Produit 8 chez Client 2; (avant 1420.44)
+1300:  DEPOT de Produit 12 chez Client 2; (avant 1453.07)
+1300:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 39
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 18 chez Client 1; (avant 1592.75)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 2 chez Client 1; (avant 1325.87)
+500:  DEPOT de Produit 3 chez Client 1; (avant 1338.97)
+500:  DEPOT de Produit 4 chez Client 1; (avant 1348.97)
+500:  DEPOT de Produit 5 chez Client 1; (avant 1374.32)
+500:  DEPOT de Produit 9 chez Client 1; (avant 1431.73)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 11 chez Client 1; (avant 1452.34)
+700:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 10 chez Client 1; (avant 1447.58)
+900:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1477.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1504.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1516.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1555.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1571.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1593.82)
+1100:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1300	 <------------ 
+1300:  DEPOT de Produit 0 chez Client 2; (avant 1300)
+1300:  DEPOT de Produit 1 chez Client 2; (avant 1324.36)
+1300:  DEPOT de Produit 6 chez Client 2; (avant 1395.01)
+1300:  DEPOT de Produit 7 chez Client 2; (avant 1414.31)
+1300:  DEPOT de Produit 8 chez Client 2; (avant 1420.44)
+1300:  DEPOT de Produit 12 chez Client 2; (avant 1453.07)
+1300:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 40
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 18 chez Client 1; (avant 1592.75)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 2 chez Client 1; (avant 1325.87)
+500:  DEPOT de Produit 3 chez Client 1; (avant 1338.97)
+500:  DEPOT de Produit 4 chez Client 1; (avant 1348.97)
+500:  DEPOT de Produit 5 chez Client 1; (avant 1374.32)
+500:  DEPOT de Produit 9 chez Client 1; (avant 1431.73)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 11 chez Client 1; (avant 1452.34)
+700:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 10 chez Client 1; (avant 1447.58)
+900:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1477.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1504.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1516.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1555.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1571.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1593.82)
+1100:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1300	 <------------ 
+1300:  DEPOT de Produit 0 chez Client 2; (avant 1300)
+1300:  DEPOT de Produit 1 chez Client 2; (avant 1324.36)
+1300:  DEPOT de Produit 6 chez Client 2; (avant 1395.01)
+1300:  DEPOT de Produit 7 chez Client 2; (avant 1414.31)
+1300:  DEPOT de Produit 8 chez Client 2; (avant 1420.44)
+1300:  DEPOT de Produit 12 chez Client 2; (avant 1453.07)
+1300:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 41
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 18 chez Client 1; (avant 1592.75)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 2 chez Client 1; (avant 1325.87)
+500:  DEPOT de Produit 3 chez Client 1; (avant 1338.97)
+500:  DEPOT de Produit 4 chez Client 1; (avant 1348.97)
+500:  DEPOT de Produit 5 chez Client 1; (avant 1374.32)
+500:  DEPOT de Produit 9 chez Client 1; (avant 1431.73)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 11 chez Client 1; (avant 1452.34)
+700:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 10 chez Client 1; (avant 1447.58)
+900:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1477.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1504.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1516.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1555.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1571.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1593.82)
+1100:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1300	 <------------ 
+1300:  DEPOT de Produit 0 chez Client 2; (avant 1300)
+1300:  DEPOT de Produit 1 chez Client 2; (avant 1324.36)
+1300:  DEPOT de Produit 6 chez Client 2; (avant 1395.01)
+1300:  DEPOT de Produit 7 chez Client 2; (avant 1414.31)
+1300:  DEPOT de Produit 8 chez Client 2; (avant 1420.44)
+1300:  DEPOT de Produit 12 chez Client 2; (avant 1453.07)
+1300:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 42
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 18 chez Client 1; (avant 1592.75)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 2 chez Client 1; (avant 1325.87)
+500:  DEPOT de Produit 3 chez Client 1; (avant 1338.97)
+500:  DEPOT de Produit 4 chez Client 1; (avant 1348.97)
+500:  DEPOT de Produit 5 chez Client 1; (avant 1374.32)
+500:  DEPOT de Produit 9 chez Client 1; (avant 1431.73)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 11 chez Client 1; (avant 1452.34)
+700:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 10 chez Client 1; (avant 1447.58)
+900:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1477.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1504.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1516.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1555.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1571.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1593.82)
+1100:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1300	 <------------ 
+1300:  DEPOT de Produit 0 chez Client 2; (avant 1300)
+1300:  DEPOT de Produit 1 chez Client 2; (avant 1324.36)
+1300:  DEPOT de Produit 6 chez Client 2; (avant 1395.01)
+1300:  DEPOT de Produit 7 chez Client 2; (avant 1414.31)
+1300:  DEPOT de Produit 8 chez Client 2; (avant 1420.44)
+1300:  DEPOT de Produit 12 chez Client 2; (avant 1453.07)
+1300:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 43
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 18 chez Client 1; (avant 1592.75)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 2 chez Client 1; (avant 1325.87)
+500:  DEPOT de Produit 3 chez Client 1; (avant 1338.97)
+500:  DEPOT de Produit 4 chez Client 1; (avant 1348.97)
+500:  DEPOT de Produit 5 chez Client 1; (avant 1374.32)
+500:  DEPOT de Produit 9 chez Client 1; (avant 1431.73)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 11 chez Client 1; (avant 1452.34)
+700:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 10 chez Client 1; (avant 1447.58)
+900:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1477.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1504.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1516.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1555.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1571.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1593.82)
+1100:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1300	 <------------ 
+1300:  DEPOT de Produit 0 chez Client 2; (avant 1300)
+1300:  DEPOT de Produit 1 chez Client 2; (avant 1324.36)
+1300:  DEPOT de Produit 6 chez Client 2; (avant 1395.01)
+1300:  DEPOT de Produit 7 chez Client 2; (avant 1414.31)
+1300:  DEPOT de Produit 8 chez Client 2; (avant 1420.44)
+1300:  DEPOT de Produit 12 chez Client 2; (avant 1453.07)
+1300:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 44
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 18 chez Client 1; (avant 1592.75)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 2 chez Client 1; (avant 1325.87)
+500:  DEPOT de Produit 3 chez Client 1; (avant 1338.97)
+500:  DEPOT de Produit 4 chez Client 1; (avant 1348.97)
+500:  DEPOT de Produit 5 chez Client 1; (avant 1374.32)
+500:  DEPOT de Produit 9 chez Client 1; (avant 1431.73)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 11 chez Client 1; (avant 1452.34)
+700:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 10 chez Client 1; (avant 1447.58)
+900:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1477.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1504.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1516.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1555.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1571.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1593.82)
+1100:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1300	 <------------ 
+1300:  DEPOT de Produit 0 chez Client 2; (avant 1300)
+1300:  DEPOT de Produit 1 chez Client 2; (avant 1324.36)
+1300:  DEPOT de Produit 6 chez Client 2; (avant 1395.01)
+1300:  DEPOT de Produit 7 chez Client 2; (avant 1414.31)
+1300:  DEPOT de Produit 8 chez Client 2; (avant 1420.44)
+1300:  DEPOT de Produit 12 chez Client 2; (avant 1453.07)
+1300:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 45
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 18 chez Client 1; (avant 1592.75)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 2 chez Client 1; (avant 1325.87)
+500:  DEPOT de Produit 3 chez Client 1; (avant 1338.97)
+500:  DEPOT de Produit 4 chez Client 1; (avant 1348.97)
+500:  DEPOT de Produit 5 chez Client 1; (avant 1374.32)
+500:  DEPOT de Produit 9 chez Client 1; (avant 1431.73)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 11 chez Client 1; (avant 1452.34)
+700:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 10 chez Client 1; (avant 1447.58)
+900:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1477.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1504.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1516.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1555.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1571.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1593.82)
+1100:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1300	 <------------ 
+1300:  DEPOT de Produit 0 chez Client 2; (avant 1300)
+1300:  DEPOT de Produit 1 chez Client 2; (avant 1324.36)
+1300:  DEPOT de Produit 6 chez Client 2; (avant 1395.01)
+1300:  DEPOT de Produit 7 chez Client 2; (avant 1414.31)
+1300:  DEPOT de Produit 8 chez Client 2; (avant 1420.44)
+1300:  DEPOT de Produit 12 chez Client 2; (avant 1453.07)
+1300:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 46
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 18 chez Client 1; (avant 1592.75)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 2 chez Client 1; (avant 1325.87)
+500:  DEPOT de Produit 3 chez Client 1; (avant 1338.97)
+500:  DEPOT de Produit 4 chez Client 1; (avant 1348.97)
+500:  DEPOT de Produit 5 chez Client 1; (avant 1374.32)
+500:  DEPOT de Produit 9 chez Client 1; (avant 1431.73)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 11 chez Client 1; (avant 1452.34)
+700:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 10 chez Client 1; (avant 1447.58)
+900:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1477.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1504.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1516.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1555.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1571.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1593.82)
+1100:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1300	 <------------ 
+1300:  DEPOT de Produit 0 chez Client 2; (avant 1300)
+1300:  DEPOT de Produit 1 chez Client 2; (avant 1324.36)
+1300:  DEPOT de Produit 6 chez Client 2; (avant 1395.01)
+1300:  DEPOT de Produit 7 chez Client 2; (avant 1414.31)
+1300:  DEPOT de Produit 8 chez Client 2; (avant 1420.44)
+1300:  DEPOT de Produit 12 chez Client 2; (avant 1453.07)
+1300:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 47
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 18 chez Client 1; (avant 1592.75)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 2 chez Client 1; (avant 1325.87)
+500:  DEPOT de Produit 3 chez Client 1; (avant 1338.97)
+500:  DEPOT de Produit 4 chez Client 1; (avant 1348.97)
+500:  DEPOT de Produit 5 chez Client 1; (avant 1374.32)
+500:  DEPOT de Produit 9 chez Client 1; (avant 1431.73)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 11 chez Client 1; (avant 1452.34)
+700:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 10 chez Client 1; (avant 1447.58)
+900:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1477.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1504.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1516.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1555.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1571.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1593.82)
+1100:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1300	 <------------ 
+1300:  DEPOT de Produit 0 chez Client 2; (avant 1300)
+1300:  DEPOT de Produit 1 chez Client 2; (avant 1324.36)
+1300:  DEPOT de Produit 6 chez Client 2; (avant 1395.01)
+1300:  DEPOT de Produit 7 chez Client 2; (avant 1414.31)
+1300:  DEPOT de Produit 8 chez Client 2; (avant 1420.44)
+1300:  DEPOT de Produit 12 chez Client 2; (avant 1453.07)
+1300:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 48
+######################################
+Solution courante:
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 18 chez Client 1; (avant 1592.75)
+300:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 2 chez Client 1; (avant 1325.87)
+500:  DEPOT de Produit 3 chez Client 1; (avant 1338.97)
+500:  DEPOT de Produit 4 chez Client 1; (avant 1348.97)
+500:  DEPOT de Produit 5 chez Client 1; (avant 1374.32)
+500:  DEPOT de Produit 9 chez Client 1; (avant 1431.73)
+500:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 11 chez Client 1; (avant 1452.34)
+700:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	900	 <------------ 
+900:  DEPOT de Produit 10 chez Client 1; (avant 1447.58)
+900:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1100	 <------------ 
+1100:  DEPOT de Produit 13 chez Client 2; (avant 1477.77)
+1100:  DEPOT de Produit 14 chez Client 2; (avant 1504.6)
+1100:  DEPOT de Produit 15 chez Client 2; (avant 1516.79)
+1100:  DEPOT de Produit 16 chez Client 2; (avant 1555.02)
+1100:  DEPOT de Produit 17 chez Client 2; (avant 1571.92)
+1100:  DEPOT de Produit 19 chez Client 2; (avant 1593.82)
+1100:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	1300	 <------------ 
+1300:  DEPOT de Produit 0 chez Client 2; (avant 1300)
+1300:  DEPOT de Produit 1 chez Client 2; (avant 1324.36)
+1300:  DEPOT de Produit 6 chez Client 2; (avant 1395.01)
+1300:  DEPOT de Produit 7 chez Client 2; (avant 1414.31)
+1300:  DEPOT de Produit 8 chez Client 2; (avant 1420.44)
+1300:  DEPOT de Produit 12 chez Client 2; (avant 1453.07)
+1300:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+######################################
+Iteration 49
+On applique la meilleure modification possible
+Best candidat:
+################
+SPLIT | gain: -841.837382316589 |  hash:SP?
+-> Temps:500
+Depot SPLIT: DEPOT de Produit 9 chez Client 1; (avant 1431.73)
+Deplacement SPLIT:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur )
+################
+
+sCandidate : 9156.36468892318 | sBest : 6234.11758904678
+Nombre d'iteration: 50
+Fin de l'algorithme tabou
+------------> 	100	 <------------ 
+100:  DEPLACEMENT depuis le Fournisseur vers Client 1; (Chemin direct) (distance :100)
+100:  DEPOT de Produit 11 chez Client 1; (avant 852.336)
+100:  DEPOT de Produit 18 chez Client 1; (avant 992.747)
+100:  DEPLACEMENT de Client 1; vers Client 1; (Chemin : Fournisseur ) (distance :200)
+------------> 	300	 <------------ 
+300:  DEPOT de Produit 2 chez Client 1; (avant 725.866)
+300:  DEPOT de Produit 3 chez Client 1; (avant 738.969)
+300:  DEPOT de Produit 4 chez Client 1; (avant 748.967)
+300:  DEPOT de Produit 5 chez Client 1; (avant 774.316)
+300:  DEPOT de Produit 9 chez Client 1; (avant 831.731)
+300:  DEPOT de Produit 10 chez Client 1; (avant 847.577)
+300:  DEPLACEMENT de Client 1; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	500	 <------------ 
+500:  DEPOT de Produit 0 chez Client 2; (avant 700)
+500:  DEPOT de Produit 1 chez Client 2; (avant 724.36)
+500:  DEPOT de Produit 6 chez Client 2; (avant 795.014)
+500:  DEPOT de Produit 7 chez Client 2; (avant 814.314)
+500:  DEPOT de Produit 8 chez Client 2; (avant 820.444)
+500:  DEPOT de Produit 12 chez Client 2; (avant 853.074)
+500:  DEPLACEMENT de Client 2; vers Client 2; (Chemin : Fournisseur ) (distance :200)
+------------> 	700	 <------------ 
+700:  DEPOT de Produit 13 chez Client 2; (avant 877.774)
+700:  DEPOT de Produit 14 chez Client 2; (avant 904.602)
+700:  DEPOT de Produit 15 chez Client 2; (avant 916.792)
+700:  DEPOT de Produit 16 chez Client 2; (avant 955.02)
+700:  DEPOT de Produit 17 chez Client 2; (avant 971.924)
+700:  DEPOT de Produit 19 chez Client 2; (avant 993.821)
+700:  DEPLACEMENT de Client 2; vers le Fournisseur (Chemin direct) (distance :100)
+
+Coût total de la solution: 6234.11758904678
